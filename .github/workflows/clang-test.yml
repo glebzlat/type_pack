@@ -1,0 +1,25 @@
+name: clang-test
+on: push #[push, pull_request]
+
+jobs:
+  testing:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: install deps
+        run: |
+          sudo apt update
+          sudo apt install ninja-build lld clang-14
+          sudo ln -sf /usr/local/bin/ld /usr/bin/lld
+      - name: configure cmake
+        run: |
+          cmake -S . -B build \
+            -G "Unix Makefiles" \
+            -D CMAKE_BUILD_TYPE=Debug \
+            -D CMAKE_C_COMPILER=clang-14 \
+            -D CMAKE_CXX_COMPILER=clang++-14 \
+      - name: build and run tests
+        run:
+          cmake --build build
