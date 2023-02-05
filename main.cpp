@@ -1,8 +1,35 @@
+/* MIT License
+ *
+ * Copyright (c) 2023 Gleb Zlatanov
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
 #include "type_pack.hpp"
 #include <cassert>
 #include <sstream>
 #include <stdexcept>
 
+/*
+ * Returns name of the template parameter T.
+ * Compiler-dependent, tested on gcc and clang.
+ */
 template <typename T>
 inline std::string get_name() {
   char const* str = __PRETTY_FUNCTION__;
@@ -134,6 +161,7 @@ int main() {
     assert((tp::none_of<std::is_const, types>::value));
   }
 
+  // Test 7: at, at_t
   {
     using types = tp::type_pack<bool, char, short, int, long>;
 
@@ -142,6 +170,7 @@ int main() {
     assert_is_same<tp::at_t<4, types>, long>();
   }
 
+  // Test 8: generate_t
   {
     using seq = tp::generate_t<5, int>;
 
@@ -153,6 +182,7 @@ int main() {
     assert(empty_seq::empty());
   }
 
+  // Test 9: count, count_if
   {
     using types = tp::type_pack<void, float, char, char, bool, char>;
 
@@ -165,6 +195,7 @@ int main() {
     assert((tp::count_if<std::is_const, types>::value == 0));
   }
 
+  // Test 10: remove_t, remove_all_t
   {
     using types = tp::type_pack<void, int, void, bool, void, float>;
 
@@ -178,6 +209,7 @@ int main() {
     assert_is_same<no_void, tp::type_pack<int, bool, float>>();
   }
 
+  // Test 11: no_duplicates_t
   {
     using types = tp::type_pack<int, int, char, char, bool, bool, bool>;
     using no_dup = tp::no_duplicates_t<types>;
@@ -195,6 +227,7 @@ int main() {
     assert_is_same<tp::no_duplicates_t<tp::empty_pack>, tp::empty_pack>();
   }
 
+  // Test 12: replace_t
   {
     using floats = tp::type_pack<float, float, float>;
     using ints = tp::replace_t<float, int, floats>;
