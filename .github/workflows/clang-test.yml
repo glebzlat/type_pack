@@ -1,4 +1,4 @@
-name: clang-test
+name: clang
 on: push #[push, pull_request]
 
 jobs:
