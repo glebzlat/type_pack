@@ -195,12 +195,15 @@ namespace tp {
         static constexpr size_t value = Idx;
     };
 
+    template <typename T, typename... Ts, size_t Idx>
+    struct find_helper<T, type_pack<T, Ts...>, Idx> {
+        static constexpr std::size_t value = Idx;
+    };
+
     template <typename T, typename U, typename... Ts, size_t Idx>
     struct find_helper<T, type_pack<U, Ts...>, Idx> {
         static constexpr size_t value =
-            std::is_same<T, U>::value
-                ? Idx
-                : find_helper<T, type_pack<Ts...>, Idx + 1>::value;
+            find_helper<T, type_pack<Ts...>, Idx + 1>::value;
     };
 
   } // namespace __details
@@ -240,6 +243,17 @@ namespace tp {
   struct find_if
       : std::integral_constant<std::size_t,
                                __details::find_if_helper<F, TP, 0>::value> {};
+
+  template <template <typename...> class F, class TP>
+  struct all_of {};
+
+  template <template <typename...> class F>
+  struct all_of<F, empty_pack> : std::true_type {};
+
+  template <template <typename...> class F, typename T, typename... Ts>
+  struct all_of<F, type_pack<T, Ts...>>
+      : std::integral_constant<bool, F<T>::value &&
+                                         all_of<F, type_pack<Ts...>>::value> {};
 
   template <template <typename...> class F, class TP>
   struct any_of {};
@@ -428,8 +442,7 @@ namespace tp {
     private:
       using tail = remove_all_t<T, type_pack<Ts...>>;
     public:
-      using type =
-          concatenate_t<just_type<T>, typename unique<tail>::type>;
+      using type = concatenate_t<just_type<T>, typename unique<tail>::type>;
   };
 
   template <class TP>

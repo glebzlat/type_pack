@@ -159,6 +159,12 @@ int main() {
     assert((tp::none_of<std::is_void, types>::value == false));
 
     assert((tp::none_of<std::is_const, types>::value));
+
+    using all_void = tp::type_pack<void, void, void>;
+
+    assert((tp::all_of<std::is_void, all_void>::value));
+
+    assert((tp::all_of<std::is_void, types>::value == false));
   }
 
   // Test 7: at, at_t
