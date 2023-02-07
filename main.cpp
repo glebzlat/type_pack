@@ -242,5 +242,12 @@ int main() {
     assert_is_same<tp::replace_t<float, int, tp::empty_pack>, tp::empty_pack>();
   }
 
+  {
+    using types = tp::type_pack<float, const float, int, const int>;
+    using no_const = tp::remove_if_t<std::is_const, types>;
+
+    assert_is_same<no_const, tp::type_pack<float, int>>();
+  }
+
   return 0;
 }

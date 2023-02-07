@@ -380,6 +380,24 @@ namespace tp {
   template <typename T, class TP>
   using remove_t = typename remove<T, TP>::type;
 
+  template <template <typename...> class F, class TP>
+  struct remove_if {
+      using type = TP;
+  };
+
+  template <template <typename...> class F, typename T, typename... Ts>
+  struct remove_if<F, type_pack<T, Ts...>> {
+    private:
+      using head_type = typename std::conditional<F<T>::value, empty_pack,
+                                                  type_pack<T>>::type;
+    public:
+      using type = concatenate_t<head_type,
+                                 typename remove_if<F, type_pack<Ts...>>::type>;
+  };
+
+  template <template <typename...> class F, class TP>
+  using remove_if_t = typename remove_if<F, TP>::type;
+
   template <typename T, class TP>
   struct remove_all {
       using type = TP;
