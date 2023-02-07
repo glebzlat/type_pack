@@ -212,19 +212,19 @@ int main() {
   // Test 11: no_duplicates_t
   {
     using types = tp::type_pack<int, int, char, char, bool, bool, bool>;
-    using no_dup = tp::no_duplicates_t<types>;
+    using no_dup = tp::unique_t<types>;
 
     assert_is_same<no_dup, tp::type_pack<int, char, bool>>();
 
-    assert_is_same<tp::no_duplicates_t<no_dup>,
+    assert_is_same<tp::unique_t<no_dup>,
                    tp::type_pack<int, char, bool>>();
 
     using types1 = tp::type_pack<int, char, bool, int, char, bool, void>;
-    using no_dup1 = tp::no_duplicates_t<types1>;
+    using no_dup1 = tp::unique_t<types1>;
 
     assert_is_same<no_dup1, tp::type_pack<int, char, bool, void>>();
 
-    assert_is_same<tp::no_duplicates_t<tp::empty_pack>, tp::empty_pack>();
+    assert_is_same<tp::unique_t<tp::empty_pack>, tp::empty_pack>();
   }
 
   // Test 12: replace_t

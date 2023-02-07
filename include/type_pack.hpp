@@ -419,21 +419,21 @@ namespace tp {
   using remove_all_t = typename remove_all<T, TP>::type;
 
   template <class TP>
-  struct no_duplicates {
+  struct unique {
       using type = TP;
   };
 
   template <typename T, typename... Ts>
-  struct no_duplicates<type_pack<T, Ts...>> {
+  struct unique<type_pack<T, Ts...>> {
     private:
       using tail = remove_all_t<T, type_pack<Ts...>>;
     public:
       using type =
-          concatenate_t<just_type<T>, typename no_duplicates<tail>::type>;
+          concatenate_t<just_type<T>, typename unique<tail>::type>;
   };
 
   template <class TP>
-  using no_duplicates_t = typename no_duplicates<TP>::type;
+  using unique_t = typename unique<TP>::type;
 
   template <typename Rep, typename To, class TP>
   struct replace {
