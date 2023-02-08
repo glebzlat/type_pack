@@ -221,28 +221,36 @@ namespace tp {
 
   namespace __details {
 
-    template <template <typename...> class F, typename TP, size_t Idx>
-    struct find_if_helper {};
+    template <bool Cond>
+    using enable_if_t = typename std::enable_if<Cond, void>::type;
 
-    template <template <typename...> class F, size_t Idx>
-    struct find_if_helper<F, empty_pack, Idx> {
+    template <template <typename...> class F, typename TP, size_t Idx,
+              typename AlwaysVoid>
+    struct find_if_helper {
         static constexpr size_t value = Idx;
     };
 
-    template <template <typename...> class F, typename U, typename... Ts,
+    template <template <typename...> class F, typename T, typename... Ts,
               size_t Idx>
-    struct find_if_helper<F, type_pack<U, Ts...>, Idx> {
+    struct find_if_helper<F, type_pack<T, Ts...>, Idx,
+                          enable_if_t<F<T>::value>> {
+        static constexpr size_t value = Idx;
+    };
+
+    template <template <typename...> class F, typename T, typename... Ts,
+              size_t Idx>
+    struct find_if_helper<F, type_pack<T, Ts...>, Idx,
+                          enable_if_t<F<T>::value == false>> {
         static constexpr size_t value =
-            F<U>::value ? Idx
-                        : find_if_helper<F, type_pack<Ts...>, Idx + 1>::value;
+            find_if_helper<F, type_pack<Ts...>, Idx + 1, void>::value;
     };
 
   } // namespace __details
 
   template <template <typename...> class F, class TP>
   struct find_if
-      : std::integral_constant<std::size_t,
-                               __details::find_if_helper<F, TP, 0>::value> {};
+      : std::integral_constant<
+            std::size_t, __details::find_if_helper<F, TP, 0, void>::value> {};
 
   template <template <typename...> class F, class TP>
   struct all_of {};
