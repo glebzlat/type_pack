@@ -23,8 +23,11 @@
 
 #include "type_pack.hpp"
 #include <cassert>
+#include <cstddef>
 #include <sstream>
 #include <stdexcept>
+
+#include <iostream>
 
 /*
  * Returns name of the template parameter T.
@@ -145,6 +148,18 @@ int main() {
     assert(first_void == 1);
     assert(second_void == 4);
     assert(third_void == types::size());
+
+    using types1 = tp::type_pack<int, int, bool, int>;
+
+    constexpr std::size_t first_int = tp::find<int, types1>::value;
+
+    constexpr std::size_t second_int = tp::find<int, types1, first_int + 1>::value;
+
+    constexpr std::size_t third_int = tp::find<int, types1, second_int + 1>::value;
+
+    assert(first_int == 0);
+    assert(second_int == 1);
+    assert(third_int == 3);
   }
 
   // Test 5: part_caller, find_if
@@ -153,15 +168,22 @@ int main() {
 
     struct Derived : Base {};
 
-    using types = tp::type_pack<void, int, float, Derived>;
+    using types = tp::type_pack<Derived, void, int, float, Derived, void>;
 
-    assert((tp::find_if<std::is_void, types>::value == 0));
+    constexpr std::size_t first_void = tp::find_if<std::is_void, types>::value;
+
+    assert(first_void == 1);
+
+    assert((tp::find_if<std::is_void, types, first_void + 1>::value == 5));
 
     using pc_is_bool = tp::part_caller<std::is_same, bool>;
-    assert((tp::find_if<pc_is_bool::type, types>::value == 4));
+    assert((tp::find_if<pc_is_bool::type, types>::value == types::size()));
 
     using pc_base_of = tp::part_caller<std::is_base_of, Base>;
-    assert((tp::find_if<pc_base_of::type, types>::value == 3));
+    assert((tp::find_if<pc_base_of::type, types>::value == 0));
+
+    assert((tp::find_if<pc_base_of::type, types, 1>::value == 4));
+
   }
 
   // Test 6: any_of, none_of

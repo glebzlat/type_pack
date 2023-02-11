@@ -279,9 +279,8 @@ namespace tp {
   template <typename T, typename TP, std::size_t From = 0>
   struct find
       : std::integral_constant<
-            std::size_t,
-            __details::find_helper<T, sub_t<TP, From, TP::size()>, 0>::value +
-                From> {};
+            std::size_t, __details::find_helper<T, sub_t<TP, From, TP::size()>,
+                                                From>::value> {};
 
   template <template <class...> class F, class... Ts>
   struct part_caller {
@@ -314,10 +313,11 @@ namespace tp {
 
   } // namespace __details
 
-  template <template <typename...> class F, class TP>
+  template <template <typename...> class F, class TP, std::size_t From = 0>
   struct find_if
-      : std::integral_constant<
-            std::size_t, __details::find_if_helper<F, TP, 0, void>::value> {};
+      : std::integral_constant<std::size_t, __details::find_if_helper<
+                                                F, sub_t<TP, From, TP::size()>,
+                                                From, void>::value> {};
 
   template <template <typename...> class F, class TP>
   struct all_of {};
