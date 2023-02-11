@@ -276,10 +276,12 @@ namespace tp {
 
   } // namespace __details
 
-  template <typename T, typename TP>
+  template <typename T, typename TP, std::size_t From = 0>
   struct find
-      : std::integral_constant<std::size_t,
-                               __details::find_helper<T, TP, 0>::value> {};
+      : std::integral_constant<
+            std::size_t,
+            __details::find_helper<T, sub_t<TP, From, TP::size()>, 0>::value +
+                From> {};
 
   template <template <class...> class F, class... Ts>
   struct part_caller {

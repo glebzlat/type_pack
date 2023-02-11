@@ -130,7 +130,21 @@ int main() {
 
     assert((tp::find<short, integrals>::value == 2));
 
-    assert((tp::find<double, integrals>::value == 5));
+    assert((tp::find<double, integrals>::value == integrals::size()));
+
+    using types = tp::type_pack<int, void, char, bool, void, float>;
+
+    constexpr std::size_t first_void = tp::find<void, types>::value;
+
+    constexpr std::size_t second_void =
+        tp::find<void, types, first_void + 1>::value;
+
+    constexpr std::size_t third_void =
+        tp::find<void, types, second_void + 1>::value;
+
+    assert(first_void == 1);
+    assert(second_void == 4);
+    assert(third_void == types::size());
   }
 
   // Test 5: part_caller, find_if
@@ -268,6 +282,9 @@ int main() {
 
     using empty = tp::sub_t<types, 1, 1>;
     assert_is_same<empty, tp::empty_pack>();
+
+    using last = tp::sub_t<types, types::size() - 1, types::size()>;
+    assert_is_same<last, tp::type_pack<short>>();
   }
 
   return 0;
