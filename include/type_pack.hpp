@@ -54,6 +54,9 @@ namespace tp {
       using type = T;
   };
 
+  template <class TP>
+  using head_t = typename head<TP>::type;
+
   template <typename T>
   struct tail {};
 
@@ -61,6 +64,9 @@ namespace tp {
   struct tail<type_pack<T, Ts...>> {
       using type = type_pack<Ts...>;
   };
+
+  template <class TP>
+  using tail_t = typename tail<TP>::type;
 
   template <class...>
   struct concatenate {};
