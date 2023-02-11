@@ -486,8 +486,7 @@ namespace tp {
       using head_type = typename std::conditional<F<T>::value, empty_pack,
                                                   type_pack<T>>::type;
     public:
-      using type = concatenate_t<head_type,
-                                 typename remove_if<F, type_pack<Ts...>>::type>;
+      using type = concatenate_t<head_type, type_pack<Ts...>>;
   };
 
   template <template <typename...> class F, class TP>
@@ -512,6 +511,36 @@ namespace tp {
 
   template <typename T, class TP>
   using remove_all_t = typename remove_all<T, TP>::type;
+
+  namespace __details {
+
+    template <template <typename...> class F, class TP, typename AlwaysVoid>
+    struct remove_all_if_impl {
+        using type = TP;
+    };
+
+    template <template <typename...> class F, typename T, typename... Ts>
+    struct remove_all_if_impl<F, type_pack<T, Ts...>,
+                              enable_if_t<F<T>::value>> {
+        using type =
+            typename remove_all_if_impl<F, type_pack<Ts...>, void>::type;
+    };
+
+    template <template <typename...> class F, typename T, typename... Ts>
+    struct remove_all_if_impl<F, type_pack<T, Ts...>,
+                              enable_if_t<F<T>::value == false>> {
+        using type = concatenate_t<
+            just_type<T>,
+            typename remove_all_if_impl<F, type_pack<Ts...>, void>::type>;
+    };
+
+  } // namespace __details
+
+  template <template <typename...> class F, class TP>
+  struct remove_all_if : __details::remove_all_if_impl<F, TP, void> {};
+
+  template <template <typename...> class F, class TP>
+  using remove_all_if_t = typename remove_all_if<F, TP>::type;
 
   template <class TP>
   struct unique {
