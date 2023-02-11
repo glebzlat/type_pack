@@ -7,19 +7,16 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-add_executable(tptest main.cpp)
-target_compile_options(tptest PRIVATE
+add_library(type_pack INTERFACE)
+target_compile_options(type_pack INTERFACE
     -Wall -Wpedantic -Wextra )
-target_include_directories(tptest PRIVATE
+target_include_directories(type_pack INTERFACE
     ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-include(CTest)
-add_test(NAME TP_Test COMMAND tptest)
+if(TYPE_PACK_TESTING)
+    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/test)
+endif()
 
-add_custom_target(MakeTest ALL
-    ctest --output-on-failure --test-timeout 10
-    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-    USES_TERMINAL
-    VERBATIM
-    DEPENDS tptest
-)
+if(TYPE_PACK_DOC)
+    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/doc)
+endif()
