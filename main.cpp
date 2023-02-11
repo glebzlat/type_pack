@@ -222,8 +222,7 @@ int main() {
 
     assert_is_same<no_dup, tp::type_pack<int, char, bool>>();
 
-    assert_is_same<tp::unique_t<no_dup>,
-                   tp::type_pack<int, char, bool>>();
+    assert_is_same<tp::unique_t<no_dup>, tp::type_pack<int, char, bool>>();
 
     using types1 = tp::type_pack<int, char, bool, int, char, bool, void>;
     using no_dup1 = tp::unique_t<types1>;
@@ -253,6 +252,22 @@ int main() {
     using no_const = tp::remove_if_t<std::is_const, types>;
 
     assert_is_same<no_const, tp::type_pack<float, int>>();
+  }
+
+  {
+    using types = tp::type_pack<int, float, double, short>;
+
+    using floats = typename tp::sub<types, 1, 3>::type;
+    assert_is_same<floats, tp::type_pack<float, double>>();
+
+    using until_end = tp::sub_t<types, 1, 4>;
+    assert_is_same<until_end, tp::type_pack<float, double, short>>();
+
+    using the_same = tp::sub_t<types, 0, 4>;
+    assert_is_same<the_same, types>();
+
+    using empty = tp::sub_t<types, 1, 1>;
+    assert_is_same<empty, tp::empty_pack>();
   }
 
   return 0;

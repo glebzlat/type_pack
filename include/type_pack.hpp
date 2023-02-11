@@ -97,6 +97,74 @@ namespace tp {
     return {};
   }
 
+  namespace __details {
+
+    template <bool Cond>
+    using enable_if_t = typename std::enable_if<Cond, void>::type;
+
+    template <std::size_t Begin, std::size_t End, std::size_t Current>
+    struct indexes {
+        static constexpr std::size_t begin = Begin;
+        static constexpr std::size_t end = End;
+        static constexpr std::size_t current = Current;
+
+        static_assert(begin <= end, "Begin index can not be greater that end");
+    };
+
+    template <class Indexes, class TP, typename AlwaysVoid>
+    struct sub_impl {};
+
+    template <class Indexes, typename T, typename... Ts>
+    struct sub_impl<Indexes, type_pack<T, Ts...>,
+                    enable_if_t<(Indexes::current < Indexes::begin)>> {
+      private:
+        using idxs_t =
+            indexes<Indexes::begin, Indexes::end, Indexes::current + 1>;
+      public:
+        using type = typename sub_impl<idxs_t, type_pack<Ts...>, void>::type;
+    };
+
+    template <class Indexes, typename T, typename... Ts>
+    struct sub_impl<Indexes, type_pack<T, Ts...>,
+                    enable_if_t<(Indexes::current >= Indexes::begin &&
+                                 Indexes::current < Indexes::end)>> {
+      private:
+        using idxs_t =
+            indexes<Indexes::begin, Indexes::end, Indexes::current + 1>;
+
+        static constexpr bool store_tail =
+            Indexes::end - Indexes::current == type_pack<T, Ts...>::size();
+
+        using recursive_sub =
+            typename sub_impl<idxs_t, type_pack<Ts...>, void>::type;
+
+        using just_tail = type_pack<Ts...>;
+
+        // a little optimisation: if end - current == size of a type pack,
+        // then just store remaining tail types, otherwise recursively apply
+        // sub_impl
+        using tail_t = typename std::conditional<store_tail, just_tail,
+                                                 recursive_sub>::type;
+      public:
+        using type = concatenate_t<just_type<T>, tail_t>;
+    };
+
+    template <class Indexes, typename... Ts>
+    struct sub_impl<Indexes, type_pack<Ts...>,
+                    enable_if_t<(Indexes::current == Indexes::end)>> {
+        using type = empty_pack;
+    };
+
+  } // namespace __details
+
+  template <class TP, std::size_t StartIdx, std::size_t EndIdx>
+  struct sub
+      : __details::sub_impl<__details::indexes<StartIdx, EndIdx, 0>, TP, void> {
+  };
+
+  template <class TP, std::size_t Begin, std::size_t End>
+  using sub_t = typename sub<TP, Begin, End>::type;
+
   template <class T, class U>
   struct is_equal : std::false_type {};
 
@@ -220,9 +288,6 @@ namespace tp {
   };
 
   namespace __details {
-
-    template <bool Cond>
-    using enable_if_t = typename std::enable_if<Cond, void>::type;
 
     template <template <typename...> class F, typename TP, size_t Idx,
               typename AlwaysVoid>
