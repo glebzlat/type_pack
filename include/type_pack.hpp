@@ -95,6 +95,68 @@ namespace tp {
     return is_not_equal<T, U>::value;
   }
 
+  namespace __details {
+
+    template <bool Cond>
+    using enable_if_t = typename std::enable_if<Cond, void>::type;
+
+    template <class TP1, class TP2,
+              template <typename A, typename B> class Less, typename AlwaysVoid>
+    struct lexicographical_compare_impl {
+        static constexpr bool value = false;
+    };
+
+    template <typename T, typename... Ts, typename U, typename... Us,
+              template <typename A, typename B> class Less>
+    struct lexicographical_compare_impl<
+        type_pack<T, Ts...>, type_pack<U, Us...>, Less,
+        enable_if_t<!Less<T, U>::value && !Less<U, T>::value>> {
+        static constexpr bool value =
+            lexicographical_compare_impl<type_pack<Ts...>, type_pack<Us...>,
+                                         Less, void>::value;
+    };
+
+    // lenght of the first range is less than length of the second range
+    template <typename U, typename... Us,
+              template <typename A, typename B> class Less>
+    struct lexicographical_compare_impl<empty_pack, type_pack<U, Us...>, Less,
+                                        void> {
+        static constexpr bool value = true;
+    };
+
+    // lenght of the first range is greater than length of the second range
+    template <typename T, typename... Ts,
+              template <typename A, typename B> class Less>
+    struct lexicographical_compare_impl<type_pack<T, Ts...>, empty_pack, Less,
+                                        void> {
+        static constexpr bool value = false;
+    };
+
+    // the first mismatching element of the first range is less
+    template <typename T, typename... Ts, typename U, typename... Us,
+              template <typename A, typename B> class Less>
+    struct lexicographical_compare_impl<type_pack<T, Ts...>,
+                                        type_pack<U, Us...>, Less,
+                                        enable_if_t<Less<T, U>::value>> {
+        static constexpr bool value = true;
+    };
+
+    // the first mismatching element of the second range is less
+    template <typename T, typename... Ts, typename U, typename... Us,
+              template <typename A, typename B> class Less>
+    struct lexicographical_compare_impl<type_pack<T, Ts...>,
+                                        type_pack<U, Us...>, Less,
+                                        enable_if_t<Less<U, T>::value>> {
+        static constexpr bool value = false;
+    };
+
+  } // namespace __details
+
+  template <class TP1, class TP2, template <typename A, typename B> class Less>
+  struct lexicographical_compare
+      : std::integral_constant<bool, __details::lexicographical_compare_impl<
+                                         TP1, TP2, Less, void>::value> {};
+
   /**
    * @}
    *
@@ -114,9 +176,6 @@ namespace tp {
   using head_t = typename head<TP>::type;
 
   namespace __details {
-
-    template <bool Cond>
-    using enable_if_t = typename std::enable_if<Cond, void>::type;
 
     template <typename>
     struct Error_Type_Pack_Out_Of_Range;
@@ -631,6 +690,23 @@ namespace tp {
   struct part_caller {
       template <class... Us>
       using type = typename F<Ts..., Us...>::type;
+  };
+
+  template <typename A, typename B>
+  struct sizeof_less {
+      static constexpr bool value = sizeof(A) < sizeof(B);
+  };
+
+  template <typename A, typename B>
+  struct base_is_less {
+      static constexpr bool value =
+          std::is_base_of<A, B>::value && !std::is_same<A, B>::value;
+  };
+
+  template <typename A, typename B>
+  struct derived_is_less {
+      static constexpr bool value =
+          std::is_base_of<B, A>::value && !std::is_same<A, B>::value;
   };
 
   /** @} */
