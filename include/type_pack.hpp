@@ -206,6 +206,72 @@ namespace tp {
   template <std::size_t Idx, class TP>
   using at_t = typename at<Idx, TP>::type;
 
+  struct empty_type {};
+
+  namespace __details {
+
+    template <class TP, typename CurMax,
+              template <typename A, typename B> class Less>
+    struct max_impl {
+        using type = CurMax;
+    };
+
+    template <typename T, typename... Ts, typename CurMax,
+              template <typename A, typename B> class Less>
+    struct max_impl<type_pack<T, Ts...>, CurMax, Less> {
+      private:
+        using max_t =
+            typename std::conditional<Less<CurMax, T>::value, T, CurMax>::type;
+      public:
+        using type = typename max_impl<type_pack<Ts...>, max_t, Less>::type;
+    };
+
+    template <typename T, typename... Ts,
+              template <typename A, typename B> class Less>
+    struct max_impl<type_pack<T, Ts...>, empty_type, Less> {
+        using type = typename max_impl<type_pack<Ts...>, T, Less>::type;
+    };
+
+  } // namespace __details
+
+  template <class TP, template <typename A, typename B> class Less>
+  struct max : __details::max_impl<TP, empty_type, Less> {};
+
+  template <class TP, template <typename A, typename B> class Less>
+  using max_t = typename max<TP, Less>::type;
+
+  namespace __details {
+
+    template <class TP, typename CurMin,
+              template <typename A, typename B> class Less>
+    struct min_impl {
+        using type = CurMin;
+    };
+
+    template <typename T, typename... Ts, typename CurMin,
+              template <typename A, typename B> class Less>
+    struct min_impl<type_pack<T, Ts...>, CurMin, Less> {
+      private:
+        using min_t =
+            typename std::conditional<Less<CurMin, T>::value, CurMin, T>::type;
+      public:
+        using type = typename min_impl<type_pack<Ts...>, min_t, Less>::type;
+    };
+
+    template <typename T, typename... Ts,
+              template <typename A, typename B> class Less>
+    struct min_impl<type_pack<T, Ts...>, empty_type, Less> {
+        using type = typename min_impl<type_pack<Ts...>, T, Less>::type;
+    };
+
+  } // namespace __details
+
+  template <class TP, template <typename A, typename B> class Less>
+  struct min : __details::min_impl<TP, empty_type, Less> {};
+
+  template <class TP, template <typename A, typename B> class Less>
+  using min_t = typename min<TP, Less>::type;
+
   /**
    * @}
    *
@@ -691,6 +757,13 @@ namespace tp {
       template <class... Us>
       using type = typename F<Ts..., Us...>::type;
   };
+
+  /**
+   * @}
+   *
+   * @addtogroup TypePackComparsion
+   * @{
+   */
 
   template <typename A, typename B>
   struct sizeof_less {
