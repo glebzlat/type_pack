@@ -18,5 +18,10 @@ if(TYPE_PACK_TESTING)
 endif()
 
 if(TYPE_PACK_DOC)
+    set(REPLACE_SCRIPT ${CMAKE_SOURCE_DIR}/scripts/replace.py)
+    if(NOT EXISTS ${REPLACE_SCRIPT})
+        message(FATAL_ERROR "Script not found")
+    endif()
+
     add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/doc)
 endif()
