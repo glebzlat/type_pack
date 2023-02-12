@@ -552,15 +552,15 @@ namespace tp {
   template <class TP, std::size_t Begin, std::size_t End>
   using copy_t = typename copy<TP, Begin, End>::type;
 
-  template <class TP, template <typename> class Pred>
+  template <class TP, template <typename...> class Pred>
   struct copy_if {};
 
-  template <template <typename> class Pred>
+  template <template <typename...> class Pred>
   struct copy_if<empty_pack, Pred> {
       using type = empty_pack;
   };
 
-  template <typename T, typename... Ts, template <typename> class Pred>
+  template <typename T, typename... Ts, template <typename...> class Pred>
   struct copy_if<type_pack<T, Ts...>, Pred> {
     private:
       using head_t = typename std::conditional<Pred<T>::value, type_pack<T>,
@@ -570,7 +570,7 @@ namespace tp {
           concatenate_t<head_t, typename copy_if<type_pack<Ts...>, Pred>::type>;
   };
 
-  template <class TP, template <typename> class Pred>
+  template <class TP, template <typename...> class Pred>
   using copy_if_t = typename copy_if<TP, Pred>::type;
 
   template <typename T, class TP>
@@ -778,6 +778,42 @@ namespace tp {
       using type = typename F<Ts..., Us...>::type;
   };
 
+  /// @cond undocumented
+
+  template <class...>
+  struct __conjunction : std::true_type {};
+
+  template <class B>
+  struct __conjunction<B> : B {};
+
+  template <class B1, class... B>
+  struct __conjunction<B1, B...>
+      : std::conditional<bool(B1::value), __conjunction<B...>, B1>::type {};
+
+  template <class...>
+  struct __disjunction : std::false_type {};
+
+  template <class B>
+  struct __disjunction<B> : B {};
+
+  template <class B1, class... B>
+  struct __disjunction<B1, B...>
+      : std::conditional<bool(B1::value), B1, __disjunction<B...>>::type {};
+
+  template <class B>
+  struct __negation : std::integral_constant<bool, !B::value> {};
+
+  template <class B1, class... Bn>
+  using __and_ = __conjunction<B1, Bn...>;
+
+  template <class B1, class... Bn>
+  using __or_ = __disjunction<B1, Bn...>;
+
+  template <class B>
+  using __not_ = __negation<B>;
+
+  /// @endcond
+
   /**
    * @}
    *
@@ -786,21 +822,18 @@ namespace tp {
    */
 
   template <typename A, typename B>
-  struct sizeof_less {
-      static constexpr bool value = sizeof(A) < sizeof(B);
-  };
+  struct sizeof_less : std::integral_constant<bool, (sizeof(A) < sizeof(B))> {};
 
   template <typename A, typename B>
-  struct base_is_less {
-      static constexpr bool value =
-          std::is_base_of<A, B>::value && !std::is_same<A, B>::value;
-  };
+  struct sizeof_more : std::integral_constant<bool, (sizeof(A) > sizeof(B))> {};
 
   template <typename A, typename B>
-  struct derived_is_less {
-      static constexpr bool value =
-          std::is_base_of<B, A>::value && !std::is_same<A, B>::value;
-  };
+  struct base_is_less
+      : __and_<std::is_base_of<A, B>, __not_<std::is_same<A, B>>> {};
+
+  template <typename A, typename B>
+  struct derived_is_less
+      : __and_<std::is_base_of<B, A>, __not_<std::is_same<A, B>>> {};
 
   /** @} */
 
