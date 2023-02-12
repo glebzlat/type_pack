@@ -48,6 +48,8 @@ namespace tp {
       using type = T;
   };
 
+  struct empty_type {};
+
   /**
    * @brief Type list
    *
@@ -178,7 +180,9 @@ namespace tp {
    */
 
   template <typename T>
-  struct head {};
+  struct head {
+      using type = empty_type;
+  };
 
   template <typename T, typename... Ts>
   struct head<type_pack<T, Ts...>> {
@@ -218,8 +222,6 @@ namespace tp {
 
   template <std::size_t Idx, class TP>
   using at_t = typename at<Idx, TP>::type;
-
-  struct empty_type {};
 
   namespace __details {
 
@@ -300,7 +302,7 @@ namespace tp {
   template <class TP, std::size_t Begin, std::size_t End>
   using copy_t = typename copy<TP, Begin, End>::type;
 
-  template <typename, class>
+  template <typename T, class TP>
   struct contains {};
 
   template <typename T>
@@ -376,6 +378,8 @@ namespace tp {
   template <template <typename...> class F, class TP>
   struct all_of {};
 
+  /** @cond undocumented */
+
   template <template <typename...> class F>
   struct all_of<F, empty_pack> : std::true_type {};
 
@@ -384,8 +388,12 @@ namespace tp {
       : std::integral_constant<bool, F<T>::value &&
                                          all_of<F, type_pack<Ts...>>::value> {};
 
+  /** @endcond */
+
   template <template <typename...> class F, class TP>
   struct any_of {};
+
+  /** @cond undocumented */
 
   template <template <typename...> class F>
   struct any_of<F, empty_pack> : std::false_type {};
@@ -394,6 +402,8 @@ namespace tp {
   struct any_of<F, type_pack<T, Ts...>>
       : std::integral_constant<bool, F<T>::value ||
                                          any_of<F, type_pack<Ts...>>::value> {};
+
+  /** @endcond */
 
   template <template <typename> class F, class TP>
   struct none_of : std::integral_constant<bool, !any_of<F, TP>::value> {};
@@ -456,12 +466,18 @@ namespace tp {
    */
 
   template <typename T>
-  struct tail {};
+  struct tail {
+      using type = T;
+  };
+
+  /** @cond undocumented */
 
   template <typename T, typename... Ts>
   struct tail<type_pack<T, Ts...>> {
       using type = type_pack<Ts...>;
   };
+
+  /** @endcond */
 
   template <class TP>
   using tail_t = typename tail<TP>::type;
@@ -492,6 +508,7 @@ namespace tp {
   template <class T, class... Ts>
   struct concatenate<T, Ts...>
       : concatenate<T, typename concatenate<Ts...>::type> {};
+
 
   template <class... Ts>
   using concatenate_t = typename concatenate<Ts...>::type;
