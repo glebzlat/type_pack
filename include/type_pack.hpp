@@ -40,32 +40,45 @@
 
 namespace tp {
 
+  /**
+   * @brief Type wrapper
+   */
   template <typename T>
   struct just_type {
       using type = T;
   };
 
+  /**
+   * @brief Type list
+   *
+   * Stores types in the template parameter pack
+   */
   template <typename... Types>
   class type_pack {
     private:
       static constexpr std::size_t sz = (sizeof...(Types));
     public:
       /**
-       * @ingroup TypePackIndexing
-       */
+       * @brief Returns size of a type_pack
+       *
+       * @ingroup TypePackIndexing */
       static constexpr std::size_t size() noexcept { return sz; }
 
       /**
+       * @brief Indicates is type_pack empty or not
+       *
+       * Returns `true`, if type_pack is empty, `false` otherwise
        * @ingroup TypePackIndexing
        */
       static constexpr bool empty() noexcept { return sz == 0; }
   };
 
+  /**
+   * @brief Type alias to empty type_pack
+   */
   using empty_pack = type_pack<>;
 
   /**
-   * @}
-   *
    * @addtogroup TypePackRelationOps
    * @{
    */
