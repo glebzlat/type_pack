@@ -70,6 +70,9 @@ $(function() {
 <div class="title">tp::is_equal&lt; T, U &gt; Struct Template Reference<div class="ingroups"><a class="el" href="group__TypePack.html">Type pack</a> &raquo; <a class="el" href="group__TypePackRelationOps.html">Relation operations</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Checks if the two type_packs or just_types is equal.  
+ <a href="structtp_1_1is__equal.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for tp::is_equal&lt; T, U &gt;:</div>
 <div class="dyncontent">
@@ -80,7 +83,37 @@ Collaboration diagram for tp::is_equal&lt; T, U &gt;:</div>
 <div class="dyncontent">
 <div class="center"><img src="structtp_1_1is__equal__coll__graph.png" border="0" usemap="#atp_1_1is__equal_3_01T_00_01U_01_4_coll__map" alt="Collaboration graph"/></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
-<hr/>The documentation for this struct was generated from the following file:<ul>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;class T, class U&gt;<br />
+struct tp::is_equal&lt; T, U &gt;</h3>
+
+<p>Checks if the two type_packs or just_types is equal. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>left operand </td></tr>
+    <tr><td class="paramname">U</td><td>right operand</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Operation compares <a class="el" href="structtp_1_1just__type.html" title="Type wrapper.">just_type</a> with <a class="el" href="structtp_1_1just__type.html" title="Type wrapper.">just_type</a>, <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a> with <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a> and <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a> with <a class="el" href="structtp_1_1just__type.html" title="Type wrapper.">just_type</a>. The last comparsion is only allowed to <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a>, which has only one type. Provides the member constant <code>value</code> that is equal to <code>true</code> if the types are equal, otherwise <code>false</code>. <code><a class="el" href="structtp_1_1is__equal.html" title="Checks if the two type_packs or just_types is equal.">is_equal</a></code> inherits <code>std::integral_constant</code> members.</p>
+<p>Implementation</p>
+<div class="fragment"><div class="line"> </div>
+<div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">class</span> T, <span class="keyword">class</span> U&gt;</div>
+<div class="line">  <span class="keyword">struct </span>is_equal : std::false_type {};</div>
+<div class="line"> </div>
+<div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">typename</span>... Ts&gt;</div>
+<div class="line">  <span class="keyword">struct </span>is_equal&lt;type_pack&lt;Ts...&gt;, type_pack&lt;Ts...&gt;&gt; : std::true_type {};</div>
+<div class="line"> </div>
+<div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line">  <span class="keyword">struct </span>is_equal&lt;just_type&lt;T&gt;, just_type&lt;T&gt;&gt; : std::true_type {};</div>
+<div class="line"> </div>
+<div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line">  <span class="keyword">struct </span>is_equal&lt;just_type&lt;T&gt;, type_pack&lt;T&gt;&gt; : std::true_type {};</div>
+<div class="line"> </div>
+<div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">class</span> T, <span class="keyword">class</span> U&gt;</div>
+<div class="line">  <span class="keyword">struct </span>is_not_equal : std::integral_constant&lt;bool, !is_equal&lt;T, U&gt;::value&gt; {};</div>
+<div class="line"> </div>
+</div><!-- fragment --></div><hr/>The documentation for this struct was generated from the following file:<ul>
 <li>/home/runner/work/type_pack/type_pack/include/<a class="el" href="type__pack_8hpp_source.html">type_pack.hpp</a></li>
 </ul>
 </div><!-- contents -->

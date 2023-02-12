@@ -70,6 +70,9 @@ $(function() {
 <div class="title">tp::min&lt; TP, Less &gt; Struct Template Reference<div class="ingroups"><a class="el" href="group__TypePack.html">Type pack</a> &raquo; <a class="el" href="group__TypePackElementAccess.html">Element accessing operations</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Returns the mintype of a <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a>.  
+ <a href="structtp_1_1min.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for tp::min&lt; TP, Less &gt;:</div>
 <div class="dyncontent">
@@ -80,7 +83,53 @@ Collaboration diagram for tp::min&lt; TP, Less &gt;:</div>
 <div class="dyncontent">
 <div class="center"><img src="structtp_1_1min__coll__graph.png" border="0" usemap="#atp_1_1min_3_01TP_00_01Less_01_4_coll__map" alt="Collaboration graph"/></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
-<hr/>The documentation for this struct was generated from the following file:<ul>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;class TP, template&lt; typename A, typename B &gt; class Less&gt;<br />
+struct tp::min&lt; TP, Less &gt;</h3>
+
+<p>Returns the mintype of a <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a>. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TP</td><td><a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a> </td></tr>
+    <tr><td class="paramname">Less</td><td>metafunction predicate, which provides the member constant <code>value</code> with the <code>bool</code> type, which is <code>true</code> if the first argument is less than the second. The signature of this metafunction must be equivalent to the following: <code>template &lt;typename A, typename B&gt; struct compare;</code></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Provides the member typedef <code>type</code> with the "min" type from a <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a>. If the <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a> is empty, the type will be <code><a class="el" href="structtp_1_1empty__type.html">empty_type</a></code>.</p>
+<p>Helper type</p>
+<div class="fragment"><div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">class</span> TP, <span class="keyword">template</span> &lt;<span class="keyword">typename</span> A, <span class="keyword">typename</span> B&gt; <span class="keyword">class </span>Less&gt;</div>
+<div class="line">  <span class="keyword">using</span> min_t = <span class="keyword">typename</span> min&lt;TP, Less&gt;::type;</div>
+</div><!-- fragment --><p> Implementation</p>
+<div class="fragment"><div class="line">  <span class="keyword">namespace </span>__details {</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">template</span> &lt;<span class="keyword">class </span>TP, <span class="keyword">typename</span> CurMin,</div>
+<div class="line">              <span class="keyword">template</span> &lt;<span class="keyword">typename</span> A, <span class="keyword">typename</span> B&gt; <span class="keyword">class </span>Less&gt;</div>
+<div class="line">    <span class="keyword">struct </span>min_impl {</div>
+<div class="line">        <span class="keyword">using</span> type = CurMin;</div>
+<div class="line">    };</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span>... Ts, <span class="keyword">typename</span> CurMin,</div>
+<div class="line">              <span class="keyword">template</span> &lt;<span class="keyword">typename</span> A, <span class="keyword">typename</span> B&gt; <span class="keyword">class </span>Less&gt;</div>
+<div class="line">    <span class="keyword">struct </span>min_impl&lt;type_pack&lt;T, Ts...&gt;, CurMin, Less&gt; {</div>
+<div class="line">      <span class="keyword">private</span>:</div>
+<div class="line">        <span class="keyword">using</span> min_t =</div>
+<div class="line">            <span class="keyword">typename</span> std::conditional&lt;Less&lt;CurMin, T&gt;::value, CurMin, T&gt;::type;</div>
+<div class="line">      <span class="keyword">public</span>:</div>
+<div class="line">        <span class="keyword">using</span> type = <span class="keyword">typename</span> min_impl&lt;type_pack&lt;Ts...&gt;, min_t, Less&gt;::type;</div>
+<div class="line">    };</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span>... Ts,</div>
+<div class="line">              <span class="keyword">template</span> &lt;<span class="keyword">typename</span> A, <span class="keyword">typename</span> B&gt; <span class="keyword">class </span>Less&gt;</div>
+<div class="line">    <span class="keyword">struct </span>min_impl&lt;type_pack&lt;T, Ts...&gt;, empty_type, Less&gt; {</div>
+<div class="line">        <span class="keyword">using</span> type = <span class="keyword">typename</span> min_impl&lt;type_pack&lt;Ts...&gt;, T, Less&gt;::type;</div>
+<div class="line">    };</div>
+<div class="line"> </div>
+<div class="line">  } <span class="comment">// namespace __details</span></div>
+<div class="line"> </div>
+<div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">class</span> TP, <span class="keyword">template</span> &lt;<span class="keyword">typename</span> A, <span class="keyword">typename</span> B&gt; <span class="keyword">class </span>Less&gt;</div>
+<div class="line">  <span class="keyword">struct </span>min : __details::min_impl&lt;TP, empty_type, Less&gt; {};</div>
+</div><!-- fragment --><p> See <a class="el" href="structtp_1_1sizeof__less.html">sizeof_less</a>, <a class="el" href="structtp_1_1sizeof__more.html">sizeof_more</a>, <a class="el" href="structtp_1_1base__is__less.html">base_is_less</a>, <a class="el" href="structtp_1_1derived__is__less.html">derived_is_less</a>. </p>
+</div><hr/>The documentation for this struct was generated from the following file:<ul>
 <li>/home/runner/work/type_pack/type_pack/include/<a class="el" href="type__pack_8hpp_source.html">type_pack.hpp</a></li>
 </ul>
 </div><!-- contents -->

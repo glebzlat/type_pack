@@ -4,5 +4,5 @@ digraph "Graphical Class Hierarchy"
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
   rankdir="LR";
-  Node0 [label="tp::type_pack\< Types \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classtp_1_1type__pack.html",tooltip="Type list."];
+  Node0 [label="tp::unique\< TP \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structtp_1_1unique.html",tooltip=" "];
 }

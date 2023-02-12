@@ -70,7 +70,19 @@ $(function() {
 <div class="title">tp::concatenate&lt;... &gt; Struct Template Reference<div class="ingroups"><a class="el" href="group__TypePack.html">Type pack</a> &raquo; <a class="el" href="group__TypePackGenerating.html">Type pack generation operations</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
-<hr/>The documentation for this struct was generated from the following file:<ul>
+
+<p>Concatenates type_packs and just_types.  
+ <a href="structtp_1_1concatenate.html#details">More...</a></p>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;class...&gt;<br />
+struct tp::concatenate&lt;... &gt;</h3>
+
+<p>Concatenates type_packs and just_types. </p>
+<p>Provides the member typedef <code>type</code> which is a pack of elements of concatenation operands. If type of operands is <a class="el" href="structtp_1_1just__type.html" title="Type wrapper.">just_type</a>, then the resulting type is <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a> with two elements. Allows to concatenate a <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a> with <a class="el" href="structtp_1_1just__type.html" title="Type wrapper.">just_type</a>. If <a class="el" href="structtp_1_1just__type.html" title="Type wrapper.">just_type</a> is the first operand, its type will be added to front of a pack, otherwise if <a class="el" href="structtp_1_1just__type.html" title="Type wrapper.">just_type</a> is the second operand and <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a> is the first, type will be concatenated to back.</p>
+<p>Operation acts recursively and can concatenate more, that two operands.</p>
+<p>Note that <code>concatenate</code> requires type wrapped either in <a class="el" href="structtp_1_1just__type.html" title="Type wrapper.">just_type</a> or <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a>. Attempt to concatenate type itself will cause a compiler error.</p>
+<p>See <a class="el" href="structtp_1_1push__back.html">tp::push_back</a>, <a class="el" href="structtp_1_1push__front.html">tp::push_front</a>. </p>
+</div><hr/>The documentation for this struct was generated from the following file:<ul>
 <li>/home/runner/work/type_pack/type_pack/include/<a class="el" href="type__pack_8hpp_source.html">type_pack.hpp</a></li>
 </ul>
 </div><!-- contents -->

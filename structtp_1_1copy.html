@@ -70,6 +70,9 @@ $(function() {
 <div class="title">tp::copy&lt; TP, StartIdx, EndIdx &gt; Struct Template Reference<div class="ingroups"><a class="el" href="group__TypePack.html">Type pack</a> &raquo; <a class="el" href="group__TypePackIndexing.html">Type pack indexing operations</a> &#124; <a class="el" href="group__TypePack.html">Type pack</a> &raquo; <a class="el" href="group__TypePackGenerating.html">Type pack generation operations</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Constructs new <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a> with the elements of other <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a>.  
+ <a href="structtp_1_1copy.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for tp::copy&lt; TP, StartIdx, EndIdx &gt;:</div>
 <div class="dyncontent">
@@ -80,7 +83,26 @@ Collaboration diagram for tp::copy&lt; TP, StartIdx, EndIdx &gt;:</div>
 <div class="dyncontent">
 <div class="center"><img src="structtp_1_1copy__coll__graph.png" border="0" usemap="#atp_1_1copy_3_01TP_00_01StartIdx_00_01EndIdx_01_4_coll__map" alt="Collaboration graph"/></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
-<hr/>The documentation for this struct was generated from the following file:<ul>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;class TP, std::size_t StartIdx, std::size_t EndIdx&gt;<br />
+struct tp::copy&lt; TP, StartIdx, EndIdx &gt;</h3>
+
+<p>Constructs new <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a> with the elements of other <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a>. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TP</td><td>original <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a> </td></tr>
+    <tr><td class="paramname">StartIdx</td><td>begin </td></tr>
+    <tr><td class="paramname">EndIdx</td><td>end</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Provides the member typedef <code>type</code> that is a pack with elements of the other <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a> on range [begin; end).</p>
+<p>In following cases compilation error will happen:</p><ul>
+<li>If the begin index is greater than end index</li>
+<li>If the end index is greater than the size of a pack</li>
+</ul>
+<p>See <a class="el" href="structtp_1_1copy__if.html">tp::copy_if</a>. </p>
+</div><hr/>The documentation for this struct was generated from the following file:<ul>
 <li>/home/runner/work/type_pack/type_pack/include/<a class="el" href="type__pack_8hpp_source.html">type_pack.hpp</a></li>
 </ul>
 </div><!-- contents -->

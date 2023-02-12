@@ -70,6 +70,9 @@ $(function() {
 <div class="title">tp::lexicographical_compare&lt; TP1, TP2, Less &gt; Struct Template Reference<div class="ingroups"><a class="el" href="group__TypePack.html">Type pack</a> &raquo; <a class="el" href="group__TypePackRelationOps.html">Relation operations</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Returns true if one <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a> is lexicographically less than another.  
+ <a href="structtp_1_1lexicographical__compare.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for tp::lexicographical_compare&lt; TP1, TP2, Less &gt;:</div>
 <div class="dyncontent">
@@ -80,7 +83,29 @@ Collaboration diagram for tp::lexicographical_compare&lt; TP1, TP2, Less &gt;:</
 <div class="dyncontent">
 <div class="center"><img src="structtp_1_1lexicographical__compare__coll__graph.png" border="0" usemap="#atp_1_1lexicographical__compare_3_01TP1_00_01TP2_00_01Less_01_4_coll__map" alt="Collaboration graph"/></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
-<hr/>The documentation for this struct was generated from the following file:<ul>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;class TP1, class TP2, template&lt; typename A, typename B &gt; class Less&gt;<br />
+struct tp::lexicographical_compare&lt; TP1, TP2, Less &gt;</h3>
+
+<p>Returns true if one <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a> is lexicographically less than another. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TP1</td><td>first <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a> </td></tr>
+    <tr><td class="paramname">TP2</td><td>second <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a> </td></tr>
+    <tr><td class="paramname">Less</td><td>metafunction predicate, which provides the member constant <code>value</code> with the <code>bool</code> type, which is <code>true</code> if the first argument is less than the second. The signature of this metafunction must be equivalent to the following: <code>template &lt;typename A, typename B&gt; struct compare;</code></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Checks if the first <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a> is lexicographically less than the second. Elements are compared using binary comparsion metafunction <code>Less</code>. This metafunction must provide the member constant <code>value</code> with the type <code>bool</code>, which is true, if the first element is less the second.</p>
+<p>Lexicographical comparison is an operation with the following properties:</p>
+<ul>
+<li>Two ranges are compared element by element.</li>
+<li>The first mismatching element defines which range is lexicographically less or greater than the other.</li>
+<li>If one range is a prefix of another, the shorter range is lexicographically less than the other.</li>
+<li>If two ranges have equivalent elements and are of the same length, then the ranges are lexicographically equal.</li>
+<li>An empty range is lexicographically less than any non-empty range. Two empty ranges are lexicographically equal. </li>
+</ul>
+</div><hr/>The documentation for this struct was generated from the following file:<ul>
 <li>/home/runner/work/type_pack/type_pack/include/<a class="el" href="type__pack_8hpp_source.html">type_pack.hpp</a></li>
 </ul>
 </div><!-- contents -->

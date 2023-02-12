@@ -70,6 +70,9 @@ $(function() {
 <div class="title">tp::find_if&lt; F, TP, From &gt; Struct Template Reference<div class="ingroups"><a class="el" href="group__TypePack.html">Type pack</a> &raquo; <a class="el" href="group__TypePackIndexing.html">Type pack indexing operations</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>First the first type in a <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a> satisfying predicate condition.  
+ <a href="structtp_1_1find__if.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for tp::find_if&lt; F, TP, From &gt;:</div>
 <div class="dyncontent">
@@ -80,7 +83,23 @@ Collaboration diagram for tp::find_if&lt; F, TP, From &gt;:</div>
 <div class="dyncontent">
 <div class="center"><img src="structtp_1_1find__if__coll__graph.png" border="0" usemap="#atp_1_1find__if_3_01F_00_01TP_00_01From_01_4_coll__map" alt="Collaboration graph"/></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
-<hr/>The documentation for this struct was generated from the following file:<ul>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;template&lt; typename... &gt; class F, class TP, std::size_t From = 0&gt;<br />
+struct tp::find_if&lt; F, TP, From &gt;</h3>
+
+<p>First the first type in a <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a> satisfying predicate condition. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">F</td><td>unary predicate metafunction, that provides the member constant <code>value</code> with the type <code>bool</code>. The signature must be equivalent to the following: <code>template &lt;typename T&gt; struct pred;</code> </td></tr>
+    <tr><td class="paramname">TP</td><td><a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a> </td></tr>
+    <tr><td class="paramname">From</td><td>start index (optional)</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Provides the member constant <code>value</code> with the type <code>std::size_t</code>, which is an index of a type in a <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a>. If the type is not found, index will be equal to the size of a <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a>.</p>
+<p>If <code>From</code> index is given, searching will started from it. By default this index is 0.</p>
+<p>See <a class="el" href="structtp_1_1find.html" title="Finds the certain type in the type_pack.">tp::find</a>. </p>
+</div><hr/>The documentation for this struct was generated from the following file:<ul>
 <li>/home/runner/work/type_pack/type_pack/include/<a class="el" href="type__pack_8hpp_source.html">type_pack.hpp</a></li>
 </ul>
 </div><!-- contents -->

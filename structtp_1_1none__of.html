@@ -70,6 +70,9 @@ $(function() {
 <div class="title">tp::none_of&lt; F, TP &gt; Struct Template Reference<div class="ingroups"><a class="el" href="group__TypePack.html">Type pack</a> &raquo; <a class="el" href="group__TypePackIndexing.html">Type pack indexing operations</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Checks if unary predicate is <code>true</code> for no elements in a <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a>.  
+ <a href="structtp_1_1none__of.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for tp::none_of&lt; F, TP &gt;:</div>
 <div class="dyncontent">
@@ -80,7 +83,23 @@ Collaboration diagram for tp::none_of&lt; F, TP &gt;:</div>
 <div class="dyncontent">
 <div class="center"><img src="structtp_1_1none__of__coll__graph.png" border="0" usemap="#atp_1_1none__of_3_01F_00_01TP_01_4_coll__map" alt="Collaboration graph"/></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
-<hr/>The documentation for this struct was generated from the following file:<ul>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;template&lt; typename &gt; class F, class TP&gt;<br />
+struct tp::none_of&lt; F, TP &gt;</h3>
+
+<p>Checks if unary predicate is <code>true</code> for no elements in a <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a>. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">F</td><td>unary predicate metafunction, that provides the member constant <code>value</code> with the type <code>bool</code>. The signature must be equivalent to the following: <code>template &lt;typename T&gt; struct pred;</code> </td></tr>
+    <tr><td class="paramname">TP</td><td><a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Provides the member constant <code>value</code> with the type <code>bool</code>, which is <code>true</code> if unary predicate is <code>true</code> for no elements in a pack, <code>false</code> otherwise. Inherits <code>std::integral_constant</code> members.</p>
+<p>Return value <code>true</code> if unary predicate returns <code>true</code> for no elements in the range, <code>false</code> otherwise. Returns <code>true</code> if the range is empty.</p>
+<p>Implementation</p>
+<div class="fragment"></div><!-- fragment --><p> See <a class="el" href="structtp_1_1any__of.html" title="Checks if unary predicate is true for at least one element in a type_pack.">tp::any_of</a>, <a class="el" href="structtp_1_1all__of.html" title="Checks if unary predicate is true for all elements in a type_pack.">tp::all_of</a>. </p>
+</div><hr/>The documentation for this struct was generated from the following file:<ul>
 <li>/home/runner/work/type_pack/type_pack/include/<a class="el" href="type__pack_8hpp_source.html">type_pack.hpp</a></li>
 </ul>
 </div><!-- contents -->
