@@ -504,7 +504,7 @@ namespace tp {
 
     template <class Indexes, typename T, typename... Ts>
     struct copy_impl<Indexes, type_pack<T, Ts...>,
-                    enable_if_t<(Indexes::current < Indexes::begin)>> {
+                     enable_if_t<(Indexes::current < Indexes::begin)>> {
       private:
         using idxs_t =
             indexes<Indexes::begin, Indexes::end, Indexes::current + 1>;
@@ -514,8 +514,8 @@ namespace tp {
 
     template <class Indexes, typename T, typename... Ts>
     struct copy_impl<Indexes, type_pack<T, Ts...>,
-                    enable_if_t<(Indexes::current >= Indexes::begin &&
-                                 Indexes::current < Indexes::end)>> {
+                     enable_if_t<(Indexes::current >= Indexes::begin &&
+                                  Indexes::current < Indexes::end)>> {
       private:
         using idxs_t =
             indexes<Indexes::begin, Indexes::end, Indexes::current + 1>;
@@ -539,19 +539,39 @@ namespace tp {
 
     template <class Indexes, typename... Ts>
     struct copy_impl<Indexes, type_pack<Ts...>,
-                    enable_if_t<(Indexes::current == Indexes::end)>> {
+                     enable_if_t<(Indexes::current == Indexes::end)>> {
         using type = empty_pack;
     };
 
   } // namespace __details
 
   template <class TP, std::size_t StartIdx, std::size_t EndIdx>
-  struct copy
-      : __details::copy_impl<__details::indexes<StartIdx, EndIdx, 0>, TP, void> {
-  };
+  struct copy : __details::copy_impl<__details::indexes<StartIdx, EndIdx, 0>,
+                                     TP, void> {};
 
   template <class TP, std::size_t Begin, std::size_t End>
   using copy_t = typename copy<TP, Begin, End>::type;
+
+  template <class TP, template <typename> class Pred>
+  struct copy_if {};
+
+  template <template <typename> class Pred>
+  struct copy_if<empty_pack, Pred> {
+      using type = empty_pack;
+  };
+
+  template <typename T, typename... Ts, template <typename> class Pred>
+  struct copy_if<type_pack<T, Ts...>, Pred> {
+    private:
+      using head_t = typename std::conditional<Pred<T>::value, type_pack<T>,
+                                               empty_pack>::type;
+    public:
+      using type =
+          concatenate_t<head_t, typename copy_if<type_pack<Ts...>, Pred>::type>;
+  };
+
+  template <class TP, template <typename> class Pred>
+  using copy_if_t = typename copy_if<TP, Pred>::type;
 
   template <typename T, class TP>
   struct push_front {};
