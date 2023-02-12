@@ -15,9 +15,9 @@
  *
  * @brief Type pack element accessing operations
  *
- * These operations perform element access, and declare the type member `type`
- * as the result. The result of these operations is either a type itself or a
- * type in a just_type wrapper.
+ * Element accessing operations, that return one specific type from a type_pack
+ * by index or by its position. These operations provide a member typedef `type`
+ * as a result.
  */
 
 /**
@@ -26,9 +26,14 @@
  *
  * @brief Operations that return indexes of types
  *
- * These operations provide the member constant value that can be an index of
- * the type in a type pack, the fact, is the partucular type in the pack or not,
- * or a count of types.
+ * Indexing operations, which divides into following categories:
+ * - Operations that check if a type exists in a type_pack. These are: all_of,
+ * any_of, none_of, contains.
+ * - Operations that return an index of a type if this type exists in a
+ * type_pack. These are: find, find_if.
+ * - Operations that return count of specific types or types, on which a
+ * predicate returns true: count, count_if.
+ * Indexing operations provide a constant member `value` as a result.
  */
 
 /**
@@ -49,12 +54,12 @@
  *
  * @brief Operations that create a new type_pack
  *
- * These operations create type_packs and declare the type member `type` as
- * the result. The result of these operations is a type_pack, which can be
- * a part of the original pack or a new pack.
- *
- * E.g. operations that remove some types from the original type_pack or
- * adds new.
+ * Generation operations, what generate new type_pack from the other type_pack,
+ * or create new type_pack from the other data (e.g. `generate` creates a
+ * type_pack with N elements of a specific type). Some of these operations
+ * generate new pack from the other, conditionally, by index or by position.
+ * Generation operations provide member typedef `type`, which is a type_pack
+ * with some types (or empty_pack in some cases) as a result.
  */
 
 /**
@@ -77,5 +82,3 @@
  *
  * @brief Operations that perform comparsion between types
  */
-
-
