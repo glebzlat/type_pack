@@ -98,7 +98,38 @@ struct tp::find&lt; T, TP, From &gt;</h3>
 </dl>
 <p>Provides the member constant <code>value</code> with the type <code>std::size_t</code>, which is an index of a type in a <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a>. If the type is not found, index will be equal to the size of a <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a>.</p>
 <p>If <code>From</code> index is given, searching will started from it. By default this index is 0.</p>
-<p>See <a class="el" href="structtp_1_1find__if.html" title="First the first type in a type_pack satisfying predicate condition.">find_if</a>. </p>
+<p>Implementation</p>
+<div class="fragment"><div class="line">  <span class="keyword">namespace </span>__details {</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> TP, <span class="keywordtype">size_t</span> Idx&gt;</div>
+<div class="line">    <span class="keyword">struct </span>find_helper {};</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keywordtype">size_t</span> Idx&gt;</div>
+<div class="line">    <span class="keyword">struct </span>find_helper&lt;T, <a class="code" href="type__pack_8hpp.html#af0273c6f1ca09ec687f5b6575e77bc3b">empty_pack</a>, Idx&gt; {</div>
+<div class="line">        <span class="keyword">static</span> constexpr <span class="keywordtype">size_t</span> value = Idx;</div>
+<div class="line">    };</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span>... Ts, <span class="keywordtype">size_t</span> Idx&gt;</div>
+<div class="line">    <span class="keyword">struct </span>find_helper&lt;T, type_pack&lt;T, Ts...&gt;, Idx&gt; {</div>
+<div class="line">        <span class="keyword">static</span> constexpr std::size_t value = Idx;</div>
+<div class="line">    };</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> U, <span class="keyword">typename</span>... Ts, <span class="keywordtype">size_t</span> Idx&gt;</div>
+<div class="line">    <span class="keyword">struct </span>find_helper&lt;T, type_pack&lt;U, Ts...&gt;, Idx&gt; {</div>
+<div class="line">        <span class="keyword">static</span> constexpr <span class="keywordtype">size_t</span> value =</div>
+<div class="line">            find_helper&lt;T, type_pack&lt;Ts...&gt;, Idx + 1&gt;::value;</div>
+<div class="line">    };</div>
+<div class="line"> </div>
+<div class="line">  } <span class="comment">// namespace __details</span></div>
+<div class="line"> </div>
+<div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> TP, std::<span class="keywordtype">size_t</span> From = 0&gt;</div>
+<div class="line">  <span class="keyword">struct </span>find</div>
+<div class="line">      : std::integral_constant&lt;</div>
+<div class="line">            std::size_t, __details::find_helper&lt;T, copy_t&lt;TP, From, TP::size()&gt;,</div>
+<div class="line">                                                From&gt;::value&gt; {};</div>
+<div class="line"> </div>
+<div class="ttc" id="atype__pack_8hpp_html_af0273c6f1ca09ec687f5b6575e77bc3b"><div class="ttname"><a href="type__pack_8hpp.html#af0273c6f1ca09ec687f5b6575e77bc3b">tp::empty_pack</a></div><div class="ttdeci">type_pack&lt;&gt; empty_pack</div><div class="ttdoc">Type alias to empty type_pack.</div><div class="ttdef"><b>Definition:</b> type_pack.hpp:81</div></div>
+</div><!-- fragment --><p> See <a class="el" href="structtp_1_1find__if.html" title="First the first type in a type_pack satisfying predicate condition.">find_if</a>. </p>
 </div><hr/>The documentation for this struct was generated from the following file:<ul>
 <li>/home/runner/work/type_pack/type_pack/include/<a class="el" href="type__pack_8hpp_source.html">type_pack.hpp</a></li>
 </ul>

@@ -97,7 +97,32 @@ struct tp::count_if&lt; F, TP &gt;</h3>
 </dl>
 <p>Provides the member constant <code>value</code> of type <code>std::size_t</code>. Counts elements on which predicate returns <code>true</code>. Inherits <code>std::integral_constant</code> members.</p>
 <p>If a pack is empty, result will be 0.</p>
-<p>See <a class="el" href="structtp_1_1count.html" title="Returns the number of elements with the specific type.">tp::count</a>. </p>
+<p>Implementation</p>
+<div class="fragment"><div class="line">  <span class="keyword">namespace </span>__details {</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">template</span> &lt;<span class="keyword">template</span> &lt;<span class="keyword">typename</span>...&gt; <span class="keyword">class </span>F, std::size_t Count, <span class="keyword">class </span>TP&gt;</div>
+<div class="line">    <span class="keyword">struct </span>count_if_impl {</div>
+<div class="line">        <span class="keyword">static</span> constexpr std::size_t value = Count;</div>
+<div class="line">    };</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">template</span> &lt;<span class="keyword">template</span> &lt;<span class="keyword">typename</span>...&gt; <span class="keyword">class </span>F, std::size_t Count, <span class="keyword">typename</span> T,</div>
+<div class="line">              <span class="keyword">typename</span>... Ts&gt;</div>
+<div class="line">    <span class="keyword">struct </span>count_if_impl&lt;F, Count, type_pack&lt;T, Ts...&gt;&gt; {</div>
+<div class="line">      <span class="keyword">private</span>:</div>
+<div class="line">        <span class="keyword">static</span> constexpr std::size_t counter = F&lt;T&gt;::value ? Count + 1 : Count;</div>
+<div class="line">      <span class="keyword">public</span>:</div>
+<div class="line">        <span class="keyword">static</span> constexpr std::size_t value =</div>
+<div class="line">            count_if_impl&lt;F, counter, type_pack&lt;Ts...&gt;&gt;::value;</div>
+<div class="line">    };</div>
+<div class="line"> </div>
+<div class="line">  } <span class="comment">// namespace __details</span></div>
+<div class="line"> </div>
+<div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">template</span> &lt;<span class="keyword">typename</span>...&gt; <span class="keyword">class </span>F, <span class="keyword">class </span>TP&gt;</div>
+<div class="line">  <span class="keyword">struct </span>count_if</div>
+<div class="line">      : std::integral_constant&lt;std::size_t,</div>
+<div class="line">                               __details::count_if_impl&lt;F, 0, TP&gt;::value&gt; {};</div>
+<div class="line"> </div>
+</div><!-- fragment --><p> See <a class="el" href="structtp_1_1count.html" title="Returns the number of elements with the specific type.">tp::count</a>. </p>
 </div><hr/>The documentation for this struct was generated from the following file:<ul>
 <li>/home/runner/work/type_pack/type_pack/include/<a class="el" href="type__pack_8hpp_source.html">type_pack.hpp</a></li>
 </ul>

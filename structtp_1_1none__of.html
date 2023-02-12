@@ -98,7 +98,10 @@ struct tp::none_of&lt; F, TP &gt;</h3>
 <p>Provides the member constant <code>value</code> with the type <code>bool</code>, which is <code>true</code> if unary predicate is <code>true</code> for no elements in a pack, <code>false</code> otherwise. Inherits <code>std::integral_constant</code> members.</p>
 <p>Return value <code>true</code> if unary predicate returns <code>true</code> for no elements in the range, <code>false</code> otherwise. Returns <code>true</code> if the range is empty.</p>
 <p>Implementation</p>
-<div class="fragment"></div><!-- fragment --><p> See <a class="el" href="structtp_1_1any__of.html" title="Checks if unary predicate is true for at least one element in a type_pack.">tp::any_of</a>, <a class="el" href="structtp_1_1all__of.html" title="Checks if unary predicate is true for all elements in a type_pack.">tp::all_of</a>. </p>
+<div class="fragment"><div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">template</span> &lt;<span class="keyword">typename</span>&gt; <span class="keyword">class </span>F, <span class="keyword">class </span>TP&gt;</div>
+<div class="line">  <span class="keyword">struct </span>none_of : std::integral_constant&lt;bool, !any_of&lt;F, TP&gt;::value&gt; {};</div>
+<div class="line"> </div>
+</div><!-- fragment --><p> See <a class="el" href="structtp_1_1any__of.html" title="Checks if unary predicate is true for at least one element in a type_pack.">tp::any_of</a>, <a class="el" href="structtp_1_1all__of.html" title="Checks if unary predicate is true for all elements in a type_pack.">tp::all_of</a>. </p>
 </div><hr/>The documentation for this struct was generated from the following file:<ul>
 <li>/home/runner/work/type_pack/type_pack/include/<a class="el" href="type__pack_8hpp_source.html">type_pack.hpp</a></li>
 </ul>

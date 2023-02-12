@@ -98,7 +98,39 @@ struct tp::find_if&lt; F, TP, From &gt;</h3>
 </dl>
 <p>Provides the member constant <code>value</code> with the type <code>std::size_t</code>, which is an index of a type in a <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a>. If the type is not found, index will be equal to the size of a <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a>.</p>
 <p>If <code>From</code> index is given, searching will started from it. By default this index is 0.</p>
-<p>See <a class="el" href="structtp_1_1find.html" title="Finds the certain type in the type_pack.">tp::find</a>. </p>
+<p>Implementation</p>
+<div class="fragment"><div class="line">  <span class="keyword">namespace </span>__details {</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">template</span> &lt;<span class="keyword">template</span> &lt;<span class="keyword">typename</span>...&gt; <span class="keyword">class </span>F, <span class="keyword">typename</span> TP, <span class="keywordtype">size_t</span> Idx,</div>
+<div class="line">              <span class="keyword">typename</span> AlwaysVoid&gt;</div>
+<div class="line">    <span class="keyword">struct </span>find_if_helper {</div>
+<div class="line">        <span class="keyword">static</span> constexpr <span class="keywordtype">size_t</span> value = Idx;</div>
+<div class="line">    };</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">template</span> &lt;<span class="keyword">template</span> &lt;<span class="keyword">typename</span>...&gt; <span class="keyword">class </span>F, <span class="keyword">typename</span> T, <span class="keyword">typename</span>... Ts,</div>
+<div class="line">              <span class="keywordtype">size_t</span> Idx&gt;</div>
+<div class="line">    <span class="keyword">struct </span>find_if_helper&lt;F, type_pack&lt;T, Ts...&gt;, Idx,</div>
+<div class="line">                          enable_if_t&lt;F&lt;T&gt;::value&gt;&gt; {</div>
+<div class="line">        <span class="keyword">static</span> constexpr <span class="keywordtype">size_t</span> value = Idx;</div>
+<div class="line">    };</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">template</span> &lt;<span class="keyword">template</span> &lt;<span class="keyword">typename</span>...&gt; <span class="keyword">class </span>F, <span class="keyword">typename</span> T, <span class="keyword">typename</span>... Ts,</div>
+<div class="line">              <span class="keywordtype">size_t</span> Idx&gt;</div>
+<div class="line">    <span class="keyword">struct </span>find_if_helper&lt;F, type_pack&lt;T, Ts...&gt;, Idx,</div>
+<div class="line">                          enable_if_t&lt;F&lt;T&gt;::value == false&gt;&gt; {</div>
+<div class="line">        <span class="keyword">static</span> constexpr <span class="keywordtype">size_t</span> value =</div>
+<div class="line">            find_if_helper&lt;F, type_pack&lt;Ts...&gt;, Idx + 1, <span class="keywordtype">void</span>&gt;::value;</div>
+<div class="line">    };</div>
+<div class="line"> </div>
+<div class="line">  } <span class="comment">// namespace __details</span></div>
+<div class="line"> </div>
+<div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">template</span> &lt;<span class="keyword">typename</span>...&gt; <span class="keyword">class </span>F, <span class="keyword">class </span>TP, std::size_t From = 0&gt;</div>
+<div class="line">  <span class="keyword">struct </span>find_if</div>
+<div class="line">      : std::integral_constant&lt;std::size_t, __details::find_if_helper&lt;</div>
+<div class="line">                                                F, copy_t&lt;TP, From, TP::size()&gt;,</div>
+<div class="line">                                                From, void&gt;::value&gt; {};</div>
+<div class="line"> </div>
+</div><!-- fragment --><p> See <a class="el" href="structtp_1_1find.html" title="Finds the certain type in the type_pack.">tp::find</a>. </p>
 </div><hr/>The documentation for this struct was generated from the following file:<ul>
 <li>/home/runner/work/type_pack/type_pack/include/<a class="el" href="type__pack_8hpp_source.html">type_pack.hpp</a></li>
 </ul>
