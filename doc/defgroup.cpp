@@ -71,4 +71,11 @@
  * template parameter is needed - "partially specialize" it.
  */
 
+/**
+ * @defgroup TypePackComparsion Comparsion operators
+ * @ingroup TypePack
+ *
+ * @brief Operations that perform comparsion between types
+ */
+
 
