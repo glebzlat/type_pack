@@ -281,11 +281,11 @@ namespace tp {
 
   /** @ingroup TypePackGenerating */
   template <class TP, std::size_t StartIdx, std::size_t EndIdx>
-  struct sub;
+  struct copy;
 
   /** @ingroup TypePackGenerating */
   template <class TP, std::size_t Begin, std::size_t End>
-  using sub_t = typename sub<TP, Begin, End>::type;
+  using copy_t = typename copy<TP, Begin, End>::type;
 
   template <typename, class>
   struct contains {};
@@ -326,7 +326,7 @@ namespace tp {
   template <typename T, typename TP, std::size_t From = 0>
   struct find
       : std::integral_constant<
-            std::size_t, __details::find_helper<T, sub_t<TP, From, TP::size()>,
+            std::size_t, __details::find_helper<T, copy_t<TP, From, TP::size()>,
                                                 From>::value> {};
 
   namespace __details {
@@ -357,7 +357,7 @@ namespace tp {
   template <template <typename...> class F, class TP, std::size_t From = 0>
   struct find_if
       : std::integral_constant<std::size_t, __details::find_if_helper<
-                                                F, sub_t<TP, From, TP::size()>,
+                                                F, copy_t<TP, From, TP::size()>,
                                                 From, void>::value> {};
 
   template <template <typename...> class F, class TP>
@@ -500,20 +500,20 @@ namespace tp {
     };
 
     template <class Indexes, class TP, typename AlwaysVoid>
-    struct sub_impl {};
+    struct copy_impl {};
 
     template <class Indexes, typename T, typename... Ts>
-    struct sub_impl<Indexes, type_pack<T, Ts...>,
+    struct copy_impl<Indexes, type_pack<T, Ts...>,
                     enable_if_t<(Indexes::current < Indexes::begin)>> {
       private:
         using idxs_t =
             indexes<Indexes::begin, Indexes::end, Indexes::current + 1>;
       public:
-        using type = typename sub_impl<idxs_t, type_pack<Ts...>, void>::type;
+        using type = typename copy_impl<idxs_t, type_pack<Ts...>, void>::type;
     };
 
     template <class Indexes, typename T, typename... Ts>
-    struct sub_impl<Indexes, type_pack<T, Ts...>,
+    struct copy_impl<Indexes, type_pack<T, Ts...>,
                     enable_if_t<(Indexes::current >= Indexes::begin &&
                                  Indexes::current < Indexes::end)>> {
       private:
@@ -523,22 +523,22 @@ namespace tp {
         static constexpr bool store_tail =
             Indexes::end - Indexes::current == type_pack<T, Ts...>::size();
 
-        using recursive_sub =
-            typename sub_impl<idxs_t, type_pack<Ts...>, void>::type;
+        using recursive_copy =
+            typename copy_impl<idxs_t, type_pack<Ts...>, void>::type;
 
         using just_tail = type_pack<Ts...>;
 
         // a little optimisation: if end - current == size of a type pack,
         // then just store remaining tail types, otherwise recursively apply
-        // sub_impl
+        // copy_impl
         using tail_t = typename std::conditional<store_tail, just_tail,
-                                                 recursive_sub>::type;
+                                                 recursive_copy>::type;
       public:
         using type = concatenate_t<just_type<T>, tail_t>;
     };
 
     template <class Indexes, typename... Ts>
-    struct sub_impl<Indexes, type_pack<Ts...>,
+    struct copy_impl<Indexes, type_pack<Ts...>,
                     enable_if_t<(Indexes::current == Indexes::end)>> {
         using type = empty_pack;
     };
@@ -546,12 +546,12 @@ namespace tp {
   } // namespace __details
 
   template <class TP, std::size_t StartIdx, std::size_t EndIdx>
-  struct sub
-      : __details::sub_impl<__details::indexes<StartIdx, EndIdx, 0>, TP, void> {
+  struct copy
+      : __details::copy_impl<__details::indexes<StartIdx, EndIdx, 0>, TP, void> {
   };
 
   template <class TP, std::size_t Begin, std::size_t End>
-  using sub_t = typename sub<TP, Begin, End>::type;
+  using copy_t = typename copy<TP, Begin, End>::type;
 
   template <typename T, class TP>
   struct push_front {};
