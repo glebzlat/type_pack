@@ -271,6 +271,7 @@ namespace tp {
   //* [maxtimpl]
   template <class TP, template <typename A, typename B> class Less>
   using max_t = typename max<TP, Less>::type;
+
   //* [maxtimpl]
 
   //* [minimpl]
@@ -337,8 +338,10 @@ namespace tp {
                                std::is_same<T, U>::value
                                    ? true
                                    : contains<T, type_pack<Ts...>>::value> {};
+
   //* [containsimpl]
 
+  //* [findimpl]
   namespace __details {
 
     template <typename T, typename TP, size_t Idx>
@@ -368,6 +371,9 @@ namespace tp {
             std::size_t, __details::find_helper<T, copy_t<TP, From, TP::size()>,
                                                 From>::value> {};
 
+  //* [findimpl]
+
+  //* [findifimpl]
   namespace __details {
 
     template <template <typename...> class F, typename TP, size_t Idx,
@@ -399,6 +405,9 @@ namespace tp {
                                                 F, copy_t<TP, From, TP::size()>,
                                                 From, void>::value> {};
 
+  //* [findifimpl]
+
+  //* [allofimpl]
   template <template <typename...> class F, class TP>
   struct all_of {};
 
@@ -412,8 +421,11 @@ namespace tp {
       : std::integral_constant<bool, F<T>::value &&
                                          all_of<F, type_pack<Ts...>>::value> {};
 
+  //* [allofimpl]
+
   /** @endcond */
 
+  //* [anyofimpl]
   template <template <typename...> class F, class TP>
   struct any_of {};
 
@@ -427,11 +439,17 @@ namespace tp {
       : std::integral_constant<bool, F<T>::value ||
                                          any_of<F, type_pack<Ts...>>::value> {};
 
+  //* [anyofimpl]
+
   /** @endcond */
 
+  //* [noneofimpl]
   template <template <typename> class F, class TP>
   struct none_of : std::integral_constant<bool, !any_of<F, TP>::value> {};
 
+  //* [noneofimpl]
+
+  //* [countimpl]
   namespace __details {
 
     template <typename T, std::size_t Count, class TP>
@@ -458,6 +476,9 @@ namespace tp {
       : std::integral_constant<std::size_t,
                                __details::count_impl<T, 0, TP>::value> {};
 
+  //* [countimpl]
+
+  //* [countifimpl]
   namespace __details {
 
     template <template <typename...> class F, std::size_t Count, class TP>
@@ -482,6 +503,8 @@ namespace tp {
       : std::integral_constant<std::size_t,
                                __details::count_if_impl<F, 0, TP>::value> {};
 
+  //* [countifimpl]
+
   /**
    * @}
    *
@@ -489,6 +512,7 @@ namespace tp {
    * @{
    */
 
+  //* [tailimpl]
   template <typename T>
   struct tail {
       using type = T;
@@ -500,12 +524,17 @@ namespace tp {
   struct tail<type_pack<T, Ts...>> {
       using type = type_pack<Ts...>;
   };
+  //* [tailimpl]
 
   /** @endcond */
 
+  //* [tailtimpl]
   template <class TP>
   using tail_t = typename tail<TP>::type;
 
+  //* [tailtimpl]
+
+  //* [concatenateimpl]
   template <class...>
   struct concatenate {};
 
@@ -532,15 +561,20 @@ namespace tp {
   template <class T, class... Ts>
   struct concatenate<T, Ts...>
       : concatenate<T, typename concatenate<Ts...>::type> {};
+  //* [concatenateimpl]
 
+  //* [concatenatetimpl]
   template <class... Ts>
   using concatenate_t = typename concatenate<Ts...>::type;
+
+  //* [concatenatetimpl]
 
   template <class T, class U>
   constexpr auto operator+(T, U) -> concatenate_t<T, U> {
     return {};
   }
 
+  //* [copyimpl]
   namespace __details {
 
     template <std::size_t Begin, std::size_t End, std::size_t Current>
@@ -601,9 +635,12 @@ namespace tp {
   template <class TP, std::size_t StartIdx, std::size_t EndIdx>
   struct copy : __details::copy_impl<__details::indexes<StartIdx, EndIdx, 0>,
                                      TP, void> {};
+  //* [copyimpl]
 
+  //* [copytype]
   template <class TP, std::size_t Begin, std::size_t End>
   using copy_t = typename copy<TP, Begin, End>::type;
+  //* [copytype]
 
   template <class TP, template <typename...> class Pred>
   struct copy_if {};

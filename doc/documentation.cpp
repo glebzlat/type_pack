@@ -178,6 +178,10 @@ namespace tp {
    * If `From` index is given, searching will started from it. By default this
    * index is 0.
    *
+   * Implementation
+   *
+   * @snippet type_pack.hpp findimpl
+   *
    * See find_if.
    */
 
@@ -198,6 +202,10 @@ namespace tp {
    * If `From` index is given, searching will started from it. By default this
    * index is 0.
    *
+   * Implementation
+   *
+   * @snippet type_pack.hpp findifimpl
+   *
    * See tp::find.
    */
 
@@ -216,6 +224,10 @@ namespace tp {
    *
    * Return value `true` if unary predicate returns true for all elements in the
    * range, `false` otherwise. Returns true if the range is empty.
+   *
+   * Implementation
+   *
+   * @snippet type_pack.hpp allofimpl
    *
    * See tp::any_of, tp::none_of.
    */
@@ -238,6 +250,10 @@ namespace tp {
    * element in the range, `false` otherwise. Returns `false` if the range is
    * empty.
    *
+   * Implementation
+   *
+   * @snippet type_pack.hpp anyofimpl
+   *
    * See tp::all_of, tp::none_of.
    */
 
@@ -259,7 +275,7 @@ namespace tp {
    *
    * Implementation
    *
-   * @snippet type_pack.hpp NoneOfImpl
+   * @snippet type_pack.hpp noneofimpl
    *
    * See tp::any_of, tp::all_of.
    */
@@ -276,6 +292,8 @@ namespace tp {
    * `std::integral_constant` members.
    *
    * If a pack is empty, result will be 0.
+   *
+   * @snippet type_pack.hpp countimpl
    *
    * See tp::count_if.
    */
@@ -295,6 +313,10 @@ namespace tp {
    *
    * If a pack is empty, result will be 0.
    *
+   * Implementation
+   *
+   * @snippet type_pack.hpp countifimpl
+   *
    * See tp::count.
    */
 
@@ -310,6 +332,14 @@ namespace tp {
    * an original pack except first element (head).
    *
    * If a pack is empty, result will be the same pack.
+   *
+   * Helper type
+   *
+   * @snippet type_pack.hpp tailtimpl
+   *
+   * Implementation
+   *
+   * @snippet type_pack.hpp tailimpl
    *
    * See tp::head.
    */
@@ -330,6 +360,14 @@ namespace tp {
    * Note that `concatenate` requires type wrapped either in just_type or
    * type_pack. Attempt to concatenate type itself will cause a compiler error.
    *
+   * Helper type
+   *
+   * @snippet type_pack.hpp concatenatetimpl
+   *
+   * Implementation
+   *
+   * @snippet type_pack.hpp concatenateimpl
+   *
    * See tp::push_back, tp::push_front.
    */
 
@@ -347,6 +385,14 @@ namespace tp {
    * In following cases compilation error will happen:
    * - If the begin index is greater than end index
    * - If the end index is greater than the size of a pack
+   *
+   * Helper type
+   *
+   * @snippet type_pack.hpp copytype
+   *
+   * Implementation
+   *
+   * @snippet type_pack.hpp copyimpl
    *
    * See tp::copy_if.
    */
