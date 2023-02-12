@@ -85,6 +85,8 @@ namespace tp {
    * @{
    */
 
+  //* [isequalimpl]
+
   template <class T, class U>
   struct is_equal : std::false_type {};
 
@@ -99,6 +101,8 @@ namespace tp {
 
   template <class T, class U>
   struct is_not_equal : std::integral_constant<bool, !is_equal<T, U>::value> {};
+
+  //* [isequalimpl]
 
   template <class T, class U>
   constexpr bool operator==(T, U) {
@@ -179,6 +183,7 @@ namespace tp {
    * @{
    */
 
+  //* [headimpl]
   template <typename T>
   struct head {
       using type = empty_type;
@@ -188,10 +193,15 @@ namespace tp {
   struct head<type_pack<T, Ts...>> {
       using type = T;
   };
+  //* [headimpl]
 
+  //* [headtimpl]
   template <class TP>
   using head_t = typename head<TP>::type;
 
+  //* [headtimpl]
+
+  //* [atimpl]
   namespace __details {
 
     template <typename>
@@ -219,10 +229,15 @@ namespace tp {
 
   template <std::size_t Idx, class TP>
   struct at : __details::at_helper<Idx, 0, TP, void> {};
+  //* [atimpl]
 
+  //* [attimpl]
   template <std::size_t Idx, class TP>
   using at_t = typename at<Idx, TP>::type;
 
+  //* [attimpl]
+
+  //* [maximpl]
   namespace __details {
 
     template <class TP, typename CurMax,
@@ -251,10 +266,14 @@ namespace tp {
 
   template <class TP, template <typename A, typename B> class Less>
   struct max : __details::max_impl<TP, empty_type, Less> {};
+  //* [maximpl]
 
+  //* [maxtimpl]
   template <class TP, template <typename A, typename B> class Less>
   using max_t = typename max<TP, Less>::type;
+  //* [maxtimpl]
 
+  //* [minimpl]
   namespace __details {
 
     template <class TP, typename CurMin,
@@ -283,9 +302,12 @@ namespace tp {
 
   template <class TP, template <typename A, typename B> class Less>
   struct min : __details::min_impl<TP, empty_type, Less> {};
+  //* [minimpl]
 
+  //* [mintimpl]
   template <class TP, template <typename A, typename B> class Less>
   using min_t = typename min<TP, Less>::type;
+  //* [mintimpl]
 
   /**
    * @}
@@ -302,6 +324,7 @@ namespace tp {
   template <class TP, std::size_t Begin, std::size_t End>
   using copy_t = typename copy<TP, Begin, End>::type;
 
+  //* [containsimpl]
   template <typename T, class TP>
   struct contains {};
 
@@ -314,6 +337,7 @@ namespace tp {
                                std::is_same<T, U>::value
                                    ? true
                                    : contains<T, type_pack<Ts...>>::value> {};
+  //* [containsimpl]
 
   namespace __details {
 
@@ -508,7 +532,6 @@ namespace tp {
   template <class T, class... Ts>
   struct concatenate<T, Ts...>
       : concatenate<T, typename concatenate<Ts...>::type> {};
-
 
   template <class... Ts>
   using concatenate_t = typename concatenate<Ts...>::type;

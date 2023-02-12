@@ -11,6 +11,10 @@ namespace tp {
    * which has only one type. Provides the member constant `value` that is equal
    * to `true` if the types are equal, otherwise `false`. `is_equal` inherits
    * `std::integral_constant` members.
+   *
+   * Implementation
+   *
+   * @snippet type_pack.hpp isequalimpl
    */
 
   /**
@@ -67,12 +71,13 @@ namespace tp {
    * type_pack as a result. If type_pack is empty, `type` will be
    * `tp::empty_type`.
    *
-   * Helper type head_t.
+   * Helper type
    *
-   * ```cpp
-   * template <class TP>
-   * using head_t = typename head<TP>::type;
-   * ```
+   * @snippet type_pack.hpp headtimpl
+   *
+   * Implementation
+   *
+   * @snippet type_pack.hpp headimpl
    */
 
   /**
@@ -88,10 +93,11 @@ namespace tp {
    *
    * Helper type
    *
-   * ```cpp
-   * template <std::size_t Idx, class TP>
-   * using at_t = typename at<Idx, TP>::type;
-   * ```
+   * @snippet type_pack.hpp attimpl
+   *
+   * Implementation
+   *
+   * @snippet type_pack.hpp atimpl
    */
 
   /**
@@ -109,10 +115,11 @@ namespace tp {
    *
    * Helper type
    *
-   * ```cpp
-   * template <class TP, template <typename A, typename B> class Less>
-   * using max_t = typename max<TP, Less>::type;
-   * ```
+   * @snippet type_pack.hpp maxtimpl
+   *
+   * Implementation
+   *
+   * @snippet type_pack.hpp maximpl
    *
    * See sizeof_less, sizeof_more, base_is_less, derived_is_less.
    */
@@ -132,10 +139,11 @@ namespace tp {
    *
    * Helper type
    *
-   * ```cpp
-   * template <class TP, template <typename A, typename B> class Less>
-   * using min_t = typename min<TP, Less>::type;
-   * ```
+   * @snippet type_pack.hpp mintimpl
+   *
+   * Implementation
+   *
+   * @snippet type_pack.hpp minimpl
    *
    * See sizeof_less, sizeof_more, base_is_less, derived_is_less.
    */
@@ -149,6 +157,10 @@ namespace tp {
    *
    * Provides the member constant `value` with the type `bool`, which is `true`
    * if the type is found in a pack and `false` otherwise.
+   *
+   * Implementation
+   *
+   * @snippet type_pack.hpp containsimpl
    */
 
   /**
