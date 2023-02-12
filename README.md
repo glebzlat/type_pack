@@ -2,6 +2,7 @@
 
 [![gcc](https://github.com/edKotinsky/type_pack/actions/workflows/gcc.yml/badge.svg)](https://github.com/edKotinsky/type_pack/actions/workflows/gcc.yml)
 [![clang](https://github.com/edKotinsky/type_pack/actions/workflows/clang.yml/badge.svg)](https://github.com/edKotinsky/type_pack/actions/workflows/clang.yml)
+[![Docs](https://github.com/edKotinsky/type_pack/actions/workflows/docs.yml/badge.svg)](https://github.com/edKotinsky/type_pack/actions/workflows/docs.yml)
 
 My type list implementation using template parameter packs. Written in pure
 C++11.
@@ -83,6 +84,9 @@ cmake --build build
 ```
 
 ## Documentation
+
+You can [read the documentation online](https://edkotinsky.github.io/type_pack/) 
+or build from source:
 
 ```sh
 cmake -S . -B build -D TYPE_PACK_DOC=ON
