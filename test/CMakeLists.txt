@@ -24,6 +24,8 @@ add_test_exec(Remove type_pack test9.cpp)
 add_test_exec(Unique type_pack test10.cpp)
 add_test_exec(Replace type_pack test11.cpp)
 add_test_exec(Sub type_pack test12.cpp)
+add_test_exec(LexicographicalCompare type_pack test13.cpp)
+add_test_exec(MinMax type_pack test14.cpp)
 
 add_custom_target(MakeTest ALL
     ctest --output-on-failure --test-timeout 10
