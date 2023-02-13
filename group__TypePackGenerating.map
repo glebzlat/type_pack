@@ -1,0 +1,5 @@
+<map id="Type pack generation operations" name="Type pack generation operations">
+<area shape="rect" id="node1" href="$group__TypePackIndexing.html" title="Operations that return indexes of types." alt="" coords="404,5,551,45"/>
+<area shape="rect" id="node2" title="Operations that create a new type_pack." alt="" coords="141,5,303,45"/>
+<area shape="rect" id="node3" href="$group__TypePack.html" title="A C++11 type list implementation." alt="" coords="5,13,92,38"/>
+</map>

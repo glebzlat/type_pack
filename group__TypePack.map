@@ -1,0 +1,9 @@
+<map id="Type pack" name="Type pack">
+<area shape="rect" id="node1" href="$group__TypePackIndexing.html" title="Operations that return indexes of types." alt="" coords="175,5,322,45"/>
+<area shape="rect" id="node2" href="$group__TypePackGenerating.html" title="Operations that create a new type_pack." alt="" coords="168,69,329,109"/>
+<area shape="rect" id="node3" href="$group__TypePackRelationOps.html" title="Type pack relation operations." alt="" coords="174,134,323,159"/>
+<area shape="rect" id="node4" href="$group__TypePackComparsion.html" title="Operations that perform comparsion between types." alt="" coords="165,183,332,209"/>
+<area shape="rect" id="node5" href="$group__TypePackElementAccess.html" title="Type pack element accessing operations." alt="" coords="140,233,357,258"/>
+<area shape="rect" id="node6" title="A C++11 type list implementation." alt="" coords="5,159,92,185"/>
+<area shape="rect" id="node7" href="$group__TypePackUtility.html" title="Utilities, that are useful with the other type_pack operations." alt="" coords="212,282,285,307"/>
+</map>
