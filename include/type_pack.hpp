@@ -640,8 +640,10 @@ namespace tp {
   //* [copytype]
   template <class TP, std::size_t Begin, std::size_t End>
   using copy_t = typename copy<TP, Begin, End>::type;
+
   //* [copytype]
 
+  //* [copyifimpl]
   template <class TP, template <typename...> class Pred>
   struct copy_if {};
 
@@ -659,10 +661,15 @@ namespace tp {
       using type =
           concatenate_t<head_t, typename copy_if<type_pack<Ts...>, Pred>::type>;
   };
+  //* [copyifimpl]
 
+  //* [copyiftype]
   template <class TP, template <typename...> class Pred>
   using copy_if_t = typename copy_if<TP, Pred>::type;
 
+  //* [copyiftype]
+
+  //* [pushfrontimpl]
   template <typename T, class TP>
   struct push_front {};
 
@@ -670,21 +677,33 @@ namespace tp {
   struct push_front<T, type_pack<Ts...>> {
       using type = type_pack<T, Ts...>;
   };
+  //* [pushfrontimpl]
 
+  //* [pushfronttype]
   template <typename T, class TP>
   using push_front_t = typename push_front<T, TP>::type;
 
+  //* [pushfronttype]
+
+  //* [popfrontimpl]
   template <class TP>
-  struct pop_front {};
+  struct pop_front {
+      using type = typename std::enable_if<std::is_same<TP, empty_pack>::value,
+                                           empty_pack>::type;
+  };
 
   template <typename T, typename... Ts>
   struct pop_front<type_pack<T, Ts...>> {
       using type = type_pack<Ts...>;
   };
+  //* [popfrontimpl]
 
+  //* [popfronttype]
   template <class TP>
   using pop_front_t = typename pop_front<TP>::type;
+  //* [popfronttype]
 
+  //* [pushbackimpl]
   template <typename T, class TP>
   struct push_back {};
 
@@ -692,10 +711,14 @@ namespace tp {
   struct push_back<T, type_pack<Ts...>> {
       using type = type_pack<Ts..., T>;
   };
+  //* [pushbackimpl]
 
+  //* [pushbacktype]
   template <typename T, class TP>
   using push_back_t = typename push_back<T, TP>::type;
+  //* [pushbacktype]
 
+  //* [popbackimpl]
   template <class TP>
   struct pop_back;
 
@@ -709,10 +732,14 @@ namespace tp {
   struct pop_back<type_pack<T>> {
       using type = empty_pack;
   };
+  //* [popbackimpl]
 
+  //* [popbacktype]
   template <class TP>
   using pop_back_t = typename pop_back<TP>::type;
+  //* [popbacktype]
 
+  //* [transformimpl]
   template <template <typename...> class F, class TP>
   struct transform {};
 
@@ -720,10 +747,14 @@ namespace tp {
   struct transform<F, type_pack<Ts...>> {
       using type = type_pack<typename F<Ts>::type...>;
   };
+  //* [transformimpl]
 
+  //* [transformtype]
   template <template <typename...> class F, class TP>
   using transform_t = typename transform<F, TP>::type;
+  //* [transformtype]
 
+  //* [generateimpl]
   template <std::size_t N, typename T>
   struct generate {
       using type =
@@ -734,10 +765,14 @@ namespace tp {
   struct generate<0, T> {
       using type = empty_pack;
   };
+  //* [generateimpl]
 
+  //* [generatetype]
   template <std::size_t N, typename T>
   using generate_t = typename generate<N, T>::type;
+  //* [generatetype]
 
+  //* [removeimpl]
   template <typename T, class TP>
   struct remove {
       using type = TP;
@@ -753,10 +788,14 @@ namespace tp {
       using type = concatenate_t<just_type<U>,
                                  typename remove<T, type_pack<Ts...>>::type>;
   };
+  //* [removeimpl]
 
+  //* [removetype]
   template <typename T, class TP>
   using remove_t = typename remove<T, TP>::type;
+  //* [removetype]
 
+  //* [removeifimpl]
   template <template <typename...> class F, class TP>
   struct remove_if {
       using type = TP;
@@ -770,10 +809,14 @@ namespace tp {
     public:
       using type = concatenate_t<head_type, type_pack<Ts...>>;
   };
+  //* [removeifimpl]
 
+  //* [removeiftype]
   template <template <typename...> class F, class TP>
   using remove_if_t = typename remove_if<F, TP>::type;
+  //* [removeiftype]
 
+  //* [removeallimpl]
   template <typename T, class TP>
   struct remove_all {
       using type = TP;
@@ -790,10 +833,14 @@ namespace tp {
           concatenate_t<just_type<U>,
                         typename remove_all<T, type_pack<Ts...>>::type>;
   };
+  //* [removeallimpl]
 
+  //* [removealltype]
   template <typename T, class TP>
   using remove_all_t = typename remove_all<T, TP>::type;
+  //* [removealltype]
 
+  //* [removeallifimpl]
   namespace __details {
 
     template <template <typename...> class F, class TP, typename AlwaysVoid>
@@ -820,10 +867,14 @@ namespace tp {
 
   template <template <typename...> class F, class TP>
   struct remove_all_if : __details::remove_all_if_impl<F, TP, void> {};
+  //* [removeallifimpl]
 
+  //* [removealliftype]
   template <template <typename...> class F, class TP>
   using remove_all_if_t = typename remove_all_if<F, TP>::type;
+  //* [removealliftype]
 
+  //* [uniqueimpl]
   template <class TP>
   struct unique {
       using type = TP;
@@ -836,10 +887,14 @@ namespace tp {
     public:
       using type = concatenate_t<just_type<T>, typename unique<tail>::type>;
   };
+  //* [uniqueimpl]
 
+  //* [uniquetype]
   template <class TP>
   using unique_t = typename unique<TP>::type;
+  //* [uniquetype]
 
+  //* [replaceimpl]
   template <typename Rep, typename To, class TP>
   struct replace {
     private:
@@ -851,9 +906,12 @@ namespace tp {
     public:
       using type = transform_t<rep_one_element, TP>;
   };
+  //* [replaceimpl]
 
+  //* [replacetype]
   template <typename Rep, typename To, class TP>
   using replace_t = typename replace<Rep, To, TP>::type;
+  //* [replacetype]
 
   /**
    * @}
@@ -862,13 +920,13 @@ namespace tp {
    * @{
    */
 
+  //* [partcallerimpl]
   template <template <class...> class F, class... Ts>
   struct part_caller {
       template <class... Us>
       using type = typename F<Ts..., Us...>::type;
   };
-
-  /// @cond undocumented
+  //* [partcallerimpl]
 
   template <class...>
   struct __conjunction : std::true_type {};
@@ -901,8 +959,6 @@ namespace tp {
 
   template <class B>
   using __not_ = __negation<B>;
-
-  /// @endcond
 
   /**
    * @}
