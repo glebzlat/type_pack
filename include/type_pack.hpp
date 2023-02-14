@@ -185,9 +185,7 @@ namespace tp {
 
   //* [headimpl]
   template <typename T>
-  struct head {
-      using type = empty_type;
-  };
+  struct head {};
 
   template <typename T, typename... Ts>
   struct head<type_pack<T, Ts...>> {
@@ -514,9 +512,7 @@ namespace tp {
 
   //* [tailimpl]
   template <typename T>
-  struct tail {
-      using type = T;
-  };
+  struct tail {};
 
   /** @cond undocumented */
 
@@ -701,6 +697,7 @@ namespace tp {
   //* [popfronttype]
   template <class TP>
   using pop_front_t = typename pop_front<TP>::type;
+
   //* [popfronttype]
 
   //* [pushbackimpl]
@@ -737,6 +734,7 @@ namespace tp {
   //* [popbacktype]
   template <class TP>
   using pop_back_t = typename pop_back<TP>::type;
+
   //* [popbacktype]
 
   //* [transformimpl]
@@ -752,6 +750,7 @@ namespace tp {
   //* [transformtype]
   template <template <typename...> class F, class TP>
   using transform_t = typename transform<F, TP>::type;
+
   //* [transformtype]
 
   //* [generateimpl]
@@ -765,11 +764,13 @@ namespace tp {
   struct generate<0, T> {
       using type = empty_pack;
   };
+
   //* [generateimpl]
 
   //* [generatetype]
   template <std::size_t N, typename T>
   using generate_t = typename generate<N, T>::type;
+
   //* [generatetype]
 
   //* [removeimpl]
@@ -793,6 +794,7 @@ namespace tp {
   //* [removetype]
   template <typename T, class TP>
   using remove_t = typename remove<T, TP>::type;
+
   //* [removetype]
 
   //* [removeifimpl]
@@ -814,6 +816,7 @@ namespace tp {
   //* [removeiftype]
   template <template <typename...> class F, class TP>
   using remove_if_t = typename remove_if<F, TP>::type;
+
   //* [removeiftype]
 
   //* [removeallimpl]
@@ -838,6 +841,7 @@ namespace tp {
   //* [removealltype]
   template <typename T, class TP>
   using remove_all_t = typename remove_all<T, TP>::type;
+
   //* [removealltype]
 
   //* [removeallifimpl]
@@ -872,6 +876,7 @@ namespace tp {
   //* [removealliftype]
   template <template <typename...> class F, class TP>
   using remove_all_if_t = typename remove_all_if<F, TP>::type;
+
   //* [removealliftype]
 
   //* [uniqueimpl]
@@ -892,6 +897,7 @@ namespace tp {
   //* [uniquetype]
   template <class TP>
   using unique_t = typename unique<TP>::type;
+
   //* [uniquetype]
 
   //* [replaceimpl]
@@ -911,6 +917,7 @@ namespace tp {
   //* [replacetype]
   template <typename Rep, typename To, class TP>
   using replace_t = typename replace<Rep, To, TP>::type;
+
   //* [replacetype]
 
   /**
@@ -926,6 +933,7 @@ namespace tp {
       template <class... Us>
       using type = typename F<Ts..., Us...>::type;
   };
+
   //* [partcallerimpl]
 
   template <class...>
