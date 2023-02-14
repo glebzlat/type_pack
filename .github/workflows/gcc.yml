@@ -1,25 +1,25 @@
 name: gcc
-on: push #[push, pull_request]
+on: [push, pull_request]
 
 jobs:
   testing:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-
-      - name: install deps
+      - name: Install deps
         run: |
           sudo apt update
           sudo apt install ninja-build lld gcc-12 g++-12
           sudo ln -sf /usr/local/bin/ld /usr/bin/lld
-      - name: configure cmake
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Configuration
         run: |
           cmake -S . -B build \
             -G "Unix Makefiles" \
             -D CMAKE_BUILD_TYPE=Debug \
             -D CMAKE_C_COMPILER=gcc-12 \
             -D CMAKE_CXX_COMPILER=g++-12 \
-      - name: build and run tests
+      - name: Build and run tests
         run:
           cmake --build build
