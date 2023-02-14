@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['none_5fof_41',['none_of',['../structtp_1_1none__of.html',1,'tp']]]
+  ['max_46',['max',['../structtp_1_1max.html',1,'tp']]],
+  ['min_47',['min',['../structtp_1_1min.html',1,'tp']]]
 ];

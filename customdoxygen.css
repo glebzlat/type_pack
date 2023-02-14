@@ -1,14 +1,112 @@
 /* The standard CSS for doxygen 1.8.17 */
 
 body, table, div, p, dl {
-  font-family: Lucida Grange, Verdana, Geneve, Arial, sans-serif;
-  font-size: 11pt;
+  font: 400 14px/22px Arial, Helvetica, sans-serif;
 }
 
 p.reference, p.definition {
-  font-family: Lucida Grange, Verdana, Geneve, Arial, sans-serif;
-  font-size: 10pt;
-  font-weight: bold;
+  font: 400 14px/22px Arial, Helvetica, sans-serif;
+}
+
+table {
+  display: block;
+  overflow-x: scroll;
+  white-space: pre-line;
+}
+
+div.fragment {
+  display: block;
+  overflow-x: scroll;
+}
+
+div.line {
+  white-space: pre;
+}
+
+div.qindex {
+  line-break: anywhere;
+}
+
+@media (min-width: 320px) {
+  div.headertitle {
+    font-size: 100%;
+  }
+  #projectname {
+    font-size: 200%;
+  }
+  h1 {
+    font-size: 170%;
+  }
+}
+
+@media (min-width:481px)  {
+  div.headertitle {
+    font-size: 100%;
+  }
+  #projectname {
+    font-size: 200%;
+  }
+  h1 {
+    font-size: 170%;
+  }
+}
+
+@media (min-width:641px)  {
+  div.headertitle {
+    font-size: 100%;
+    padding: 5px 5px 5px 10px;
+  }
+  #titlearea {
+    font-size: 50%;
+  }
+  #projectname {
+    font-size: 200%;
+  }
+}
+
+@media (min-width:961px)  {
+  div.contents, div.header, table {
+    width: 920px;
+  }
+  .directory td.entry, .directory td.desc {
+    width: 100%;
+  }
+  div.headertitle {
+    font-size: 100%;
+  }
+  #projectname {
+    font-size: 200%;
+  }
+}
+
+@media (min-width:1025px) {
+  div.contents, div.header, table {
+    width: 960px;
+  }
+  .directory td.entry, .directory td.desc {
+    width: 100%;
+  }
+  div.headertitle {
+    font-size: 150%;
+  }
+  #projectname {
+    font-size: 200%;
+  }
+}
+
+@media (min-width:1281px) {
+  div.contents, div.header, table {
+    width: 960px;
+  }
+  .directory td.entry, .directory td.desc {
+    width: 100%;
+  }
+  div.headertitle {
+    font-size: 150%;
+  }
+  #projectname {
+    font-size: 300%;
+  }
 }
 
 /* @group Heading Levels */
@@ -18,8 +116,7 @@ h1.groupheader {
 }
 
 .title {
-  font-family: Lucida Grange, Verdana, Geneve, Arial, sans-serif;
-  /* font-size: 16pt; */
+  font: 400 14px/28px Arial, Helvetica, sans-serif;
   font-size: 150%;
   font-weight: bold;
   margin: 10px 2px;
@@ -91,15 +188,6 @@ p.endtd {
   margin-bottom: 2px;
 }
 
-p.interli {
-}
-
-p.interdd {
-}
-
-p.intertd {
-}
-
 /* @end */
 
 caption {
@@ -130,54 +218,6 @@ div.qindex, div.navpath {
 div.navtab {
   margin-right: 15px;
 }
-
-/* @group Link Styling */
-
-a {
-  color: #3D578C;
-  font-weight: normal;
-  text-decoration: none;
-}
-
-.contents a:visited {
-  color: #4665A2;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-a.qindex {
-  font-weight: bold;
-}
-
-a.qindexHL {
-  font-weight: bold;
-  background-color: #9CAFD4;
-  color: #FFFFFF;
-  border: 1px double #869DCA;
-}
-
-.contents a.qindexHL:visited {
-        color: #FFFFFF;
-}
-
-a.el {
-  font-weight: bold;
-}
-
-a.elRef {
-}
-
-a.code, a.code:visited, a.line, a.line:visited {
-  color: #4665A2;
-}
-
-a.codeRef, a.codeRef:visited, a.lineRef, a.lineRef:visited {
-  color: #4665A2;
-}
-
-/* @end */
 
 dl.el {
   margin-left: -1cm;
@@ -231,7 +271,6 @@ div.line {
   white-space: -moz-pre-wrap; /* Moz */
   white-space: -pre-wrap;     /* Opera 4-6 */
   white-space: -o-pre-wrap;   /* Opera 7 */
-  white-space: pre-wrap;      /* CSS3  */
   word-wrap: break-word;      /* IE 5.5+ */
   text-indent: -53px;
   padding-left: 53px;
@@ -331,7 +370,6 @@ body {
 div.contents {
   margin: 0px auto 10px;
   padding: 12px;
-  width: 960px;
   background-color: white;
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
@@ -907,7 +945,7 @@ div.directory {
 }
 
 table.directory {
-    font: 400 14px Roboto,sans-serif;
+    font: 400 14px Arial, Helvetica, sans-serif;
 }
 
 /* @end */
@@ -1130,16 +1168,9 @@ div.header
   box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 5px;
   margin-left: auto;
   margin-right: auto;
-  width: 960px;
   padding-left: 12px;
   padding-right: 12px;
   border-bottom: 1px solid #C4CFE5;
-}
-
-div.headertitle
-{
-  font-size: 150%;
-  padding: 5px 5px 5px 10px;
 }
 
 .PageDocRTL-title div.headertitle {
@@ -1306,15 +1337,14 @@ dl.section dd {
 #projectname
 {
   background-color: white;
-  font-family: Lucida Grange, Verdana, Geneve, Arial, sans-serif;
-  font-size: 300%;
+  font-family: Arial, Helvetica, sans-serif;
   margin: 0px;
   padding: 2px 0px;
 }
 
 #projectbrief
 {
-  font-family: Lucida Grange, Verdana, Geneve, Arial, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 120%;
   margin: 0px;
   padding: 0px;
@@ -1322,7 +1352,7 @@ dl.section dd {
 
 #projectnumber
 {
-  font-family: Lucida Grange, Verdana, Geneve, Arial, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 50%;
   margin: 0px;
   padding: 0px;

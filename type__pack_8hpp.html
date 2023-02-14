@@ -231,6 +231,20 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1part__caller.html">tp::part_caller&lt; F, Ts &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1____conjunction.html">tp::__conjunction&lt;... &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1____conjunction_3_01B_01_4.html">tp::__conjunction&lt; B &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1____conjunction_3_01B1_00_01B_8_8_8_01_4.html">tp::__conjunction&lt; B1, B... &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1____disjunction.html">tp::__disjunction&lt;... &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1____disjunction_3_01B_01_4.html">tp::__disjunction&lt; B &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1____disjunction_3_01B1_00_01B_8_8_8_01_4.html">tp::__disjunction&lt; B1, B... &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1____negation.html">tp::__negation&lt; B &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1sizeof__less.html">tp::sizeof_less&lt; A, B &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1sizeof__more.html">tp::sizeof_more&lt; A, B &gt;</a></td></tr>
@@ -326,6 +340,18 @@ template&lt;class TP &gt; </td></tr>
 template&lt;typename Rep , typename To , class TP &gt; </td></tr>
 <tr class="memitem:ga7f330251abd0ae6f7a79dc53a74f4658"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>tp::replace_t</b> = typename replace&lt; Rep, To, TP &gt;::type</td></tr>
 <tr class="separator:ga7f330251abd0ae6f7a79dc53a74f4658"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad47b119b1ff5f1791fff933c18ce569e"><td class="memTemplParams" colspan="2">
+template&lt;class B1 , class... Bn&gt; </td></tr>
+<tr class="memitem:gad47b119b1ff5f1791fff933c18ce569e"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>tp::__and_</b> = __conjunction&lt; B1, Bn... &gt;</td></tr>
+<tr class="separator:gad47b119b1ff5f1791fff933c18ce569e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga02d5bf1179575451de3a43bff8cc24d2"><td class="memTemplParams" colspan="2">
+template&lt;class B1 , class... Bn&gt; </td></tr>
+<tr class="memitem:ga02d5bf1179575451de3a43bff8cc24d2"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>tp::__or_</b> = __disjunction&lt; B1, Bn... &gt;</td></tr>
+<tr class="separator:ga02d5bf1179575451de3a43bff8cc24d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2936b3eb213edd4281f9c95004d5558a"><td class="memTemplParams" colspan="2">
+template&lt;class B &gt; </td></tr>
+<tr class="memitem:ga2936b3eb213edd4281f9c95004d5558a"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>tp::__not_</b> = __negation&lt; B &gt;</td></tr>
+<tr class="separator:ga2936b3eb213edd4281f9c95004d5558a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
