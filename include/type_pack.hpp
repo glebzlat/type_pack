@@ -901,13 +901,13 @@ namespace tp {
   //* [uniquetype]
 
   //* [replaceimpl]
-  template <typename Rep, typename To, class TP>
+  template <typename Old, typename New, class TP>
   struct replace {
     private:
       template <typename T>
       struct rep_one_element {
-          using type = typename std::conditional<std::is_same<T, Rep>::value,
-                                                 To, T>::type;
+          using type = typename std::conditional<std::is_same<T, Old>::value,
+                                                 New, T>::type;
       };
     public:
       using type = transform_t<rep_one_element, TP>;
@@ -915,8 +915,8 @@ namespace tp {
   //* [replaceimpl]
 
   //* [replacetype]
-  template <typename Rep, typename To, class TP>
-  using replace_t = typename replace<Rep, To, TP>::type;
+  template <typename Old, typename New, class TP>
+  using replace_t = typename replace<Old, New, TP>::type;
 
   //* [replacetype]
 
