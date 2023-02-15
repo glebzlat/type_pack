@@ -1,4 +1,4 @@
 <map id="tp::is_equal&lt; T, U &gt;" name="tp::is_equal&lt; T, U &gt;">
-<area shape="rect" id="node1" title="Checks if the two type_packs or just_types is equal." alt="" coords="5,80,159,107"/>
+<area shape="rect" id="node1" title="Checks if two type_packs or just_types equal." alt="" coords="5,80,159,107"/>
 <area shape="rect" id="node2" title=" " alt="" coords="23,5,141,32"/>
 </map>

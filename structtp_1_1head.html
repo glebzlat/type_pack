@@ -66,44 +66,32 @@ $(function() {
 </div>
 </div><!-- top -->
 <div class="header">
-  <div class="summary">
-<a href="#pub-types">Public Types</a> &#124;
-<a href="structtp_1_1head-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">tp::head&lt; T &gt; Struct Template Reference<div class="ingroups"><a class="el" href="group__TypePack.html">Type pack</a> &raquo; <a class="el" href="group__TypePackElementAccess.html">Element accessing operations</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Returns the first type of a <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a>.  
+<p>Returns the first type of a pack.  
  <a href="structtp_1_1head.html#details">More...</a></p>
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
-Public Types</h2></td></tr>
-<tr class="memitem:abcbf1e177f247d03776cc072d04bb178"><td class="memItemLeft" align="right" valign="top"><a id="abcbf1e177f247d03776cc072d04bb178"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><b>type</b> = <a class="el" href="structtp_1_1empty__type.html">empty_type</a></td></tr>
-<tr class="separator:abcbf1e177f247d03776cc072d04bb178"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;typename T&gt;<br />
 struct tp::head&lt; T &gt;</h3>
 
-<p>Returns the first type of a <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a>. </p>
+<p>Returns the first type of a pack. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">T</td><td><a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a></td></tr>
   </table>
   </dd>
 </dl>
-<p>Provides the member typedef <code>type</code>, which is the first type of the <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a> as a result. If <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a> is empty, <code>type</code> will be <code><a class="el" href="structtp_1_1empty__type.html">tp::empty_type</a></code>.</p>
+<p>Provides the member typedef <code>type</code>, which is the first type of the <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a> as a result. If a pack is empty, member typedef will not be provided, which may cause a compilation error.</p>
 <p>Helper type</p>
 <div class="fragment"><div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">class</span> TP&gt;</div>
 <div class="line">  <span class="keyword">using</span> head_t = <span class="keyword">typename</span> head&lt;TP&gt;::type;</div>
 <div class="line"> </div>
 </div><!-- fragment --><p> Implementation</p>
 <div class="fragment"><div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line">  <span class="keyword">struct </span>head {</div>
-<div class="line">      <span class="keyword">using</span> type = empty_type;</div>
-<div class="line">  };</div>
+<div class="line">  <span class="keyword">struct </span>head {};</div>
 <div class="line"> </div>
 <div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span>... Ts&gt;</div>
 <div class="line">  <span class="keyword">struct </span>head&lt;type_pack&lt;T, Ts...&gt;&gt; {</div>

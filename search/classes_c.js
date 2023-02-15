@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['max_126',['max',['../structtp_1_1max.html',1,'tp']]],
-  ['min_127',['min',['../structtp_1_1min.html',1,'tp']]]
+  ['negation_129',['negation',['../structtp_1_1negation.html',1,'tp']]],
+  ['none_5fof_130',['none_of',['../structtp_1_1none__of.html',1,'tp']]]
 ];

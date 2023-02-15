@@ -70,12 +70,15 @@ $(function() {
 <div class="title">tp::remove_all_if&lt; F, TP &gt; Struct Template Reference<div class="ingroups"><a class="el" href="group__TypePack.html">Type pack</a> &raquo; <a class="el" href="group__TypePackGenerating.html">Type pack generation operations</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Removes all elements, that satisfies a specific criteria.  
+ <a href="structtp_1_1remove__all__if.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for tp::remove_all_if&lt; F, TP &gt;:</div>
 <div class="dyncontent">
 <div class="center"><img src="structtp_1_1remove__all__if__inherit__graph.png" border="0" usemap="#atp_1_1remove__all__if_3_01F_00_01TP_01_4_inherit__map" alt="Inheritance graph"/></div>
 <map name="atp_1_1remove__all__if_3_01F_00_01TP_01_4_inherit__map" id="atp_1_1remove__all__if_3_01F_00_01TP_01_4_inherit__map">
-<area shape="rect" title=" " alt="" coords="13,109,156,151"/>
+<area shape="rect" title="Removes all elements, that satisfies a specific criteria." alt="" coords="13,109,156,151"/>
 <area shape="rect" title=" " alt="" coords="5,5,164,61"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
@@ -84,11 +87,28 @@ Collaboration diagram for tp::remove_all_if&lt; F, TP &gt;:</div>
 <div class="dyncontent">
 <div class="center"><img src="structtp_1_1remove__all__if__coll__graph.png" border="0" usemap="#atp_1_1remove__all__if_3_01F_00_01TP_01_4_coll__map" alt="Collaboration graph"/></div>
 <map name="atp_1_1remove__all__if_3_01F_00_01TP_01_4_coll__map" id="atp_1_1remove__all__if_3_01F_00_01TP_01_4_coll__map">
-<area shape="rect" title=" " alt="" coords="13,109,156,151"/>
+<area shape="rect" title="Removes all elements, that satisfies a specific criteria." alt="" coords="13,109,156,151"/>
 <area shape="rect" title=" " alt="" coords="5,5,164,61"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
-<hr/>The documentation for this struct was generated from the following file:<ul>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;template&lt; typename... &gt; class F, class TP&gt;<br />
+struct tp::remove_all_if&lt; F, TP &gt;</h3>
+
+<p>Removes all elements, that satisfies a specific criteria. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">F</td><td><a class="el" href="unary_predicate_struct.html#unpred_req">unary predicate</a></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Provides the member typedef <code>type</code> that is a <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a> with all elements from the original <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a> except all elements for which predicate returns <code>true</code>.</p>
+<p>Helper type</p>
+<div class="fragment"><div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">template</span> &lt;<span class="keyword">typename</span>...&gt; <span class="keyword">class </span>F, <span class="keyword">class </span>TP&gt;</div>
+<div class="line">  <span class="keyword">using</span> remove_all_if_t = <span class="keyword">typename</span> remove_all_if&lt;F, TP&gt;::type;</div>
+<div class="line"> </div>
+</div><!-- fragment --><p> Implementation</p>
+<div class="fragment"></div><!-- fragment --></div><hr/>The documentation for this struct was generated from the following file:<ul>
 <li>/home/runner/work/type_pack/type_pack/include/<a class="el" href="type__pack_8hpp_source.html">type_pack.hpp</a></li>
 </ul>
 </div><!-- contents -->

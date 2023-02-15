@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['just_5ftype_124',['just_type',['../structtp_1_1just__type.html',1,'tp']]]
+  ['lexicographical_5fcompare_126',['lexicographical_compare',['../structtp_1_1lexicographical__compare.html',1,'tp']]]
 ];

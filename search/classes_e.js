@@ -1,13 +1,13 @@
 var searchData=
 [
-  ['part_5fcaller_129',['part_caller',['../structtp_1_1part__caller.html',1,'tp']]],
-  ['pop_5fback_130',['pop_back',['../structtp_1_1pop__back.html',1,'tp']]],
-  ['pop_5fback_3c_20type_5fpack_3c_20t_20_3e_20_3e_131',['pop_back&lt; type_pack&lt; T &gt; &gt;',['../structtp_1_1pop__back_3_01type__pack_3_01T_01_4_01_4.html',1,'tp']]],
-  ['pop_5fback_3c_20type_5fpack_3c_20t_2c_20u_2c_20ts_2e_2e_2e_20_3e_20_3e_132',['pop_back&lt; type_pack&lt; T, U, Ts... &gt; &gt;',['../structtp_1_1pop__back_3_01type__pack_3_01T_00_01U_00_01Ts_8_8_8_01_4_01_4.html',1,'tp']]],
-  ['pop_5ffront_133',['pop_front',['../structtp_1_1pop__front.html',1,'tp']]],
-  ['pop_5ffront_3c_20type_5fpack_3c_20t_2c_20ts_2e_2e_2e_20_3e_20_3e_134',['pop_front&lt; type_pack&lt; T, Ts... &gt; &gt;',['../structtp_1_1pop__front_3_01type__pack_3_01T_00_01Ts_8_8_8_01_4_01_4.html',1,'tp']]],
-  ['push_5fback_135',['push_back',['../structtp_1_1push__back.html',1,'tp']]],
-  ['push_5fback_3c_20t_2c_20type_5fpack_3c_20ts_2e_2e_2e_20_3e_20_3e_136',['push_back&lt; T, type_pack&lt; Ts... &gt; &gt;',['../structtp_1_1push__back_3_01T_00_01type__pack_3_01Ts_8_8_8_01_4_01_4.html',1,'tp']]],
-  ['push_5ffront_137',['push_front',['../structtp_1_1push__front.html',1,'tp']]],
-  ['push_5ffront_3c_20t_2c_20type_5fpack_3c_20ts_2e_2e_2e_20_3e_20_3e_138',['push_front&lt; T, type_pack&lt; Ts... &gt; &gt;',['../structtp_1_1push__front_3_01T_00_01type__pack_3_01Ts_8_8_8_01_4_01_4.html',1,'tp']]]
+  ['remove_141',['remove',['../structtp_1_1remove.html',1,'tp']]],
+  ['remove_3c_20t_2c_20type_5fpack_3c_20t_2c_20ts_2e_2e_2e_20_3e_20_3e_142',['remove&lt; T, type_pack&lt; T, Ts... &gt; &gt;',['../structtp_1_1remove_3_01T_00_01type__pack_3_01T_00_01Ts_8_8_8_01_4_01_4.html',1,'tp']]],
+  ['remove_3c_20t_2c_20type_5fpack_3c_20u_2c_20ts_2e_2e_2e_20_3e_20_3e_143',['remove&lt; T, type_pack&lt; U, Ts... &gt; &gt;',['../structtp_1_1remove_3_01T_00_01type__pack_3_01U_00_01Ts_8_8_8_01_4_01_4.html',1,'tp']]],
+  ['remove_5fall_144',['remove_all',['../structtp_1_1remove__all.html',1,'tp']]],
+  ['remove_5fall_3c_20t_2c_20type_5fpack_3c_20t_2c_20ts_2e_2e_2e_20_3e_20_3e_145',['remove_all&lt; T, type_pack&lt; T, Ts... &gt; &gt;',['../structtp_1_1remove__all_3_01T_00_01type__pack_3_01T_00_01Ts_8_8_8_01_4_01_4.html',1,'tp']]],
+  ['remove_5fall_3c_20t_2c_20type_5fpack_3c_20u_2c_20ts_2e_2e_2e_20_3e_20_3e_146',['remove_all&lt; T, type_pack&lt; U, Ts... &gt; &gt;',['../structtp_1_1remove__all_3_01T_00_01type__pack_3_01U_00_01Ts_8_8_8_01_4_01_4.html',1,'tp']]],
+  ['remove_5fall_5fif_147',['remove_all_if',['../structtp_1_1remove__all__if.html',1,'tp']]],
+  ['remove_5fif_148',['remove_if',['../structtp_1_1remove__if.html',1,'tp']]],
+  ['remove_5fif_3c_20f_2c_20type_5fpack_3c_20t_2c_20ts_2e_2e_2e_20_3e_20_3e_149',['remove_if&lt; F, type_pack&lt; T, Ts... &gt; &gt;',['../structtp_1_1remove__if_3_01F_00_01type__pack_3_01T_00_01Ts_8_8_8_01_4_01_4.html',1,'tp']]],
+  ['replace_150',['replace',['../structtp_1_1replace.html',1,'tp']]]
 ];

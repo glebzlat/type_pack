@@ -100,7 +100,7 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type list.  <a href="classtp_1_1type__pack.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1is__equal.html">tp::is_equal&lt; T, U &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the two type_packs or just_types is equal.  <a href="structtp_1_1is__equal.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if two type_packs or just_types equal.  <a href="structtp_1_1is__equal.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1is__equal_3_01type__pack_3_01Ts_8_8_8_01_4_00_01type__pack_3_01Ts_8_8_8_01_4_01_4.html">tp::is_equal&lt; type_pack&lt; Ts... &gt;, type_pack&lt; Ts... &gt; &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -109,13 +109,13 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1is__equal_3_01just__type_3_01T_01_4_00_01type__pack_3_01T_01_4_01_4.html">tp::is_equal&lt; just_type&lt; T &gt;, type_pack&lt; T &gt; &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1is__not__equal.html">tp::is_not_equal&lt; T, U &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the two type_packs or just_types is not equal.  <a href="structtp_1_1is__not__equal.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if type_packs or just_types not equal.  <a href="structtp_1_1is__not__equal.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1lexicographical__compare.html">tp::lexicographical_compare&lt; TP1, TP2, Less &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if one <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a> is lexicographically less than another.  <a href="structtp_1_1lexicographical__compare.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lexicographically compares two type packs.  <a href="structtp_1_1lexicographical__compare.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1head.html">tp::head&lt; T &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the first type of a <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a>.  <a href="structtp_1_1head.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the first type of a pack.  <a href="structtp_1_1head.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1head_3_01type__pack_3_01T_00_01Ts_8_8_8_01_4_01_4.html">tp::head&lt; type_pack&lt; T, Ts... &gt; &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -176,20 +176,24 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs new <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a> with the elements of other <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a>.  <a href="structtp_1_1copy.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1copy__if.html">tp::copy_if&lt; TP, Pred &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs new <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a> with the elements, that satisfying a condition, of other <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a>.  <a href="structtp_1_1copy__if.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1copy__if_3_01empty__pack_00_01Pred_01_4.html">tp::copy_if&lt; empty_pack, Pred &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1copy__if_3_01type__pack_3_01T_00_01Ts_8_8_8_01_4_00_01Pred_01_4.html">tp::copy_if&lt; type_pack&lt; T, Ts... &gt;, Pred &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1push__front.html">tp::push_front&lt; T, TP &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates new <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a> by adding a type to the front of other <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a>.  <a href="structtp_1_1push__front.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1push__front_3_01T_00_01type__pack_3_01Ts_8_8_8_01_4_01_4.html">tp::push_front&lt; T, type_pack&lt; Ts... &gt; &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1pop__front.html">tp::pop_front&lt; TP &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the first type from a <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a>.  <a href="structtp_1_1pop__front.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1pop__front_3_01type__pack_3_01T_00_01Ts_8_8_8_01_4_01_4.html">tp::pop_front&lt; type_pack&lt; T, Ts... &gt; &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1push__back.html">tp::push_back&lt; T, TP &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates new <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a> by adding a type to the back of other <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a>.  <a href="structtp_1_1push__back.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1push__back_3_01T_00_01type__pack_3_01Ts_8_8_8_01_4_01_4.html">tp::push_back&lt; T, type_pack&lt; Ts... &gt; &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -198,52 +202,60 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1pop__back_3_01type__pack_3_01T_01_4_01_4.html">tp::pop_back&lt; type_pack&lt; T &gt; &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1transform.html">tp::transform&lt; F, TP &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates new <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a> from other <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a> by applying to its elements transforming metafunction.  <a href="structtp_1_1transform.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1transform_3_01F_00_01type__pack_3_01Ts_8_8_8_01_4_01_4.html">tp::transform&lt; F, type_pack&lt; Ts... &gt; &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1generate.html">tp::generate&lt; N, T &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a> with count of elements of a specific type.  <a href="structtp_1_1generate.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1generate_3_010_00_01T_01_4.html">tp::generate&lt; 0, T &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1remove.html">tp::remove&lt; T, TP &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the first element of a specific type.  <a href="structtp_1_1remove.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1remove_3_01T_00_01type__pack_3_01T_00_01Ts_8_8_8_01_4_01_4.html">tp::remove&lt; T, type_pack&lt; T, Ts... &gt; &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1remove_3_01T_00_01type__pack_3_01U_00_01Ts_8_8_8_01_4_01_4.html">tp::remove&lt; T, type_pack&lt; U, Ts... &gt; &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1remove__if.html">tp::remove_if&lt; F, TP &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the first element, that satisfies a specific criteria.  <a href="structtp_1_1remove__if.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1remove__if_3_01F_00_01type__pack_3_01T_00_01Ts_8_8_8_01_4_01_4.html">tp::remove_if&lt; F, type_pack&lt; T, Ts... &gt; &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1remove__all.html">tp::remove_all&lt; T, TP &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all elements of a specific type.  <a href="structtp_1_1remove__all.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1remove__all_3_01T_00_01type__pack_3_01T_00_01Ts_8_8_8_01_4_01_4.html">tp::remove_all&lt; T, type_pack&lt; T, Ts... &gt; &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1remove__all_3_01T_00_01type__pack_3_01U_00_01Ts_8_8_8_01_4_01_4.html">tp::remove_all&lt; T, type_pack&lt; U, Ts... &gt; &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1remove__all__if.html">tp::remove_all_if&lt; F, TP &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all elements, that satisfies a specific criteria.  <a href="structtp_1_1remove__all__if.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1unique.html">tp::unique&lt; TP &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes duplicate types.  <a href="structtp_1_1unique.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1unique_3_01type__pack_3_01T_00_01Ts_8_8_8_01_4_01_4.html">tp::unique&lt; type_pack&lt; T, Ts... &gt; &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1replace.html">tp::replace&lt; Rep, To, TP &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replaces all elements of a specific type.  <a href="structtp_1_1replace.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1part__caller.html">tp::part_caller&lt; F, Ts &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1____conjunction.html">tp::__conjunction&lt;... &gt;</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1conjunction.html">tp::conjunction&lt;... &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1____conjunction_3_01B_01_4.html">tp::__conjunction&lt; B &gt;</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1conjunction_3_01B_01_4.html">tp::conjunction&lt; B &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1____conjunction_3_01B1_00_01B_8_8_8_01_4.html">tp::__conjunction&lt; B1, B... &gt;</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1conjunction_3_01B1_00_01B_8_8_8_01_4.html">tp::conjunction&lt; B1, B... &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1____disjunction.html">tp::__disjunction&lt;... &gt;</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1disjunction.html">tp::disjunction&lt;... &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1____disjunction_3_01B_01_4.html">tp::__disjunction&lt; B &gt;</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1disjunction_3_01B_01_4.html">tp::disjunction&lt; B &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1____disjunction_3_01B1_00_01B_8_8_8_01_4.html">tp::__disjunction&lt; B1, B... &gt;</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1disjunction_3_01B1_00_01B_8_8_8_01_4.html">tp::disjunction&lt; B1, B... &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1____negation.html">tp::__negation&lt; B &gt;</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1negation.html">tp::negation&lt; B &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1sizeof__less.html">tp::sizeof_less&lt; A, B &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -340,18 +352,18 @@ template&lt;class TP &gt; </td></tr>
 template&lt;typename Rep , typename To , class TP &gt; </td></tr>
 <tr class="memitem:ga7f330251abd0ae6f7a79dc53a74f4658"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>tp::replace_t</b> = typename replace&lt; Rep, To, TP &gt;::type</td></tr>
 <tr class="separator:ga7f330251abd0ae6f7a79dc53a74f4658"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gad47b119b1ff5f1791fff933c18ce569e"><td class="memTemplParams" colspan="2">
+<tr class="memitem:ga48f7403f7501a05ab98503865291d594"><td class="memTemplParams" colspan="2">
 template&lt;class B1 , class... Bn&gt; </td></tr>
-<tr class="memitem:gad47b119b1ff5f1791fff933c18ce569e"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>tp::__and_</b> = __conjunction&lt; B1, Bn... &gt;</td></tr>
-<tr class="separator:gad47b119b1ff5f1791fff933c18ce569e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga02d5bf1179575451de3a43bff8cc24d2"><td class="memTemplParams" colspan="2">
+<tr class="memitem:ga48f7403f7501a05ab98503865291d594"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>tp::_and_</b> = conjunction&lt; B1, Bn... &gt;</td></tr>
+<tr class="separator:ga48f7403f7501a05ab98503865291d594"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2a9667ea70118181198ea8b67535d7cf"><td class="memTemplParams" colspan="2">
 template&lt;class B1 , class... Bn&gt; </td></tr>
-<tr class="memitem:ga02d5bf1179575451de3a43bff8cc24d2"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>tp::__or_</b> = __disjunction&lt; B1, Bn... &gt;</td></tr>
-<tr class="separator:ga02d5bf1179575451de3a43bff8cc24d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga2936b3eb213edd4281f9c95004d5558a"><td class="memTemplParams" colspan="2">
+<tr class="memitem:ga2a9667ea70118181198ea8b67535d7cf"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>tp::_or_</b> = disjunction&lt; B1, Bn... &gt;</td></tr>
+<tr class="separator:ga2a9667ea70118181198ea8b67535d7cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga710b04e01bfd98886332d2fa03564cf3"><td class="memTemplParams" colspan="2">
 template&lt;class B &gt; </td></tr>
-<tr class="memitem:ga2936b3eb213edd4281f9c95004d5558a"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>tp::__not_</b> = __negation&lt; B &gt;</td></tr>
-<tr class="separator:ga2936b3eb213edd4281f9c95004d5558a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga710b04e01bfd98886332d2fa03564cf3"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>tp::_not_</b> = negation&lt; B &gt;</td></tr>
+<tr class="separator:ga710b04e01bfd98886332d2fa03564cf3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>

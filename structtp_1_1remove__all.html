@@ -73,6 +73,9 @@ $(function() {
 <div class="title">tp::remove_all&lt; T, TP &gt; Struct Template Reference<div class="ingroups"><a class="el" href="group__TypePack.html">Type pack</a> &raquo; <a class="el" href="group__TypePackGenerating.html">Type pack generation operations</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Removes all elements of a specific type.  
+ <a href="structtp_1_1remove__all.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
@@ -80,7 +83,41 @@ Public Types</h2></td></tr>
 using&#160;</td><td class="memItemRight" valign="bottom"><b>type</b> = TP</td></tr>
 <tr class="separator:a830d974f9b524d6770e964137e2c947d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>The documentation for this struct was generated from the following file:<ul>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;typename T, class TP&gt;<br />
+struct tp::remove_all&lt; T, TP &gt;</h3>
+
+<p>Removes all elements of a specific type. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>removing type</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Provides the member typedef <code>type</code> that is a <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a> with all elements from the original <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a> except all elements of a type T.</p>
+<p>If a pack is empty, the resulting type is empty_pack.</p>
+<p>Helper type</p>
+<div class="fragment"><div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">class</span> TP&gt;</div>
+<div class="line">  <span class="keyword">using</span> remove_all_t = <span class="keyword">typename</span> remove_all&lt;T, TP&gt;::type;</div>
+<div class="line"> </div>
+</div><!-- fragment --><p> Implementation</p>
+<div class="fragment"><div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">class</span> TP&gt;</div>
+<div class="line">  <span class="keyword">struct </span>remove_all {</div>
+<div class="line">      <span class="keyword">using</span> type = TP;</div>
+<div class="line">  };</div>
+<div class="line"> </div>
+<div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span>... Ts&gt;</div>
+<div class="line">  <span class="keyword">struct </span>remove_all&lt;T, type_pack&lt;T, Ts...&gt;&gt; {</div>
+<div class="line">      <span class="keyword">using</span> type = <span class="keyword">typename</span> remove_all&lt;T, type_pack&lt;Ts...&gt;&gt;::type;</div>
+<div class="line">  };</div>
+<div class="line"> </div>
+<div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> U, <span class="keyword">typename</span>... Ts&gt;</div>
+<div class="line">  <span class="keyword">struct </span>remove_all&lt;T, type_pack&lt;U, Ts...&gt;&gt; {</div>
+<div class="line">      <span class="keyword">using</span> type =</div>
+<div class="line">          concatenate_t&lt;just_type&lt;U&gt;,</div>
+<div class="line">                        <span class="keyword">typename</span> remove_all&lt;T, type_pack&lt;Ts...&gt;&gt;::type&gt;;</div>
+<div class="line">  };</div>
+</div><!-- fragment --></div><hr/>The documentation for this struct was generated from the following file:<ul>
 <li>/home/runner/work/type_pack/type_pack/include/<a class="el" href="type__pack_8hpp_source.html">type_pack.hpp</a></li>
 </ul>
 </div><!-- contents -->

@@ -71,14 +71,14 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Returns true if one <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a> is lexicographically less than another.  
+<p>Lexicographically compares two type packs.  
  <a href="structtp_1_1lexicographical__compare.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for tp::lexicographical_compare&lt; TP1, TP2, Less &gt;:</div>
 <div class="dyncontent">
 <div class="center"><img src="structtp_1_1lexicographical__compare__inherit__graph.png" border="0" usemap="#atp_1_1lexicographical__compare_3_01TP1_00_01TP2_00_01Less_01_4_inherit__map" alt="Inheritance graph"/></div>
 <map name="atp_1_1lexicographical__compare_3_01TP1_00_01TP2_00_01Less_01_4_inherit__map" id="atp_1_1lexicographical__compare_3_01TP1_00_01TP2_00_01Less_01_4_inherit__map">
-<area shape="rect" title="Returns true if one type_pack is lexicographically less than another." alt="" coords="292,13,453,69"/>
+<area shape="rect" title="Lexicographically compares two type packs." alt="" coords="292,13,453,69"/>
 <area shape="rect" title=" " alt="" coords="5,5,244,76"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
@@ -87,7 +87,7 @@ Collaboration diagram for tp::lexicographical_compare&lt; TP1, TP2, Less &gt;:</
 <div class="dyncontent">
 <div class="center"><img src="structtp_1_1lexicographical__compare__coll__graph.png" border="0" usemap="#atp_1_1lexicographical__compare_3_01TP1_00_01TP2_00_01Less_01_4_coll__map" alt="Collaboration graph"/></div>
 <map name="atp_1_1lexicographical__compare_3_01TP1_00_01TP2_00_01Less_01_4_coll__map" id="atp_1_1lexicographical__compare_3_01TP1_00_01TP2_00_01Less_01_4_coll__map">
-<area shape="rect" title="Returns true if one type_pack is lexicographically less than another." alt="" coords="292,13,453,69"/>
+<area shape="rect" title="Lexicographically compares two type packs." alt="" coords="292,13,453,69"/>
 <area shape="rect" title=" " alt="" coords="5,5,244,76"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
@@ -95,12 +95,12 @@ Collaboration diagram for tp::lexicographical_compare&lt; TP1, TP2, Less &gt;:</
 <div class="textblock"><h3>template&lt;class TP1, class TP2, template&lt; typename A, typename B &gt; class Less&gt;<br />
 struct tp::lexicographical_compare&lt; TP1, TP2, Less &gt;</h3>
 
-<p>Returns true if one <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a> is lexicographically less than another. </p>
+<p>Lexicographically compares two type packs. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">TP1</td><td>first <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a> </td></tr>
     <tr><td class="paramname">TP2</td><td>second <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a> </td></tr>
-    <tr><td class="paramname">Less</td><td>metafunction predicate, which provides the member constant <code>value</code> with the <code>bool</code> type, which is <code>true</code> if the first argument is less than the second. The signature of this metafunction must be equivalent to the following: <code>template &lt;typename A, typename B&gt; struct compare;</code></td></tr>
+    <tr><td class="paramname">Less</td><td><a class="el" href="comparsion_meta.html#comp_meta_req">comparsion metafunction</a></td></tr>
   </table>
   </dd>
 </dl>

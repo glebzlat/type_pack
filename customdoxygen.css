@@ -8,6 +8,10 @@ p.reference, p.definition {
   font: 400 14px/22px Arial, Helvetica, sans-serif;
 }
 
+img {
+  max-width: 100%;
+}
+
 table {
   display: block;
   overflow-x: scroll;
