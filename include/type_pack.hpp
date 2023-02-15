@@ -936,37 +936,39 @@ namespace tp {
 
   //* [partcallerimpl]
 
+  //* [logicalimpl]
   template <class...>
-  struct __conjunction : std::true_type {};
+  struct conjunction : std::true_type {};
 
   template <class B>
-  struct __conjunction<B> : B {};
+  struct conjunction<B> : B {};
 
   template <class B1, class... B>
-  struct __conjunction<B1, B...>
-      : std::conditional<bool(B1::value), __conjunction<B...>, B1>::type {};
+  struct conjunction<B1, B...>
+      : std::conditional<bool(B1::value), conjunction<B...>, B1>::type {};
 
   template <class...>
-  struct __disjunction : std::false_type {};
+  struct disjunction : std::false_type {};
 
   template <class B>
-  struct __disjunction<B> : B {};
+  struct disjunction<B> : B {};
 
   template <class B1, class... B>
-  struct __disjunction<B1, B...>
-      : std::conditional<bool(B1::value), B1, __disjunction<B...>>::type {};
+  struct disjunction<B1, B...>
+      : std::conditional<bool(B1::value), B1, disjunction<B...>>::type {};
 
   template <class B>
-  struct __negation : std::integral_constant<bool, !B::value> {};
+  struct negation : std::integral_constant<bool, !B::value> {};
 
   template <class B1, class... Bn>
-  using __and_ = __conjunction<B1, Bn...>;
+  using _and_ = conjunction<B1, Bn...>;
 
   template <class B1, class... Bn>
-  using __or_ = __disjunction<B1, Bn...>;
+  using _or_ = disjunction<B1, Bn...>;
 
   template <class B>
-  using __not_ = __negation<B>;
+  using _not_ = negation<B>;
+  //* [logicalimpl]
 
   /**
    * @}
@@ -975,19 +977,23 @@ namespace tp {
    * @{
    */
 
+  //* [sizeof_compare]
   template <typename A, typename B>
   struct sizeof_less : std::integral_constant<bool, (sizeof(A) < sizeof(B))> {};
 
   template <typename A, typename B>
   struct sizeof_more : std::integral_constant<bool, (sizeof(A) > sizeof(B))> {};
+  //* [sizeof_compare]
 
+  //* [baseis_compare]
   template <typename A, typename B>
   struct base_is_less
-      : __and_<std::is_base_of<A, B>, __not_<std::is_same<A, B>>> {};
+      : _and_<std::is_base_of<A, B>, _not_<std::is_same<A, B>>> {};
 
   template <typename A, typename B>
   struct derived_is_less
-      : __and_<std::is_base_of<B, A>, __not_<std::is_same<A, B>>> {};
+      : _and_<std::is_base_of<B, A>, _not_<std::is_same<A, B>>> {};
+  //* [baseis_compare]
 
   /** @} */
 
