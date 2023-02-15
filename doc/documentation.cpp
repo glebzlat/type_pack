@@ -1,7 +1,7 @@
 namespace tp {
   /**
    * @struct is_equal
-   * @brief Checks if the two type_packs or just_types is equal
+   * @brief Checks if two type_packs or just_types equal
    *
    * @tparam T left operand
    * @tparam U right operand
@@ -19,7 +19,7 @@ namespace tp {
 
   /**
    * @struct is_not_equal
-   * @brief Checks if the two type_packs or just_types is not equal
+   * @brief Checks if type_packs or just_types not equal
    *
    * @tparam T left operand
    * @tparam U right operand
@@ -33,14 +33,11 @@ namespace tp {
 
   /**
    * @struct lexicographical_compare
-   * @brief Returns true if one type_pack is lexicographically less than another
+   * @brief Lexicographically compares two type packs
    *
    * @tparam TP1 first type_pack
    * @tparam TP2 second type_pack
-   * @tparam Less metafunction predicate, which provides the member constant
-   * `value` with the `bool` type, which is `true` if the first argument is less
-   * than the second. The signature of this metafunction must be equivalent to
-   * the following: `template <typename A, typename B> struct compare;`
+   * @tparam Less @ref comp_meta_req "comparsion metafunction"
    *
    * Checks if the first type_pack is lexicographically less than the second.
    * Elements are compared using binary comparsion metafunction `Less`. This
@@ -63,13 +60,13 @@ namespace tp {
 
   /**
    * @struct head
-   * @brief Returns the first type of a type_pack
+   * @brief Returns the first type of a pack
    *
    * @tparam T type_pack
    *
    * Provides the member typedef `type`, which is the first type of the
-   * type_pack as a result. If type_pack is empty, `type` will be
-   * `tp::empty_type`.
+   * type_pack as a result. If a pack is empty, member typedef will not be
+   * provided, which may cause a compilation error.
    *
    * Helper type
    *
@@ -105,10 +102,7 @@ namespace tp {
    * @brief Returns the max type of a type_pack
    *
    * @tparam TP type_pack
-   * @tparam Less metafunction predicate, which provides the member constant
-   * `value` with the `bool` type, which is `true` if the first argument is less
-   * than the second. The signature of this metafunction must be equivalent to
-   * the following: `template <typename A, typename B> struct compare;`
+   * @tparam Less @ref comp_meta_req "comparsion metafunction"
    *
    * Provides the member typedef `type` with the "max" type from a type_pack.
    * If the type_pack is empty, the type will be `empty_type`.
@@ -129,10 +123,7 @@ namespace tp {
    * @brief Returns the mintype of a type_pack
    *
    * @tparam TP type_pack
-   * @tparam Less metafunction predicate, which provides the member constant
-   * `value` with the `bool` type, which is `true` if the first argument is less
-   * than the second. The signature of this metafunction must be equivalent to
-   * the following: `template <typename A, typename B> struct compare;`
+   * @tparam Less @ref comp_meta_req "comparsion metafunction"
    *
    * Provides the member typedef `type` with the "min" type from a type_pack.
    * If the type_pack is empty, the type will be `empty_type`.
@@ -189,9 +180,7 @@ namespace tp {
    * @struct find_if
    * @brief First the first type in a type_pack satisfying predicate condition
    *
-   * @tparam F unary predicate metafunction, that provides the member constant
-   * `value` with the type `bool`. The signature must be equivalent to the
-   * following: `template <typename T> struct pred;`
+   * @tparam F @ref unpred_req "unary_predicate"
    * @tparam TP type_pack
    * @tparam From start index (optional)
    *
@@ -213,9 +202,7 @@ namespace tp {
    * @struct all_of
    * @brief Checks if unary predicate is `true` for all elements in a type_pack
    *
-   * @tparam F unary predicate metafunction, that provides the member constant
-   * `value` with the type `bool`. The signature must be equivalent to the
-   * following: `template <typename T> struct pred;`
+   * @tparam F @ref unpred_req "unary_predicate"
    * @tparam TP type_pack
    *
    * Provides the member constant `value` with the type `bool`, which is `true`
@@ -237,9 +224,7 @@ namespace tp {
    * @brief Checks if unary predicate is `true` for at least one element in a
    * type_pack
    *
-   * @tparam F unary predicate metafunction, that provides the member constant
-   * `value` with the type `bool`. The signature must be equivalent to the
-   * following: `template <typename T> struct pred;`
+   * @tparam F @ref unpred_req "unary_predicate"
    * @tparam TP type_pack
    *
    * Provides the member constant `value` with the type `bool`, which is `true`
@@ -261,9 +246,7 @@ namespace tp {
    * @struct none_of
    * @brief Checks if unary predicate is `true` for no elements in a type_pack
    *
-   * @tparam F unary predicate metafunction, that provides the member constant
-   * `value` with the type `bool`. The signature must be equivalent to the
-   * following: `template <typename T> struct pred;`
+   * @tparam F @ref unpred_req "unary_predicate"
    * @tparam TP type_pack
    *
    * Provides the member constant `value` with the type `bool`, which is `true`
@@ -302,9 +285,7 @@ namespace tp {
    * @struct count_if
    * @brief Returns the number of elements satisfying predicate condition
    *
-   * @tparam F unary predicate metafunction, that provides the member constant
-   * `value` with the type `bool`. The signature must be equivalent to the
-   * following: `template <typename T> struct pred;`
+   * @tparam F @ref unpred_req "unary predicate"
    * @tparam TP type_pack
    *
    * Provides the member constant `value` of type `std::size_t`. Counts elements
@@ -329,9 +310,8 @@ namespace tp {
    * @tparam TP type_pack
    *
    * Provides the member typedef `type` which is a type_pack of all elements of
-   * an original pack except first element (head).
-   *
-   * If a pack is empty, result will be the same pack.
+   * an original pack except first element (head). If a pack is empty,
+   * member typedef will not be provided, which may cause a compilation error.
    *
    * Helper type
    *
@@ -395,6 +375,330 @@ namespace tp {
    * @snippet type_pack.hpp copyimpl
    *
    * See tp::copy_if.
+   */
+
+  /**
+   * @struct copy_if
+   * @brief Constructs new type_pack with the elements, that satisfying a
+   * condition, of other type_pack
+   *
+   * @tparam TP type_pack
+   * @tparam F @ref unpred_req "unary predicate"
+   *
+   * Provides the member typedef `type` that is a pack with elements of other
+   * type_pack. Algorithm copies elements, for which unary predicate returns
+   * `true`.
+   *
+   * Helper type
+   *
+   * @snippet type_pack.hpp copyiftype
+   *
+   * Implementation
+   *
+   * @snippet type_pack.hpp copyifimpl
+   *
+   * See tp::copy.
+   */
+
+  /**
+   * @struct push_front
+   * @brief Generates new type_pack by adding a type to the front of other
+   * type_pack
+   *
+   * @tparam T adding type
+   * @tparam TP type_pack
+   *
+   * Provides the member typedef `type` that is a pack with all elements of
+   * other type_pack, prepended with added type.
+   *
+   * Helper type
+   *
+   * @snippet type_pack.hpp pushfronttype
+   *
+   * Implementation
+   *
+   * @snippet type_pack.hpp pushfrontimpl
+   */
+
+  /**
+   * @struct push_back
+   * @brief Generates new type_pack by adding a type to the back of other
+   * type_pack
+   *
+   * @tparam T adding type
+   * @tparam TP type_pack
+   *
+   * Provides the member typedef `type` that is a pack with all elements of
+   * other type_pack, appended with added type.
+   *
+   * Helper type
+   *
+   * @snippet type_pack.hpp pushbacktype
+   *
+   * Implementation
+   *
+   * @snippet type_pack.hpp pushbackimpl
+   */
+
+  /**
+   * @struct pop_front
+   * @brief Removes the first type from a type_pack
+   *
+   * @tparam TP type_pack
+   *
+   * Provides the member typedef `type` that is a pack with all elements of
+   * other type_pack, except the first element. If the original pack is empty,
+   * resulting type is empty_pack.
+   *
+   * Helper type
+   *
+   * @snippet type_pack.hpp popfronttype
+   *
+   * Implementation
+   *
+   * @snippet type_pack.hpp popfrontimpl
+   */
+
+  /**
+   * @struct pop_back
+   * @brief Removes the last type from a type_pack
+   *
+   * @tparam TP type_pack
+   *
+   * Provides the member typedef `type` that is a pack with all elements of
+   * other type_pack, except the last element. If the original pack is empty,
+   * resulting type is empty_pack.
+   *
+   * Helper type
+   *
+   * @snippet type_pack.hpp popbacktype
+   *
+   * Implementation
+   *
+   * @snippet type_pack.hpp popbackimpl
+   */
+
+  /**
+   * @struct transform
+   * @brief Generates new type_pack from other type_pack by applying to its
+   * elements transforming metafunction
+   *
+   * @tparam F unary transforming metafunction, that is take one template type
+   * and provide the member typedef `type`. The signature of transforming
+   * metafunction must be equivalent to the following: `template <typename T>
+   * struct trans;`.
+   *
+   * @tparam TP type_pack
+   *
+   * Provides the member typedef `type` that is a type_pack, filled with types,
+   * generated by transforming metafunction.
+   *
+   * Helper type
+   *
+   * @snippet type_pack.hpp transformtype
+   *
+   * Implementation
+   *
+   * @snippet type_pack.hpp transformimpl
+   */
+
+  /**
+   * @struct generate
+   * @brief Creates a type_pack with count of elements of a specific type
+   *
+   * @tparam N number of elements
+   * @tparam T type of an element
+   *
+   * Provides the member typedef `type` that is a type_pack with N elements of
+   * a type T. If N is 0, the resulting type is empty_pack.
+   *
+   * Helper type
+   *
+   * @snippet type_pack.hpp generatetype
+   *
+   * Implementation
+   *
+   * @snippet type_pack.hpp generateimpl
+   */
+
+  /**
+   * @struct remove
+   * @brief Removes the first element of a specific type
+   *
+   * @tparam T type to remove
+   *
+   * Provides the member typedef `type` that is a type_pack with elements from
+   * the original type_pack except the first occurency of a type T.
+   *
+   * If a pack is empty, the resulting type is empty_pack.
+   *
+   * Helper type
+   *
+   * @snippet type_pack.hpp removetype
+   *
+   * Implementation
+   *
+   * @snippet type_pack.hpp removeimpl
+   *
+   * See remove_if.
+   */
+
+  /**
+   * @struct remove_if
+   * @brief Removes the first element, that satisfies a specific criteria
+   *
+   * @tparam F @ref unpred_req "unary predicate"
+   *
+   * Provides the member typedef `type` that is a type_pack with elements from
+   * the original type_pack except the first occurency of a type, for which
+   * unary predicate returned `true`.
+   *
+   * If a pack is empty, the resulting type is empty_pack.
+   *
+   * Helper type
+   *
+   * @snippet type_pack.hpp removeiftype
+   *
+   * Implementation
+   *
+   * @snippet type_pack.hpp removeifimpl
+   */
+
+  /**
+   * @struct remove_all
+   * @brief Removes all elements of a specific type
+   *
+   * @tparam T removing type
+   *
+   * Provides the member typedef `type` that is a type_pack with all elements
+   * from the original type_pack except all elements of a type T.
+   *
+   * If a pack is empty, the resulting type is empty_pack.
+   *
+   * Helper type
+   *
+   * @snippet type_pack.hpp removealltype
+   *
+   * Implementation
+   *
+   * @snippet type_pack.hpp removeallimpl
+   */
+
+  /**
+   * @struct remove_all_if
+   * @brief Removes all elements, that satisfies a specific criteria
+   *
+   * @tparam F @ref unpred_req "unary predicate"
+   *
+   * Provides the member typedef `type` that is a type_pack with all elements
+   * from the original type_pack except all elements for which predicate returns
+   * `true`.
+   *
+   * Helper type
+   *
+   * @snippet type_pack.hpp removealliftype
+   *
+   * Implementation
+   *
+   * @snippet type_pack.hpp removeallieimpl
+   */
+
+  /**
+   * @struct unique
+   * @brief Removes duplicate types
+   *
+   * @tparam TP type_pack
+   *
+   * Eliminates all except the first element from every consecutive group of
+   * equivalent elements from a type_pack. Provides the member typedef `type`.
+   *
+   * Helper type
+   *
+   * @snippet type_pack.hpp uniquetype
+   *
+   * Implementation
+   *
+   * @snippet type_pack.hpp uniqueimpl
+   */
+
+  /**
+   * @struct replace
+   * @brief Replaces all elements of a specific type
+   *
+   * @tparam Old old type to replace
+   * @tparam New the type to use as replacement
+   *
+   * Replaces all elements of type Old to type New.
+   *
+   * Helper type
+   *
+   * @snippet type_pack.hpp replacetype
+   *
+   * Implementation
+   *
+   * @snippet type_pack.hpp replaceimpl
+   */
+
+  /**
+   * @page unary_predicate_struct Unary predicate struct
+   *
+   * @anchor unpred_req Unary predicate class is a metafunction that must
+   * take one template parameter and provide the public member constant `value`
+   * of type `bool`. The value of a member depends if a template parameter type
+   * satisfies or not the predicate's criteria.
+   *
+   * The C++ standard library offers a great set of unary predicates, which are
+   * called "type categories" and "type properties". See
+   * https://en.cppreference.com/w/cpp/header/type_traits
+   *
+   * Unary predicate definition may follow SFINAE principle. It is strongly
+   * recommended to inherit unary_predicate classes from std::integral_constant.
+   *
+   * Example:
+   *
+   * ```cpp
+   * template <typename T>
+   * struct is_int : std::false_type {};
+   *
+   * template <>
+   * struct is_int<int> : std::true_type {};
+   * ```
+   *
+   * See copy_if, remove_if, count_if, tp::all_of, tp::any_of, tp::none_of.
+   */
+
+  /**
+   * @page comparsion_meta Metafunctions that provide comparsion operations
+   *
+   * @anchor comp_meta_req Comparsion metafunction is a class, that takes
+   * two template parameters and provides the public member constant `value`
+   * of type `bool`. The value of a member depends if one type is "greater" or
+   * "less" than other.
+   *
+   * Comparsion between types actually is not a comparsion in the usual sense.
+   * Types are quite abstract category to define a comparsion operation for
+   * them.
+   *
+   * But in the computer representation all types has their size, which is a
+   * material trait of a type. So types can be compared by their sizes.
+   *
+   * @snippet type_pack.hpp sizeof_compare
+   *
+   * Also types can be classes, which has the inheritance relationship. You can
+   * say that is a derived class is "lesser" than the base class.
+   *
+   * @snippet type_pack.hpp baseis_compare
+   *
+   * It is strongly recommended to inherit comparsion classes from
+   * `std::integral_constant` class. User can easily define its own comparsion
+   * metafunction by using metaprogramming logical operations, that are
+   * provided by the library.
+   *
+   * @snippet type_pack.hpp logicalimpl
+   *
+   * See sizeof_less, sizeof_more, base_is_less, derived_is_less, tp::negation,
+   * tp::conjunction, tp::disjunction.
+   *
    */
 
 } // namespace tp
