@@ -973,13 +973,13 @@ $(function() {
 <div class="line"><a name="l00901"></a><span class="lineno">  901</span>&#160;  <span class="comment">//* [uniquetype]</span></div>
 <div class="line"><a name="l00902"></a><span class="lineno">  902</span>&#160; </div>
 <div class="line"><a name="l00903"></a><span class="lineno">  903</span>&#160;  <span class="comment">//* [replaceimpl]</span></div>
-<div class="line"><a name="l00904"></a><span class="lineno">  904</span>&#160;  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Rep, <span class="keyword">typename</span> To, <span class="keyword">class</span> TP&gt;</div>
+<div class="line"><a name="l00904"></a><span class="lineno">  904</span>&#160;  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Old, <span class="keyword">typename</span> New, <span class="keyword">class</span> TP&gt;</div>
 <div class="line"><a name="l00905"></a><span class="lineno"><a class="line" href="structtp_1_1replace.html">  905</a></span>&#160;  <span class="keyword">struct</span> <a class="code" href="structtp_1_1replace.html">replace</a> {</div>
 <div class="line"><a name="l00906"></a><span class="lineno">  906</span>&#160;    <span class="keyword">private</span>:</div>
 <div class="line"><a name="l00907"></a><span class="lineno">  907</span>&#160;      <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
 <div class="line"><a name="l00908"></a><span class="lineno">  908</span>&#160;      <span class="keyword">struct</span> rep_one_element {</div>
-<div class="line"><a name="l00909"></a><span class="lineno">  909</span>&#160;          <span class="keyword">using</span> type = <span class="keyword">typename</span> std::conditional&lt;std::is_same&lt;T, Rep&gt;::value,</div>
-<div class="line"><a name="l00910"></a><span class="lineno">  910</span>&#160;                                                 To, T&gt;::type;</div>
+<div class="line"><a name="l00909"></a><span class="lineno">  909</span>&#160;          <span class="keyword">using</span> type = <span class="keyword">typename</span> std::conditional&lt;std::is_same&lt;T, Old&gt;::value,</div>
+<div class="line"><a name="l00910"></a><span class="lineno">  910</span>&#160;                                                 New, T&gt;::type;</div>
 <div class="line"><a name="l00911"></a><span class="lineno">  911</span>&#160;      };</div>
 <div class="line"><a name="l00912"></a><span class="lineno">  912</span>&#160;    <span class="keyword">public</span>:</div>
 <div class="line"><a name="l00913"></a><span class="lineno">  913</span>&#160;      <span class="keyword">using</span> type = transform_t&lt;rep_one_element, TP&gt;;</div>
@@ -987,8 +987,8 @@ $(function() {
 <div class="line"><a name="l00915"></a><span class="lineno">  915</span>&#160;  <span class="comment">//* [replaceimpl]</span></div>
 <div class="line"><a name="l00916"></a><span class="lineno">  916</span>&#160; </div>
 <div class="line"><a name="l00917"></a><span class="lineno">  917</span>&#160;  <span class="comment">//* [replacetype]</span></div>
-<div class="line"><a name="l00918"></a><span class="lineno">  918</span>&#160;  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Rep, <span class="keyword">typename</span> To, <span class="keyword">class</span> TP&gt;</div>
-<div class="line"><a name="l00919"></a><span class="lineno">  919</span>&#160;  <span class="keyword">using</span> replace_t = <span class="keyword">typename</span> <a class="code" href="structtp_1_1replace.html">replace</a>&lt;Rep, To, TP&gt;::type;</div>
+<div class="line"><a name="l00918"></a><span class="lineno">  918</span>&#160;  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Old, <span class="keyword">typename</span> New, <span class="keyword">class</span> TP&gt;</div>
+<div class="line"><a name="l00919"></a><span class="lineno">  919</span>&#160;  <span class="keyword">using</span> replace_t = <span class="keyword">typename</span> <a class="code" href="structtp_1_1replace.html">replace</a>&lt;Old, New, TP&gt;::type;</div>
 <div class="line"><a name="l00920"></a><span class="lineno">  920</span>&#160; </div>
 <div class="line"><a name="l00921"></a><span class="lineno">  921</span>&#160;  <span class="comment">//* [replacetype]</span></div>
 <div class="line"><a name="l00922"></a><span class="lineno">  922</span>&#160; </div>

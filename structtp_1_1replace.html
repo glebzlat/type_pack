@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>TypePack Library: tp::replace&lt; Rep, To, TP &gt; Struct Template Reference</title>
+<title>TypePack Library: tp::replace&lt; Old, New, TP &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -71,7 +71,7 @@ $(function() {
 <a href="#pub-types">Public Types</a> &#124;
 <a href="structtp_1_1replace-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">tp::replace&lt; Rep, To, TP &gt; Struct Template Reference<div class="ingroups"><a class="el" href="group__TypePack.html">Type pack</a> &raquo; <a class="el" href="group__TypePackGenerating.html">Type pack generation operations</a></div></div>  </div>
+<div class="title">tp::replace&lt; Old, New, TP &gt; Struct Template Reference<div class="ingroups"><a class="el" href="group__TypePack.html">Type pack</a> &raquo; <a class="el" href="group__TypePackGenerating.html">Type pack generation operations</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -80,13 +80,13 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a1a638c81f6267d8fe24d6ec50efd45ee"><td class="memItemLeft" align="right" valign="top"><a id="a1a638c81f6267d8fe24d6ec50efd45ee"></a>
+<tr class="memitem:aabcb3c087658fc4d01507b14c3d4a638"><td class="memItemLeft" align="right" valign="top"><a id="aabcb3c087658fc4d01507b14c3d4a638"></a>
 using&#160;</td><td class="memItemRight" valign="bottom"><b>type</b> = transform_t&lt; rep_one_element, TP &gt;</td></tr>
-<tr class="separator:a1a638c81f6267d8fe24d6ec50efd45ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:aabcb3c087658fc4d01507b14c3d4a638"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><h3>template&lt;typename Rep, typename To, class TP&gt;<br />
-struct tp::replace&lt; Rep, To, TP &gt;</h3>
+<div class="textblock"><h3>template&lt;typename Old, typename New, class TP&gt;<br />
+struct tp::replace&lt; Old, New, TP &gt;</h3>
 
 <p>Replaces all elements of a specific type. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
@@ -98,17 +98,17 @@ struct tp::replace&lt; Rep, To, TP &gt;</h3>
 </dl>
 <p>Replaces all elements of type Old to type New.</p>
 <p>Helper type</p>
-<div class="fragment"><div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Rep, <span class="keyword">typename</span> To, <span class="keyword">class</span> TP&gt;</div>
-<div class="line">  <span class="keyword">using</span> replace_t = <span class="keyword">typename</span> replace&lt;Rep, To, TP&gt;::type;</div>
+<div class="fragment"><div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Old, <span class="keyword">typename</span> New, <span class="keyword">class</span> TP&gt;</div>
+<div class="line">  <span class="keyword">using</span> replace_t = <span class="keyword">typename</span> replace&lt;Old, New, TP&gt;::type;</div>
 <div class="line"> </div>
 </div><!-- fragment --><p> Implementation</p>
-<div class="fragment"><div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Rep, <span class="keyword">typename</span> To, <span class="keyword">class</span> TP&gt;</div>
+<div class="fragment"><div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Old, <span class="keyword">typename</span> New, <span class="keyword">class</span> TP&gt;</div>
 <div class="line">  <span class="keyword">struct </span>replace {</div>
 <div class="line">    <span class="keyword">private</span>:</div>
 <div class="line">      <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
 <div class="line">      <span class="keyword">struct </span>rep_one_element {</div>
-<div class="line">          <span class="keyword">using</span> type = <span class="keyword">typename</span> std::conditional&lt;std::is_same&lt;T, Rep&gt;::value,</div>
-<div class="line">                                                 To, T&gt;::type;</div>
+<div class="line">          <span class="keyword">using</span> type = <span class="keyword">typename</span> std::conditional&lt;std::is_same&lt;T, Old&gt;::value,</div>
+<div class="line">                                                 New, T&gt;::type;</div>
 <div class="line">      };</div>
 <div class="line">    <span class="keyword">public</span>:</div>
 <div class="line">      <span class="keyword">using</span> type = transform_t&lt;rep_one_element, TP&gt;;</div>
