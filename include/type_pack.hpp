@@ -920,6 +920,7 @@ namespace tp {
 
   //* [replacetype]
 
+  //* [sortimpl]
   template <class TP, template <typename A, typename B> class Less>
   struct sort {};
 
@@ -961,9 +962,12 @@ namespace tp {
       using type = concatenate_t<inductive_sort_lt, just_type<pivot>,
                                  inductive_sort_gte>;
   };
+  //* [sortimpl]
 
+  //* [sorttype]
   template <class TP, template <typename A, typename B> class Less>
   using sort_t = typename sort<TP, Less>::type;
+  //* [sorttype]
 
   /**
    * @}
