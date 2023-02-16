@@ -640,6 +640,23 @@ namespace tp {
    */
 
   /**
+   * @struct sort
+   * @brief Sorts type_pack
+   *
+   * This page is incomplete: add description
+   * ...but just wonder, what I did: it is quick sort, implemented using
+   * SFINAE, that works with a compile-time list of types!
+   *
+   * Helper type
+   *
+   * @snippet type_pack.hpp sorttype
+   *
+   * Implementation
+   *
+   * @snippet type_pack.hpp sortimpl
+   */
+
+  /**
    * @page unary_predicate_struct Unary predicate struct
    *
    * @anchor unpred_req Unary predicate class is a metafunction that must
