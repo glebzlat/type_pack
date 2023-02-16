@@ -920,6 +920,51 @@ namespace tp {
 
   //* [replacetype]
 
+  template <class TP, template <typename A, typename B> class Less>
+  struct sort {};
+
+  template <typename T, template <typename A, typename B> class Less>
+  struct sort<type_pack<T>, Less> {
+      using type = type_pack<T>;
+  };
+
+  template <template <typename A, typename B> class Less>
+  struct sort<empty_pack, Less> {
+      using type = empty_pack;
+  };
+
+  template <typename T, typename... Ts,
+            template <typename A, typename B> class Less>
+  struct sort<type_pack<T, Ts...>, Less> {
+    private:
+      using tp_t = type_pack<T, Ts...>;
+      using pivot = at_t<0, tp_t>;
+      // using pack = delete_at_t<tp_t::size() / 2, tp_t>;
+      using pack = remove_t<pivot, tp_t>;
+
+      template <typename E>
+      struct lt_pivot {
+          static constexpr bool value = Less<E, pivot>::value;
+      };
+
+      template <typename E>
+      struct gte_pivot {
+          static constexpr bool value = !Less<E, pivot>::value;
+      };
+
+      using pack_lt = copy_if_t<tp_t, lt_pivot>;
+      using pack_gt = copy_if_t<pack, gte_pivot>;
+
+      using inductive_sort_lt = typename sort<pack_lt, Less>::type;
+      using inductive_sort_gte = typename sort<pack_gt, Less>::type;
+    public:
+      using type = concatenate_t<inductive_sort_lt, just_type<pivot>,
+                                 inductive_sort_gte>;
+  };
+
+  template <class TP, template <typename A, typename B> class Less>
+  using sort_t = typename sort<TP, Less>::type;
+
   /**
    * @}
    *
