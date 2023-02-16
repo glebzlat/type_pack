@@ -70,7 +70,62 @@ $(function() {
 <div class="title">tp::sort&lt; TP, Less &gt; Struct Template Reference<div class="ingroups"><a class="el" href="group__TypePack.html">Type pack</a> &raquo; <a class="el" href="group__TypePackGenerating.html">Type pack generation operations</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
-<hr/>The documentation for this struct was generated from the following file:<ul>
+
+<p>Sorts <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a>.  
+ <a href="structtp_1_1sort.html#details">More...</a></p>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;class TP, template&lt; typename A, typename B &gt; class Less&gt;<br />
+struct tp::sort&lt; TP, Less &gt;</h3>
+
+<p>Sorts <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a>. </p>
+<p>This page is incomplete: add description ...but just wonder, what I did: it is quick sort, implemented using SFINAE, that works with a compile-time list of types!</p>
+<p>Helper type</p>
+<div class="fragment"><div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">class</span> TP, <span class="keyword">template</span> &lt;<span class="keyword">typename</span> A, <span class="keyword">typename</span> B&gt; <span class="keyword">class </span>Less&gt;</div>
+<div class="line">  <span class="keyword">using</span> sort_t = <span class="keyword">typename</span> sort&lt;TP, Less&gt;::type;</div>
+</div><!-- fragment --><p> Implementation</p>
+<div class="fragment"><div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">class</span> TP, <span class="keyword">template</span> &lt;<span class="keyword">typename</span> A, <span class="keyword">typename</span> B&gt; <span class="keyword">class </span>Less&gt;</div>
+<div class="line">  <span class="keyword">struct </span>sort {};</div>
+<div class="line"> </div>
+<div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">template</span> &lt;<span class="keyword">typename</span> A, <span class="keyword">typename</span> B&gt; <span class="keyword">class </span>Less&gt;</div>
+<div class="line">  <span class="keyword">struct </span>sort&lt;type_pack&lt;T&gt;, Less&gt; {</div>
+<div class="line">      <span class="keyword">using</span> type = type_pack&lt;T&gt;;</div>
+<div class="line">  };</div>
+<div class="line"> </div>
+<div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> A, <span class="keyword">typename</span> B&gt; <span class="keyword">class </span>Less&gt;</div>
+<div class="line">  <span class="keyword">struct </span>sort&lt;<a class="code" href="type__pack_8hpp.html#af0273c6f1ca09ec687f5b6575e77bc3b">empty_pack</a>, Less&gt; {</div>
+<div class="line">      <span class="keyword">using</span> type = <a class="code" href="type__pack_8hpp.html#af0273c6f1ca09ec687f5b6575e77bc3b">empty_pack</a>;</div>
+<div class="line">  };</div>
+<div class="line"> </div>
+<div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span>... Ts,</div>
+<div class="line">            <span class="keyword">template</span> &lt;<span class="keyword">typename</span> A, <span class="keyword">typename</span> B&gt; <span class="keyword">class </span>Less&gt;</div>
+<div class="line">  <span class="keyword">struct </span>sort&lt;type_pack&lt;T, Ts...&gt;, Less&gt; {</div>
+<div class="line">    <span class="keyword">private</span>:</div>
+<div class="line">      <span class="keyword">using</span> tp_t = type_pack&lt;T, Ts...&gt;;</div>
+<div class="line">      <span class="keyword">using</span> pivot = at_t&lt;0, tp_t&gt;;</div>
+<div class="line">      <span class="comment">// using pack = delete_at_t&lt;tp_t::size() / 2, tp_t&gt;;</span></div>
+<div class="line">      <span class="keyword">using</span> pack = remove_t&lt;pivot, tp_t&gt;;</div>
+<div class="line"> </div>
+<div class="line">      <span class="keyword">template</span> &lt;<span class="keyword">typename</span> E&gt;</div>
+<div class="line">      <span class="keyword">struct </span>lt_pivot {</div>
+<div class="line">          <span class="keyword">static</span> constexpr <span class="keywordtype">bool</span> value = Less&lt;E, pivot&gt;::value;</div>
+<div class="line">      };</div>
+<div class="line"> </div>
+<div class="line">      <span class="keyword">template</span> &lt;<span class="keyword">typename</span> E&gt;</div>
+<div class="line">      <span class="keyword">struct </span>gte_pivot {</div>
+<div class="line">          <span class="keyword">static</span> constexpr <span class="keywordtype">bool</span> value = !Less&lt;E, pivot&gt;::value;</div>
+<div class="line">      };</div>
+<div class="line"> </div>
+<div class="line">      <span class="keyword">using</span> pack_lt = copy_if_t&lt;tp_t, lt_pivot&gt;;</div>
+<div class="line">      <span class="keyword">using</span> pack_gt = copy_if_t&lt;pack, gte_pivot&gt;;</div>
+<div class="line"> </div>
+<div class="line">      <span class="keyword">using</span> inductive_sort_lt = <span class="keyword">typename</span> sort&lt;pack_lt, Less&gt;::type;</div>
+<div class="line">      <span class="keyword">using</span> inductive_sort_gte = <span class="keyword">typename</span> sort&lt;pack_gt, Less&gt;::type;</div>
+<div class="line">    <span class="keyword">public</span>:</div>
+<div class="line">      <span class="keyword">using</span> type = concatenate_t&lt;inductive_sort_lt, just_type&lt;pivot&gt;,</div>
+<div class="line">                                 inductive_sort_gte&gt;;</div>
+<div class="line">  };</div>
+<div class="ttc" id="atype__pack_8hpp_html_af0273c6f1ca09ec687f5b6575e77bc3b"><div class="ttname"><a href="type__pack_8hpp.html#af0273c6f1ca09ec687f5b6575e77bc3b">tp::empty_pack</a></div><div class="ttdeci">type_pack&lt;&gt; empty_pack</div><div class="ttdoc">Type alias to empty type_pack.</div><div class="ttdef"><b>Definition:</b> type_pack.hpp:81</div></div>
+</div><!-- fragment --></div><hr/>The documentation for this struct was generated from the following file:<ul>
 <li>/home/runner/work/type_pack/type_pack/include/<a class="el" href="type__pack_8hpp_source.html">type_pack.hpp</a></li>
 </ul>
 </div><!-- contents -->
