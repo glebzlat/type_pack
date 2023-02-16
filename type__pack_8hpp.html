@@ -241,6 +241,14 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1replace.html">tp::replace&lt; Old, New, TP &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replaces all elements of a specific type.  <a href="structtp_1_1replace.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1sort.html">tp::sort&lt; TP, Less &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1sort_3_01type__pack_3_01T_01_4_00_01Less_01_4.html">tp::sort&lt; type_pack&lt; T &gt;, Less &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1sort_3_01empty__pack_00_01Less_01_4.html">tp::sort&lt; empty_pack, Less &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1sort_3_01type__pack_3_01T_00_01Ts_8_8_8_01_4_00_01Less_01_4.html">tp::sort&lt; type_pack&lt; T, Ts... &gt;, Less &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1part__caller.html">tp::part_caller&lt; F, Ts &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1conjunction.html">tp::conjunction&lt;... &gt;</a></td></tr>
@@ -352,6 +360,10 @@ template&lt;class TP &gt; </td></tr>
 template&lt;typename Old , typename New , class TP &gt; </td></tr>
 <tr class="memitem:ga0be71f89a20b8c40dedfb47d7f9b30e9"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>tp::replace_t</b> = typename replace&lt; Old, New, TP &gt;::type</td></tr>
 <tr class="separator:ga0be71f89a20b8c40dedfb47d7f9b30e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad7941957903da0bfc92d754dc8bc81c2"><td class="memTemplParams" colspan="2">
+template&lt;class TP , template&lt; typename A, typename B &gt; class Less&gt; </td></tr>
+<tr class="memitem:gad7941957903da0bfc92d754dc8bc81c2"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>tp::sort_t</b> = typename sort&lt; TP, Less &gt;::type</td></tr>
+<tr class="separator:gad7941957903da0bfc92d754dc8bc81c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga48f7403f7501a05ab98503865291d594"><td class="memTemplParams" colspan="2">
 template&lt;class B1 , class... Bn&gt; </td></tr>
 <tr class="memitem:ga48f7403f7501a05ab98503865291d594"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><b>tp::_and_</b> = conjunction&lt; B1, Bn... &gt;</td></tr>
