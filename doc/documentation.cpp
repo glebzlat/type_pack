@@ -1,3 +1,41 @@
+/**
+ * @brief Main namespace of a library
+ *
+ * TypePack Library provides metaprogramming type list and a great set of
+ * operations with it like indexing access, generating, copying, comparsion,
+ * and even sorting.
+ *
+ * In fact, it is a hobby project, caused by my wish to deeply explore C++
+ * metaprogramming and other topics, like doxygen usage and customisation,
+ * documentation writing, testing, etc.
+ *
+ * @copyright
+ * Copyright (c) 2023 Gleb Zlatanov
+ *
+ * @license
+ * MIT License
+ *
+ * @par 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * @par 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * @par 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 namespace tp {
   /**
    * @struct is_equal
@@ -656,6 +694,27 @@ namespace tp {
    * Implementation
    *
    * @snippet type_pack.hpp sortimpl
+   *
+   * See tp::copy_if, tp::at, tp::remove, tp::concatenate, tp::is_sorted, @ref
+   * comp_meta_req "comparsion metafunction".
+   */
+
+  /**
+   * @struct is_sorted
+   * @brief Checks if type_pack is sorted
+   *
+   * @tparam TP type_pack
+   * @tparam Less @ref comp_meta_req "comparsion metafunction"
+   *
+   * Checks if the list of types is sorted using comparsion metafunction.
+   * Provides the member constant `value`, which is `true`, if list is sorted.
+   * Otherwise `false`. Inherits `std::integral_constant`.
+   *
+   * Implementation
+   *
+   * @snippet type_pack.hpp issortedimpl
+   *
+   * See tp::sort, @ref comp_meta_req "comparsion metafunction".
    */
 
   /**
