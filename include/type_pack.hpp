@@ -525,8 +525,8 @@ namespace tp {
         using inductive_t = is_sorted_impl<type_pack<Ts...>, Less>;
         using end_t = std::integral_constant<bool, false>;
         // if T1 less than T2, then continue recursion; otherwise false
-        using next_t =
-            std::conditional<Less<T1, T2>::value, inductive_t, end_t>;
+        using next_t = typename
+            std::conditional<!Less<T2, T1>::value, inductive_t, end_t>::type;
 
         static constexpr bool value = next_t::value;
     };
