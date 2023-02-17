@@ -74,6 +74,7 @@ $(function() {
 <div class="line"> </div>
 <div class="line">  template &lt;typename A, typename B&gt;</div>
 <div class="line">  struct sizeof_more : std::integral_constant&lt;bool, (sizeof(A) &gt; sizeof(B))&gt; {};</div>
+<div class="line"> </div>
 </div><!-- fragment --><p> Also types can be classes, which has the inheritance relationship. You can say that is a derived class is "lesser" than the base class.</p>
 <div class="fragment"><div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> A, <span class="keyword">typename</span> B&gt;</div>
 <div class="line">  <span class="keyword">struct </span>base_is_less</div>
@@ -82,6 +83,7 @@ $(function() {
 <div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> A, <span class="keyword">typename</span> B&gt;</div>
 <div class="line">  <span class="keyword">struct </span>derived_is_less</div>
 <div class="line">      : _and_&lt;std::is_base_of&lt;B, A&gt;, _not_&lt;std::is_same&lt;A, B&gt;&gt;&gt; {};</div>
+<div class="line"> </div>
 </div><!-- fragment --><p> It is strongly recommended to inherit comparsion classes from <code>std::integral_constant</code> class. User can easily define its own comparsion metafunction by using metaprogramming logical operations, that are provided by the library.</p>
 <div class="fragment"><div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">class</span>...&gt;</div>
 <div class="line">  <span class="keyword">struct </span>conjunction : std::true_type {};</div>
@@ -114,6 +116,7 @@ $(function() {
 <div class="line"> </div>
 <div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">class</span> B&gt;</div>
 <div class="line">  <span class="keyword">using</span> _not_ = negation&lt;B&gt;;</div>
+<div class="line"> </div>
 </div><!-- fragment --><p> See <a class="el" href="structtp_1_1sizeof__less.html">sizeof_less</a>, <a class="el" href="structtp_1_1sizeof__more.html">sizeof_more</a>, <a class="el" href="structtp_1_1base__is__less.html">base_is_less</a>, <a class="el" href="structtp_1_1derived__is__less.html">derived_is_less</a>, <a class="el" href="structtp_1_1negation.html">tp::negation</a>, <a class="el" href="structtp_1_1conjunction.html">tp::conjunction</a>, <a class="el" href="structtp_1_1disjunction.html">tp::disjunction</a>. </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->

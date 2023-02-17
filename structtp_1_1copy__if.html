@@ -62,7 +62,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>tp</b></li><li class="navelem"><a class="el" href="structtp_1_1copy__if.html">copy_if</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespacetp.html">tp</a></li><li class="navelem"><a class="el" href="structtp_1_1copy__if.html">copy_if</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -95,20 +95,20 @@ struct tp::copy_if&lt; TP, Pred &gt;</h3>
 <div class="line">  <span class="keyword">struct </span>copy_if {};</div>
 <div class="line"> </div>
 <div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">template</span> &lt;<span class="keyword">typename</span>...&gt; <span class="keyword">class </span>Pred&gt;</div>
-<div class="line">  <span class="keyword">struct </span>copy_if&lt;<a class="code" href="type__pack_8hpp.html#af0273c6f1ca09ec687f5b6575e77bc3b">empty_pack</a>, Pred&gt; {</div>
-<div class="line">      <span class="keyword">using</span> type = <a class="code" href="type__pack_8hpp.html#af0273c6f1ca09ec687f5b6575e77bc3b">empty_pack</a>;</div>
+<div class="line">  <span class="keyword">struct </span>copy_if&lt;<a class="code" href="namespacetp.html#af0273c6f1ca09ec687f5b6575e77bc3b">empty_pack</a>, Pred&gt; {</div>
+<div class="line">      <span class="keyword">using</span> type = <a class="code" href="namespacetp.html#af0273c6f1ca09ec687f5b6575e77bc3b">empty_pack</a>;</div>
 <div class="line">  };</div>
 <div class="line"> </div>
 <div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span>... Ts, <span class="keyword">template</span> &lt;<span class="keyword">typename</span>...&gt; <span class="keyword">class </span>Pred&gt;</div>
 <div class="line">  <span class="keyword">struct </span>copy_if&lt;type_pack&lt;T, Ts...&gt;, Pred&gt; {</div>
 <div class="line">    <span class="keyword">private</span>:</div>
 <div class="line">      <span class="keyword">using</span> head_t = <span class="keyword">typename</span> std::conditional&lt;Pred&lt;T&gt;::value, type_pack&lt;T&gt;,</div>
-<div class="line">                                               <a class="code" href="type__pack_8hpp.html#af0273c6f1ca09ec687f5b6575e77bc3b">empty_pack</a>&gt;::type;</div>
+<div class="line">                                               <a class="code" href="namespacetp.html#af0273c6f1ca09ec687f5b6575e77bc3b">empty_pack</a>&gt;::type;</div>
 <div class="line">    <span class="keyword">public</span>:</div>
 <div class="line">      <span class="keyword">using</span> type =</div>
 <div class="line">          concatenate_t&lt;head_t, <span class="keyword">typename</span> copy_if&lt;type_pack&lt;Ts...&gt;, Pred&gt;::type&gt;;</div>
 <div class="line">  };</div>
-<div class="ttc" id="atype__pack_8hpp_html_af0273c6f1ca09ec687f5b6575e77bc3b"><div class="ttname"><a href="type__pack_8hpp.html#af0273c6f1ca09ec687f5b6575e77bc3b">tp::empty_pack</a></div><div class="ttdeci">type_pack&lt;&gt; empty_pack</div><div class="ttdoc">Type alias to empty type_pack.</div><div class="ttdef"><b>Definition:</b> type_pack.hpp:81</div></div>
+<div class="ttc" id="anamespacetp_html_af0273c6f1ca09ec687f5b6575e77bc3b"><div class="ttname"><a href="namespacetp.html#af0273c6f1ca09ec687f5b6575e77bc3b">tp::empty_pack</a></div><div class="ttdeci">type_pack&lt;&gt; empty_pack</div><div class="ttdoc">Type alias to empty type_pack.</div><div class="ttdef"><b>Definition:</b> type_pack.hpp:91</div></div>
 </div><!-- fragment --><p> See <a class="el" href="structtp_1_1copy.html" title="Constructs new type_pack with the elements of other type_pack.">tp::copy</a>. </p>
 </div><hr/>The documentation for this struct was generated from the following file:<ul>
 <li>/home/runner/work/type_pack/type_pack/include/<a class="el" href="type__pack_8hpp_source.html">type_pack.hpp</a></li>

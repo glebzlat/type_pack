@@ -62,7 +62,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>tp</b></li><li class="navelem"><a class="el" href="structtp_1_1sort.html">sort</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespacetp.html">tp</a></li><li class="navelem"><a class="el" href="structtp_1_1sort.html">sort</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -78,44 +78,58 @@ $(function() {
 struct tp::sort&lt; TP, Less &gt;</h3>
 
 <p>Sorts <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a>. </p>
-<p>This page is incomplete: add description ...but just wonder, what I did: it is quick sort, implemented using SFINAE, that works with a compile-time list of types!</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TP</td><td><a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a> </td></tr>
+    <tr><td class="paramname">Less</td><td><a class="el" href="comparsion_meta.html#comp_meta_req">comparsion metafunction</a></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Sorts list of types using comparsion metafunction. Provides the member typedef <code>type</code> which is a pack of types, sorted in ascending order.</p>
 <p>Helper type</p>
 <div class="fragment"><div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">class</span> TP, <span class="keyword">template</span> &lt;<span class="keyword">typename</span> A, <span class="keyword">typename</span> B&gt; <span class="keyword">class </span>Less&gt;</div>
 <div class="line">  <span class="keyword">using</span> sort_t = <span class="keyword">typename</span> sort&lt;TP, Less&gt;::type;</div>
+<div class="line"> </div>
 </div><!-- fragment --><p> Implementation</p>
 <div class="fragment"><div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">class</span> TP, <span class="keyword">template</span> &lt;<span class="keyword">typename</span> A, <span class="keyword">typename</span> B&gt; <span class="keyword">class </span>Less&gt;</div>
 <div class="line">  <span class="keyword">struct </span>sort {};</div>
 <div class="line"> </div>
+<div class="line">  <span class="comment">// base case 1</span></div>
 <div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">template</span> &lt;<span class="keyword">typename</span> A, <span class="keyword">typename</span> B&gt; <span class="keyword">class </span>Less&gt;</div>
 <div class="line">  <span class="keyword">struct </span>sort&lt;type_pack&lt;T&gt;, Less&gt; {</div>
 <div class="line">      <span class="keyword">using</span> type = type_pack&lt;T&gt;;</div>
 <div class="line">  };</div>
 <div class="line"> </div>
+<div class="line">  <span class="comment">// base case 2</span></div>
 <div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> A, <span class="keyword">typename</span> B&gt; <span class="keyword">class </span>Less&gt;</div>
-<div class="line">  <span class="keyword">struct </span>sort&lt;<a class="code" href="type__pack_8hpp.html#af0273c6f1ca09ec687f5b6575e77bc3b">empty_pack</a>, Less&gt; {</div>
-<div class="line">      <span class="keyword">using</span> type = <a class="code" href="type__pack_8hpp.html#af0273c6f1ca09ec687f5b6575e77bc3b">empty_pack</a>;</div>
+<div class="line">  <span class="keyword">struct </span>sort&lt;<a class="code" href="namespacetp.html#af0273c6f1ca09ec687f5b6575e77bc3b">empty_pack</a>, Less&gt; {</div>
+<div class="line">      <span class="keyword">using</span> type = <a class="code" href="namespacetp.html#af0273c6f1ca09ec687f5b6575e77bc3b">empty_pack</a>;</div>
 <div class="line">  };</div>
 <div class="line"> </div>
+<div class="line">  <span class="comment">// inductive case</span></div>
 <div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span>... Ts,</div>
 <div class="line">            <span class="keyword">template</span> &lt;<span class="keyword">typename</span> A, <span class="keyword">typename</span> B&gt; <span class="keyword">class </span>Less&gt;</div>
 <div class="line">  <span class="keyword">struct </span>sort&lt;type_pack&lt;T, Ts...&gt;, Less&gt; {</div>
 <div class="line">    <span class="keyword">private</span>:</div>
 <div class="line">      <span class="keyword">using</span> tp_t = type_pack&lt;T, Ts...&gt;;</div>
 <div class="line">      <span class="keyword">using</span> pivot = at_t&lt;0, tp_t&gt;;</div>
-<div class="line">      <span class="comment">// using pack = delete_at_t&lt;tp_t::size() / 2, tp_t&gt;;</span></div>
 <div class="line">      <span class="keyword">using</span> pack = remove_t&lt;pivot, tp_t&gt;;</div>
 <div class="line"> </div>
+<div class="line">      <span class="comment">// less than the pivot</span></div>
 <div class="line">      <span class="keyword">template</span> &lt;<span class="keyword">typename</span> E&gt;</div>
 <div class="line">      <span class="keyword">struct </span>lt_pivot {</div>
 <div class="line">          <span class="keyword">static</span> constexpr <span class="keywordtype">bool</span> value = Less&lt;E, pivot&gt;::value;</div>
 <div class="line">      };</div>
 <div class="line"> </div>
+<div class="line">      <span class="comment">// greater than or equal to the pivot</span></div>
 <div class="line">      <span class="keyword">template</span> &lt;<span class="keyword">typename</span> E&gt;</div>
 <div class="line">      <span class="keyword">struct </span>gte_pivot {</div>
 <div class="line">          <span class="keyword">static</span> constexpr <span class="keywordtype">bool</span> value = !Less&lt;E, pivot&gt;::value;</div>
 <div class="line">      };</div>
 <div class="line"> </div>
+<div class="line">      <span class="comment">// array of elements that are less</span></div>
 <div class="line">      <span class="keyword">using</span> pack_lt = copy_if_t&lt;tp_t, lt_pivot&gt;;</div>
+<div class="line">      <span class="comment">// array of elements that are greater/equal</span></div>
 <div class="line">      <span class="keyword">using</span> pack_gt = copy_if_t&lt;pack, gte_pivot&gt;;</div>
 <div class="line"> </div>
 <div class="line">      <span class="keyword">using</span> inductive_sort_lt = <span class="keyword">typename</span> sort&lt;pack_lt, Less&gt;::type;</div>
@@ -124,8 +138,9 @@ struct tp::sort&lt; TP, Less &gt;</h3>
 <div class="line">      <span class="keyword">using</span> type = concatenate_t&lt;inductive_sort_lt, just_type&lt;pivot&gt;,</div>
 <div class="line">                                 inductive_sort_gte&gt;;</div>
 <div class="line">  };</div>
-<div class="ttc" id="atype__pack_8hpp_html_af0273c6f1ca09ec687f5b6575e77bc3b"><div class="ttname"><a href="type__pack_8hpp.html#af0273c6f1ca09ec687f5b6575e77bc3b">tp::empty_pack</a></div><div class="ttdeci">type_pack&lt;&gt; empty_pack</div><div class="ttdoc">Type alias to empty type_pack.</div><div class="ttdef"><b>Definition:</b> type_pack.hpp:81</div></div>
-</div><!-- fragment --></div><hr/>The documentation for this struct was generated from the following file:<ul>
+<div class="ttc" id="anamespacetp_html_af0273c6f1ca09ec687f5b6575e77bc3b"><div class="ttname"><a href="namespacetp.html#af0273c6f1ca09ec687f5b6575e77bc3b">tp::empty_pack</a></div><div class="ttdeci">type_pack&lt;&gt; empty_pack</div><div class="ttdoc">Type alias to empty type_pack.</div><div class="ttdef"><b>Definition:</b> type_pack.hpp:91</div></div>
+</div><!-- fragment --><p> See <a class="el" href="structtp_1_1copy__if.html" title="Constructs new type_pack with the elements, that satisfying a condition, of other type_pack.">tp::copy_if</a>, <a class="el" href="structtp_1_1at.html" title="Performs access to elements of a type_pack by index.">tp::at</a>, <a class="el" href="structtp_1_1remove.html" title="Removes the first element of a specific type.">tp::remove</a>, <a class="el" href="structtp_1_1concatenate.html" title="Concatenates type_packs and just_types.">tp::concatenate</a>, <a class="el" href="structtp_1_1is__sorted.html" title="Checks if type_pack is sorted.">tp::is_sorted</a>, <a class="el" href="comparsion_meta.html#comp_meta_req">comparsion metafunction</a>. </p>
+</div><hr/>The documentation for this struct was generated from the following file:<ul>
 <li>/home/runner/work/type_pack/type_pack/include/<a class="el" href="type__pack_8hpp_source.html">type_pack.hpp</a></li>
 </ul>
 </div><!-- contents -->

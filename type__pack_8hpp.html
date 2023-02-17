@@ -68,20 +68,26 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
+<a href="#namespaces">Namespaces</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">type_pack.hpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Main and the only file of a library.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;cstddef&gt;</code><br />
 <code>#include &lt;type_traits&gt;</code><br />
-</div><div class="textblock"><div class="dynheader">
-Include dependency graph for type_pack.hpp:</div>
-<div class="dyncontent">
+</div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for type_pack.hpp:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="type__pack_8hpp__incl.png" border="0" usemap="#a_2home_2runner_2work_2type__pack_2type__pack_2include_2type__pack_8hpp" alt=""/></div>
 <map name="a_2home_2runner_2work_2type__pack_2type__pack_2include_2type__pack_8hpp" id="a_2home_2runner_2work_2type__pack_2type__pack_2include_2type__pack_8hpp">
-<area shape="rect" title=" " alt="" coords="5,5,188,61"/>
+<area shape="rect" title="Main and the only file of a library." alt="" coords="5,5,188,61"/>
 <area shape="rect" title=" " alt="" coords="9,109,80,136"/>
 <area shape="rect" title=" " alt="" coords="104,109,196,136"/>
 </map>
@@ -155,6 +161,9 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1count__if.html">tp::count_if&lt; F, TP &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of elements satisfying predicate condition.  <a href="structtp_1_1count__if.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1is__sorted.html">tp::is_sorted&lt; TP, Less &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a> is sorted.  <a href="structtp_1_1is__sorted.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1tail.html">tp::tail&lt; T &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a> which is a subrange of an original pack except the first element.  <a href="structtp_1_1tail.html#details">More...</a><br /></td></tr>
@@ -275,10 +284,16 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtp_1_1derived__is__less.html">tp::derived_is_less&lt; A, B &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:namespacetp"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetp.html">tp</a></td></tr>
+<tr class="memdesc:namespacetp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main namespace of a library. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
 <tr class="memitem:af0273c6f1ca09ec687f5b6575e77bc3b"><td class="memItemLeft" align="right" valign="top"><a id="af0273c6f1ca09ec687f5b6575e77bc3b"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="type__pack_8hpp.html#af0273c6f1ca09ec687f5b6575e77bc3b">tp::empty_pack</a> = type_pack&lt;&gt;</td></tr>
+using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetp.html#af0273c6f1ca09ec687f5b6575e77bc3b">tp::empty_pack</a> = type_pack&lt;&gt;</td></tr>
 <tr class="memdesc:af0273c6f1ca09ec687f5b6575e77bc3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type alias to empty <a class="el" href="classtp_1_1type__pack.html" title="Type list.">type_pack</a>. <br /></td></tr>
 <tr class="separator:af0273c6f1ca09ec687f5b6575e77bc3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gacf068a4ef65dc0055e5ac189705daaed"><td class="memTemplParams" colspan="2">
@@ -395,6 +410,13 @@ template&lt;class T , class U &gt; </td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Main and the only file of a library. </p>
+<p>TypePack Library provides metaprogramming type list and a great set of operations with it like indexing access, generating, copying, comparsion, and even sorting.</p>
+<p>In fact, it is a hobby project, caused by my wish to deeply explore C++ metaprogramming and other topics, like doxygen usage and customisation, documentation writing, testing, etc.</p>
+<dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2023 Gleb Zlatanov</dd></dl>
+<dl class="section user"><dt>License: MIT License</dt><dd></dd></dl>
+<dl class="section user"><dt></dt><dd>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</dd></dl>
+<dl class="section user"><dt></dt><dd>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</dd></dl>
+<dl class="section user"><dt></dt><dd>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. </dd></dl>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

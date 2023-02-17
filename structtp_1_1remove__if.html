@@ -62,7 +62,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>tp</b></li><li class="navelem"><a class="el" href="structtp_1_1remove__if.html">remove_if</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespacetp.html">tp</a></li><li class="navelem"><a class="el" href="structtp_1_1remove__if.html">remove_if</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -109,12 +109,12 @@ struct tp::remove_if&lt; F, TP &gt;</h3>
 <div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">template</span> &lt;<span class="keyword">typename</span>...&gt; <span class="keyword">class </span>F, <span class="keyword">typename</span> T, <span class="keyword">typename</span>... Ts&gt;</div>
 <div class="line">  <span class="keyword">struct </span>remove_if&lt;F, type_pack&lt;T, Ts...&gt;&gt; {</div>
 <div class="line">    <span class="keyword">private</span>:</div>
-<div class="line">      <span class="keyword">using</span> head_type = <span class="keyword">typename</span> std::conditional&lt;F&lt;T&gt;::value, <a class="code" href="type__pack_8hpp.html#af0273c6f1ca09ec687f5b6575e77bc3b">empty_pack</a>,</div>
+<div class="line">      <span class="keyword">using</span> head_type = <span class="keyword">typename</span> std::conditional&lt;F&lt;T&gt;::value, <a class="code" href="namespacetp.html#af0273c6f1ca09ec687f5b6575e77bc3b">empty_pack</a>,</div>
 <div class="line">                                                  type_pack&lt;T&gt;&gt;::type;</div>
 <div class="line">    <span class="keyword">public</span>:</div>
 <div class="line">      <span class="keyword">using</span> type = concatenate_t&lt;head_type, type_pack&lt;Ts...&gt;&gt;;</div>
 <div class="line">  };</div>
-<div class="ttc" id="atype__pack_8hpp_html_af0273c6f1ca09ec687f5b6575e77bc3b"><div class="ttname"><a href="type__pack_8hpp.html#af0273c6f1ca09ec687f5b6575e77bc3b">tp::empty_pack</a></div><div class="ttdeci">type_pack&lt;&gt; empty_pack</div><div class="ttdoc">Type alias to empty type_pack.</div><div class="ttdef"><b>Definition:</b> type_pack.hpp:81</div></div>
+<div class="ttc" id="anamespacetp_html_af0273c6f1ca09ec687f5b6575e77bc3b"><div class="ttname"><a href="namespacetp.html#af0273c6f1ca09ec687f5b6575e77bc3b">tp::empty_pack</a></div><div class="ttdeci">type_pack&lt;&gt; empty_pack</div><div class="ttdoc">Type alias to empty type_pack.</div><div class="ttdef"><b>Definition:</b> type_pack.hpp:91</div></div>
 </div><!-- fragment --></div><hr/>The documentation for this struct was generated from the following file:<ul>
 <li>/home/runner/work/type_pack/type_pack/include/<a class="el" href="type__pack_8hpp_source.html">type_pack.hpp</a></li>
 </ul>
