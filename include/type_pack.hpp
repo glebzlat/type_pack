@@ -13,8 +13,7 @@
  * @copyright
  * Copyright (c) 2023 Gleb Zlatanov
  *
- * @license
- * MIT License
+ * @license MIT License
  *
  * @par
  * Permission is hereby granted, free of charge, to any person obtaining a copy
