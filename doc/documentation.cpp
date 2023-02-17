@@ -842,6 +842,86 @@ namespace tp {
    */
 
   /**
+   * @struct negation
+   * @brief Logical NOT metafunction
+   *
+   * @tparam B any type such that the expression bool(B::value) is a valid
+   * constant expression
+   *
+   * Forms the [logical negation](https://en.wikipedia.org/wiki/Negation) of the
+   * type trait `B`. This metafunction is an analog for
+   * [`std::negation`](https://en.cppreference.com/w/cpp/types/negation), which
+   * is provided by C++ 17 standard.
+   *
+   * Helper type
+   *
+   * @snippet type_pack.hpp negtype
+   *
+   * Implementation
+   *
+   * @snippet type_pack.hpp negimpl
+   */
+
+  /**
+   * @struct conjunction
+   * @brief Variadic logical AND metafunction
+   *
+   * @tparam B... every template argument Bi for which `Bi::value` is
+   * instantiated must be usable as a base class and define member value that is
+   * convertible to `bool`
+   *
+   * Forms the [logical
+   * conjunction](https://en.wikipedia.org/wiki/Logical_conjunction) of the type
+   * traits `B...`, effectively performing a logical AND on the sequence of
+   * traits. `tp::conjunction` is an analog for
+   * [`std::conjunction`](https://en.cppreference.com/w/cpp/types/conjunction).
+   *
+   * The specialization `std::conjunction<B1, ..., BN>` has a public and
+   * unambiguous base that is
+   *
+   * - if `sizeof...(B) == 0`, `std::true_type`; otherwise
+   * - the first type Bi in B1, ..., BN for which `bool(Bi::value) == false`,
+   * or BN if there is no such type.
+   *
+   * Helper type
+   *
+   * @snippet type_pack.hpp conjtype
+   *
+   * Implementation
+   *
+   * @snippet type_pack.hpp conjimpl
+   */
+
+  /**
+   * @struct disjunction
+   * @brief Variadic logical OR metafunction
+   *
+   * @tparam B... every template argument Bi for which `Bi::value` is
+   * instantiated must be usable as a base class and define member value that is
+   * convertible to `bool`
+   *
+   * Forms the [logical
+   * disjunction](https://en.wikipedia.org/wiki/Logical_disjunction) of the type
+   * traits `B...`, effectively performing a logical OR on the sequence of
+   * traits.
+   *
+   * The specialization `std::disjunction<B1, ..., BN>` has a public and
+   * unambiguous base that is
+   *
+   * - if `sizeof...(B) == 0`, `std::false_type`; otherwise
+   * - the first type Bi in B1, ..., BN for which `bool(Bi::value) == true`, or
+   * BN if there is no such type.
+   *
+   * Helper type
+   *
+   * @snippet type_pack.hpp disjtype
+   *
+   * Implementation
+   *
+   * @snippet type_pack.hpp disjimpl
+   */
+
+  /**
    * @page unary_predicate_struct Unary predicate struct
    *
    * @anchor unpred_req Unary predicate class is a metafunction that must
@@ -877,7 +957,7 @@ namespace tp {
    * of type `bool`. The value of a member depends if one type is "greater" or
    * "lesser" than other.
    *
-   * Comparsion between types actually is not a comparsion in the usual sense.
+   * Comparsion between types actually is not a comparsion in usual sense.
    * Types are quite abstract category to define a comparsion operation for
    * them.
    *
@@ -895,8 +975,6 @@ namespace tp {
    * `std::integral_constant` class. User can easily define its own comparsion
    * metafunction by using metaprogramming logical operations, that are
    * provided by the library.
-   *
-   * @snippet type_pack.hpp logicalimpl
    *
    * See sizeof_less, sizeof_more, base_is_less, derived_is_less, tp::negation,
    * tp::conjunction, tp::disjunction.
