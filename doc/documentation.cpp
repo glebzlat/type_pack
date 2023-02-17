@@ -15,7 +15,7 @@
  * @license
  * MIT License
  *
- * @par 
+ * @par
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -23,11 +23,11 @@
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  *
- * @par 
+ * @par
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
  *
- * @par 
+ * @par
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -718,6 +718,77 @@ namespace tp {
    */
 
   /**
+   * @struct part_caller
+   * @brief Partially specializes template
+   *
+   * @tparam F template template class, must be inherited from
+   * `std::integral_constant`
+   * @tparam Ts template parameter pack
+   *
+   * Provides the template member typedef `type`, which is an alias to member
+   * typedef `type` of an F class, which is partially specialized with `Ts` -
+   * "partially calls" it. It allows to convert a @ref comparsion_meta
+   * "comparsion metafunction" to a @ref unary_predicate_struct "unary
+   * predicate" metafunction.
+   *
+   * Implementation
+   *
+   * @snippet type_pack.hpp partcallerimpl
+   */
+
+  /**
+   * @struct sizeof_less
+   * @brief Compares two types by their size using sizeof operator
+   *
+   * @tparam A first type
+   * @tparam B second type
+   *
+   * @ref comparsion_meta "Comparsion metafunction". Provides the member
+   * constant `value`, which is `true` is the first type is lesser than the
+   * second. Otherwise, `false`. Inherits `std::integral_constant`.
+   *
+   * Implementation
+   *
+   * @snippet type_pack.hpp sizeof_compare
+   *
+   * See sizeof_more.
+   */
+
+  /**
+   * @struct sizeof_more
+   * @brief Compares two types by their size using sizeof operator
+   *
+   * @tparam A first type
+   * @tparam B second type
+   *
+   * @ref comparsion_meta "Comparsion metafunction". Provides the member
+   * constant `value`, which is `true` is the first type is greater than the
+   * second. Otherwise, `false`. Inherits `std::integral_constant`.
+   *
+   * Implementation
+   *
+   * @snippet type_pack.hpp sizeof_compare
+   *
+   * See sizeof_less.
+   */
+
+  /**
+   * @struct base_is_less
+   * @brief Compares two classes by its inheritance relationship
+   *
+   * @tparam A first class
+   * @tparam B second class
+   *
+   * @ref comparsion_meta "Comparsion metafunction". Provides the member constant
+   * `value`, which is `true` if the first class is base of the second. Value will
+   * be `false` in the following cases:
+   *
+   * - if the first class is not derived from the second
+   * - if classes have not inheritance relationship
+   * - if types A and B are the same class
+   */
+
+  /**
    * @page unary_predicate_struct Unary predicate struct
    *
    * @anchor unpred_req Unary predicate class is a metafunction that must
@@ -751,7 +822,7 @@ namespace tp {
    * @anchor comp_meta_req Comparsion metafunction is a class, that takes
    * two template parameters and provides the public member constant `value`
    * of type `bool`. The value of a member depends if one type is "greater" or
-   * "less" than other.
+   * "lesser" than other.
    *
    * Comparsion between types actually is not a comparsion in the usual sense.
    * Types are quite abstract category to define a comparsion operation for
