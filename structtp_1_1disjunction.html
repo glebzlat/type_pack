@@ -70,6 +70,9 @@ $(function() {
 <div class="title">tp::disjunction&lt;... &gt; Struct Template Reference<div class="ingroups"><a class="el" href="group__TypePack.html">Type pack</a> &raquo; <a class="el" href="group__TypePackUtility.html">Utilities</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Variadic logical OR metafunction.  
+ <a href="structtp_1_1disjunction.html#details">More...</a></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for tp::disjunction&lt;... &gt;:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
@@ -77,7 +80,7 @@ $(function() {
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="structtp_1_1disjunction__inherit__graph.png" border="0" usemap="#atp_1_1disjunction_3_8_8_8_01_4_inherit__map" alt="Inheritance graph"/></div>
 <map name="atp_1_1disjunction_3_8_8_8_01_4_inherit__map" id="atp_1_1disjunction_3_8_8_8_01_4_inherit__map">
-<area shape="rect" title=" " alt="" coords="5,80,157,107"/>
+<area shape="rect" title="Variadic logical OR metafunction." alt="" coords="5,80,157,107"/>
 <area shape="rect" title=" " alt="" coords="22,5,141,32"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
@@ -88,11 +91,41 @@ $(function() {
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="structtp_1_1disjunction__coll__graph.png" border="0" usemap="#atp_1_1disjunction_3_8_8_8_01_4_coll__map" alt="Collaboration graph"/></div>
 <map name="atp_1_1disjunction_3_8_8_8_01_4_coll__map" id="atp_1_1disjunction_3_8_8_8_01_4_coll__map">
-<area shape="rect" title=" " alt="" coords="5,80,157,107"/>
+<area shape="rect" title="Variadic logical OR metafunction." alt="" coords="5,80,157,107"/>
 <area shape="rect" title=" " alt="" coords="22,5,141,32"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
-<hr/>The documentation for this struct was generated from the following file:<ul>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;class...&gt;<br />
+struct tp::disjunction&lt;... &gt;</h3>
+
+<p>Variadic logical OR metafunction. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">B...</td><td>every template argument Bi for which <code>Bi::value</code> is instantiated must be usable as a base class and define member value that is convertible to <code>bool</code></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Forms the <a href="https://en.wikipedia.org/wiki/Logical_disjunction">logical disjunction</a> of the type traits <code>B...</code>, effectively performing a logical OR on the sequence of traits.</p>
+<p>The specialization <code>std::disjunction&lt;B1, ..., BN&gt;</code> has a public and unambiguous base that is</p>
+<ul>
+<li>if <code>sizeof...(B) == 0</code>, <code>std::false_type</code>; otherwise</li>
+<li>the first type Bi in B1, ..., BN for which <code>bool(Bi::value) == true</code>, or BN if there is no such type.</li>
+</ul>
+<p>Helper type</p>
+<div class="fragment"><div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">class </span>B1, <span class="keyword">class</span>... Bn&gt;</div>
+<div class="line">  <span class="keyword">using</span> _or_ = disjunction&lt;B1, Bn...&gt;;</div>
+</div><!-- fragment --><p> Implementation</p>
+<div class="fragment"><div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">class</span>...&gt;</div>
+<div class="line">  <span class="keyword">struct </span>disjunction : std::false_type {};</div>
+<div class="line"> </div>
+<div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">class</span> B&gt;</div>
+<div class="line">  <span class="keyword">struct </span>disjunction&lt;B&gt; : B {};</div>
+<div class="line"> </div>
+<div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">class </span>B1, <span class="keyword">class</span>... B&gt;</div>
+<div class="line">  <span class="keyword">struct </span>disjunction&lt;B1, B...&gt;</div>
+<div class="line">      : std::conditional&lt;bool(B1::value), B1, disjunction&lt;B...&gt;&gt;::type {};</div>
+</div><!-- fragment --></div><hr/>The documentation for this struct was generated from the following file:<ul>
 <li>/home/runner/work/type_pack/type_pack/include/<a class="el" href="type__pack_8hpp_source.html">type_pack.hpp</a></li>
 </ul>
 </div><!-- contents -->

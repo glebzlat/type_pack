@@ -1,6 +1,6 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
 <area shape="rect" id="node1" title=" " alt="" coords="5,71,124,98"/>
 <area shape="rect" id="node2" href="$structtp_1_1contains_3_01T_00_01type__pack_3_4_01_4.html" title=" " alt="" coords="172,5,331,47"/>
-<area shape="rect" id="node3" href="$structtp_1_1disjunction.html" title=" " alt="" coords="175,71,327,98"/>
+<area shape="rect" id="node3" href="$structtp_1_1disjunction.html" title="Variadic logical OR metafunction." alt="" coords="175,71,327,98"/>
 <area shape="rect" id="node4" href="$structtp_1_1is__equal.html" title="Checks if two type_packs or just_types equal." alt="" coords="175,122,328,149"/>
 </map>

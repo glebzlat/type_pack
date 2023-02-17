@@ -67,7 +67,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="comp_meta_req"></a>Comparsion metafunction is a class, that takes two template parameters and provides the public member constant <code>value</code> of type <code>bool</code>. The value of a member depends if one type is "greater" or "lesser" than other.</p>
-<p>Comparsion between types actually is not a comparsion in the usual sense. Types are quite abstract category to define a comparsion operation for them.</p>
+<p>Comparsion between types actually is not a comparsion in usual sense. Types are quite abstract category to define a comparsion operation for them.</p>
 <p>But in the computer representation all types has their size, which is a material trait of a type. So types can be compared by their sizes.</p>
 <div class="fragment"><div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> A, <span class="keyword">typename</span> B&gt;</div>
 <div class="line">  <span class="keyword">struct </span>sizeof_less : std::integral_constant&lt;bool, (sizeof(A) &lt; sizeof(B))&gt; {};</div>
@@ -85,38 +85,7 @@ $(function() {
 <div class="line">      : _and_&lt;std::is_base_of&lt;B, A&gt;, _not_&lt;std::is_same&lt;A, B&gt;&gt;&gt; {};</div>
 <div class="line"> </div>
 </div><!-- fragment --><p> It is strongly recommended to inherit comparsion classes from <code>std::integral_constant</code> class. User can easily define its own comparsion metafunction by using metaprogramming logical operations, that are provided by the library.</p>
-<div class="fragment"><div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">class</span>...&gt;</div>
-<div class="line">  <span class="keyword">struct </span>conjunction : std::true_type {};</div>
-<div class="line"> </div>
-<div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">class</span> B&gt;</div>
-<div class="line">  <span class="keyword">struct </span>conjunction&lt;B&gt; : B {};</div>
-<div class="line"> </div>
-<div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">class </span>B1, <span class="keyword">class</span>... B&gt;</div>
-<div class="line">  <span class="keyword">struct </span>conjunction&lt;B1, B...&gt;</div>
-<div class="line">      : std::conditional&lt;bool(B1::value), conjunction&lt;B...&gt;, B1&gt;::type {};</div>
-<div class="line"> </div>
-<div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">class</span>...&gt;</div>
-<div class="line">  <span class="keyword">struct </span>disjunction : std::false_type {};</div>
-<div class="line"> </div>
-<div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">class</span> B&gt;</div>
-<div class="line">  <span class="keyword">struct </span>disjunction&lt;B&gt; : B {};</div>
-<div class="line"> </div>
-<div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">class </span>B1, <span class="keyword">class</span>... B&gt;</div>
-<div class="line">  <span class="keyword">struct </span>disjunction&lt;B1, B...&gt;</div>
-<div class="line">      : std::conditional&lt;bool(B1::value), B1, disjunction&lt;B...&gt;&gt;::type {};</div>
-<div class="line"> </div>
-<div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">class</span> B&gt;</div>
-<div class="line">  <span class="keyword">struct </span>negation : std::integral_constant&lt;bool, !B::value&gt; {};</div>
-<div class="line"> </div>
-<div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">class </span>B1, <span class="keyword">class</span>... Bn&gt;</div>
-<div class="line">  <span class="keyword">using</span> _and_ = conjunction&lt;B1, Bn...&gt;;</div>
-<div class="line"> </div>
-<div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">class </span>B1, <span class="keyword">class</span>... Bn&gt;</div>
-<div class="line">  <span class="keyword">using</span> _or_ = disjunction&lt;B1, Bn...&gt;;</div>
-<div class="line"> </div>
-<div class="line">  <span class="keyword">template</span> &lt;<span class="keyword">class</span> B&gt;</div>
-<div class="line">  <span class="keyword">using</span> _not_ = negation&lt;B&gt;;</div>
-</div><!-- fragment --><p> See <a class="el" href="structtp_1_1sizeof__less.html" title="Compares two types by their size using sizeof operator.">sizeof_less</a>, <a class="el" href="structtp_1_1sizeof__more.html" title="Compares two types by their size using sizeof operator.">sizeof_more</a>, <a class="el" href="structtp_1_1base__is__less.html" title="Compares two classes by their inheritance relationship.">base_is_less</a>, <a class="el" href="structtp_1_1derived__is__less.html" title="Compares two classes by their inheritance relationship.">derived_is_less</a>, <a class="el" href="structtp_1_1negation.html">tp::negation</a>, <a class="el" href="structtp_1_1conjunction.html">tp::conjunction</a>, <a class="el" href="structtp_1_1disjunction.html">tp::disjunction</a>. </p>
+<p>See <a class="el" href="structtp_1_1sizeof__less.html" title="Compares two types by their size using sizeof operator.">sizeof_less</a>, <a class="el" href="structtp_1_1sizeof__more.html" title="Compares two types by their size using sizeof operator.">sizeof_more</a>, <a class="el" href="structtp_1_1base__is__less.html" title="Compares two classes by their inheritance relationship.">base_is_less</a>, <a class="el" href="structtp_1_1derived__is__less.html" title="Compares two classes by their inheritance relationship.">derived_is_less</a>, <a class="el" href="structtp_1_1negation.html" title="Logical NOT metafunction.">tp::negation</a>, <a class="el" href="structtp_1_1conjunction.html" title="Variadic logical AND metafunction.">tp::conjunction</a>, <a class="el" href="structtp_1_1disjunction.html" title="Variadic logical OR metafunction.">tp::disjunction</a>. </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 <!-- start footer part -->

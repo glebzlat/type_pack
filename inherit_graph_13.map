@@ -8,6 +8,6 @@
 <area shape="rect" id="node7" href="$structtp_1_1is__not__equal.html" title="Checks if type_packs or just_types not equal." alt="" coords="216,290,397,317"/>
 <area shape="rect" id="node8" href="$structtp_1_1is__sorted.html" title="Checks if type_pack is sorted." alt="" coords="238,341,375,383"/>
 <area shape="rect" id="node9" href="$structtp_1_1lexicographical__compare.html" title="Lexicographically compares two type packs." alt="" coords="226,407,387,463"/>
-<area shape="rect" id="node10" href="$structtp_1_1negation.html" title=" " alt="" coords="237,487,376,514"/>
+<area shape="rect" id="node10" href="$structtp_1_1negation.html" title="Logical NOT metafunction." alt="" coords="237,487,376,514"/>
 <area shape="rect" id="node11" href="$structtp_1_1none__of.html" title="Checks if unary predicate is true for no elements in a type_pack." alt="" coords="228,538,385,565"/>
 </map>
