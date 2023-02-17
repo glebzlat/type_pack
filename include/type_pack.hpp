@@ -525,8 +525,8 @@ namespace tp {
         using inductive_t = is_sorted_impl<type_pack<Ts...>, Less>;
         using end_t = std::integral_constant<bool, false>;
         // if T1 less than T2, then continue recursion; otherwise false
-        using next_t = typename
-            std::conditional<!Less<T2, T1>::value, inductive_t, end_t>::type;
+        using next_t = typename std::conditional<!Less<T2, T1>::value,
+                                                 inductive_t, end_t>::type;
 
         static constexpr bool value = next_t::value;
     };
@@ -1039,6 +1039,7 @@ namespace tp {
 
   //* [partcallerimpl]
 
+  //* cond undocumented
   //* [logicalimpl]
   template <class...>
   struct conjunction : std::true_type {};
@@ -1071,8 +1072,8 @@ namespace tp {
 
   template <class B>
   using _not_ = negation<B>;
-
   //* [logicalimpl]
+  /** @endcond */
 
   /**
    * @}
