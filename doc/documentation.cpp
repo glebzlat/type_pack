@@ -643,9 +643,11 @@ namespace tp {
    * @struct sort
    * @brief Sorts type_pack
    *
-   * This page is incomplete: add description
-   * ...but just wonder, what I did: it is quick sort, implemented using
-   * SFINAE, that works with a compile-time list of types!
+   * @tparam TP type_pack
+   * @tparam Less @ref comp_meta_req "comparsion metafunction"
+   *
+   * Sorts list of types using comparsion metafunction. Provides the member
+   * typedef `type` which is a pack of types, sorted in ascending order.
    *
    * Helper type
    *
