@@ -503,6 +503,42 @@ namespace tp {
 
   //* [countifimpl]
 
+  //* [issortedimpl]
+  namespace __details {
+
+    template <class TP, template <typename A, typename B> class Less>
+    struct is_sorted_impl {};
+
+    template <typename T1, typename T2, typename... Ts,
+              template <typename A, typename B> class Less>
+    struct is_sorted_impl<type_pack<T1, T2, Ts...>, Less> {
+        using inductive_t = is_sorted_impl<type_pack<Ts...>, Less>;
+        using end_t = std::integral_constant<bool, false>;
+        // if T1 less than T2, then continue recursion; otherwise false
+        using next_t =
+            std::conditional<Less<T1, T2>::value, inductive_t, end_t>;
+
+        static constexpr bool value = next_t::value;
+    };
+
+    template <template <typename A, typename B> class Less>
+    struct is_sorted_impl<empty_pack, Less> {
+        static constexpr bool value = true;
+    };
+
+    template <typename T, template <typename A, typename B> class Less>
+    struct is_sorted_impl<type_pack<T>, Less> {
+        static constexpr bool value = true;
+    };
+
+  } // namespace __details
+
+  template <class TP, template <typename A, typename B> class Less>
+  struct is_sorted
+      : std::integral_constant<bool,
+                               __details::is_sorted_impl<TP, Less>::value> {};
+  //* [issortedimpl]
+
   /**
    * @}
    *
@@ -973,6 +1009,7 @@ namespace tp {
   //* [sorttype]
   template <class TP, template <typename A, typename B> class Less>
   using sort_t = typename sort<TP, Less>::type;
+
   //* [sorttype]
 
   /**
@@ -1023,6 +1060,7 @@ namespace tp {
 
   template <class B>
   using _not_ = negation<B>;
+
   //* [logicalimpl]
 
   /**
@@ -1038,6 +1076,7 @@ namespace tp {
 
   template <typename A, typename B>
   struct sizeof_more : std::integral_constant<bool, (sizeof(A) > sizeof(B))> {};
+
   //* [sizeof_compare]
 
   //* [baseis_compare]
@@ -1048,6 +1087,7 @@ namespace tp {
   template <typename A, typename B>
   struct derived_is_less
       : _and_<std::is_base_of<B, A>, _not_<std::is_same<A, B>>> {};
+
   //* [baseis_compare]
 
   /** @} */
