@@ -18,6 +18,7 @@ $mathjax
 $extrastylesheet
 </head>
 <body>
+  <div id="wrapper">
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
 
 <!--BEGIN TITLEAREA-->
@@ -29,7 +30,7 @@ $extrastylesheet
   <td id="projectlogo"><img alt="Logo" src="$relpath^$projectlogo"/></td>
   <!--END PROJECT_LOGO-->
   <!--BEGIN PROJECT_NAME-->
-  <td id="projectalign" style="padding-left: 0.5em;">
+  <td id="projectalign" style="padding-left: 0.5em; white-space: nowrap;">
    <div id="projectname">$projectname
    <!--BEGIN PROJECT_NUMBER-->&#160;<span id="projectnumber">$projectnumber</span><!--END PROJECT_NUMBER-->
    </div>
@@ -43,6 +44,11 @@ $extrastylesheet
     </td>
    <!--END PROJECT_BRIEF-->
   <!--END !PROJECT_NAME-->
+  <td style="width: 100%; text-align: right; padding-right: 0.5em;">
+    <a href="https://github.com/edKotinsky/type_pack">
+      <img src="$relpath^github.ico" alt="Project's GitHub" width="30px" height="30px" border="0">
+    </a>
+  </td>
   <!--BEGIN DISABLE_INDEX-->
    <!--BEGIN SEARCHENGINE-->
    <td>$searchbox</td>
