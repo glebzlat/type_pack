@@ -1,5 +1,10 @@
 /* The standard CSS for doxygen 1.8.17 */
 
+html, body {
+  min-height: 100%;
+  height: 100%;
+}
+
 body, table, div, p, dl {
   font: 400 14px/22px Arial, Helvetica, sans-serif;
 }
@@ -29,6 +34,19 @@ div.line {
 
 div.qindex {
   line-break: anywhere;
+}
+
+#wrapper {
+  background-color: #e6ecff;
+  min-height: 100%;
+  height: auto !important;
+  margin-bottom: -31px;
+}
+
+#wrapper:after {
+  content: "";
+  display: block;
+  height: 31px;
 }
 
 @media (min-width: 320px) {
@@ -69,7 +87,7 @@ div.qindex {
 }
 
 @media (min-width:961px)  {
-  div.contents, div.header, table {
+  div.contents, div.header {
     width: 920px;
   }
   .directory td.entry, .directory td.desc {
@@ -85,7 +103,7 @@ div.qindex {
 }
 
 @media (min-width:1025px) {
-  div.contents, div.header, table {
+  div.contents, div.header{
     width: 960px;
   }
   .directory td.entry, .directory td.desc {
@@ -101,7 +119,7 @@ div.qindex {
 }
 
 @media (min-width:1281px) {
-  div.contents, div.header, table {
+  div.contents, div.header{
     width: 960px;
   }
   .directory td.entry, .directory td.desc {
@@ -434,6 +452,7 @@ div.center img {
 address.footer {
   text-align: right;
   padding-right: 12px;
+  background-image: url("tab_b.png");
 }
 
 img.footer {
@@ -1169,8 +1188,7 @@ div.ingroups a
   white-space: nowrap;
 }
 
-div.header
-{
+div.header {
   background-image:url('nav_h.png');
   background-repeat:repeat-x;
   background-color: #F9FAFC;
@@ -1181,6 +1199,9 @@ div.header
   padding-left: 12px;
   padding-right: 12px;
   border-bottom: 1px solid #C4CFE5;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  margin-top: 10px;
 }
 
 .PageDocRTL-title div.headertitle {
