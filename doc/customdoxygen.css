@@ -763,6 +763,9 @@ dl.reflist dd {
 .params, .retval, .exception, .tparams {
         margin-left: 0px;
         padding-left: 0px;
+        max-width: 100%;
+        visibility: visible;
+        white-space: normal;
 }
 
 .params .paramname, .retval .paramname, .tparams .paramname, .exception .paramname {
