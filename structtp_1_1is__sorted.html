@@ -120,8 +120,8 @@ struct tp::is_sorted&lt; TP, Less &gt;</h3>
 <div class="line">        <span class="keyword">using</span> inductive_t = is_sorted_impl&lt;type_pack&lt;Ts...&gt;, Less&gt;;</div>
 <div class="line">        <span class="keyword">using</span> end_t = std::integral_constant&lt;bool, false&gt;;</div>
 <div class="line">        <span class="comment">// if T1 less than T2, then continue recursion; otherwise false</span></div>
-<div class="line">        <span class="keyword">using</span> next_t = <span class="keyword">typename</span></div>
-<div class="line">            std::conditional&lt;!Less&lt;T2, T1&gt;::value, inductive_t, end_t&gt;::type;</div>
+<div class="line">        <span class="keyword">using</span> next_t = <span class="keyword">typename</span> std::conditional&lt;!Less&lt;T2, T1&gt;::value,</div>
+<div class="line">                                                 inductive_t, end_t&gt;::type;</div>
 <div class="line"> </div>
 <div class="line">        <span class="keyword">static</span> constexpr <span class="keywordtype">bool</span> value = next_t::value;</div>
 <div class="line">    };</div>
