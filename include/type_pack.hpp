@@ -1041,6 +1041,7 @@ namespace tp {
 
   //* cond undocumented
   //* [logicalimpl]
+  //* [conjimpl]
   template <class...>
   struct conjunction : std::true_type {};
 
@@ -1050,7 +1051,9 @@ namespace tp {
   template <class B1, class... B>
   struct conjunction<B1, B...>
       : std::conditional<bool(B1::value), conjunction<B...>, B1>::type {};
+  //* [conjimpl]
 
+  //* [disjimpl]
   template <class...>
   struct disjunction : std::false_type {};
 
@@ -1060,18 +1063,27 @@ namespace tp {
   template <class B1, class... B>
   struct disjunction<B1, B...>
       : std::conditional<bool(B1::value), B1, disjunction<B...>>::type {};
+  //* [disjimpl]
 
+  //* [negimpl]
   template <class B>
   struct negation : std::integral_constant<bool, !B::value> {};
+  //* [negimpl]
 
+  //* [conjtype]
   template <class B1, class... Bn>
   using _and_ = conjunction<B1, Bn...>;
+  //* [conjtype]
 
+  //* [disjtype]
   template <class B1, class... Bn>
   using _or_ = disjunction<B1, Bn...>;
+  //* [disjtype]
 
+  //* [negtype]
   template <class B>
   using _not_ = negation<B>;
+  //* [negtype]
   //* [logicalimpl]
   /** @endcond */
 
