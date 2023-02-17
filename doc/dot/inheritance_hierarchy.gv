@@ -1,0 +1,11 @@
+digraph G {
+    rankdir=BT
+
+    Base [shape=box, fontname=Arial]
+    Derived1 [shape=box, fontname=Arial]
+    Derived2 [shape=box, fontname=Arial]
+    Derived3 [shape=box, fontname=Arial]
+    Derived1 -> Base [arrowhead=empty]
+    Derived2 -> Base [arrowhead=empty]
+    Derived3 -> Derived1 [arrowhead=empty]
+}
