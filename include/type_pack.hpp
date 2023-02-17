@@ -924,36 +924,42 @@ namespace tp {
   template <class TP, template <typename A, typename B> class Less>
   struct sort {};
 
+  // base case 1
   template <typename T, template <typename A, typename B> class Less>
   struct sort<type_pack<T>, Less> {
       using type = type_pack<T>;
   };
 
+  // base case 2
   template <template <typename A, typename B> class Less>
   struct sort<empty_pack, Less> {
       using type = empty_pack;
   };
 
+  // inductive case
   template <typename T, typename... Ts,
             template <typename A, typename B> class Less>
   struct sort<type_pack<T, Ts...>, Less> {
     private:
       using tp_t = type_pack<T, Ts...>;
       using pivot = at_t<0, tp_t>;
-      // using pack = delete_at_t<tp_t::size() / 2, tp_t>;
       using pack = remove_t<pivot, tp_t>;
 
+      // less than the pivot
       template <typename E>
       struct lt_pivot {
           static constexpr bool value = Less<E, pivot>::value;
       };
 
+      // greater than or equal to the pivot
       template <typename E>
       struct gte_pivot {
           static constexpr bool value = !Less<E, pivot>::value;
       };
 
+      // array of elements that are less
       using pack_lt = copy_if_t<tp_t, lt_pivot>;
+      // array of elements that are greater/equal
       using pack_gt = copy_if_t<pack, gte_pivot>;
 
       using inductive_sort_lt = typename sort<pack_lt, Less>::type;
