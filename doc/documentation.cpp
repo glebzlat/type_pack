@@ -774,18 +774,71 @@ namespace tp {
 
   /**
    * @struct base_is_less
-   * @brief Compares two classes by its inheritance relationship
+   * @brief Compares two classes by their inheritance relationship
    *
    * @tparam A first class
    * @tparam B second class
    *
-   * @ref comparsion_meta "Comparsion metafunction". Provides the member constant
-   * `value`, which is `true` if the first class is base of the second. Value will
-   * be `false` in the following cases:
+   * @ref comparsion_meta "Comparsion metafunction". Provides the member
+   * constant `value`, which is `true` if the first class is base of the second.
+   * Value will be `false` in the following cases:
    *
    * - if the first class is not derived from the second
    * - if classes have not inheritance relationship
    * - if types A and B are the same class
+   *
+   * Suppose the following inheritance diagram:
+   *
+   * @dotfile inheritance_hierarchy.gv "Example class hierarchy"
+   *
+   * For this diagram the following code is correct:
+   *
+   * ```cpp
+   * assert((tp::base_is_less<Base, Derived1>::value == true));
+   * assert((tp::base_is_less<Base, Derived3>::value == true));
+   *
+   * assert((tp::base_is_less<Derived1, Derived3>::value == true));
+   * assert((tp::base_is_less<Derived2, Derived3>::value == false));
+   *
+   * assert((tp::base_is_less<Derived1, Derived1>::value == false));
+   * ```
+   *
+   * See derived_is_less.
+   */
+
+  /**
+   * @struct derived_is_less
+   * @brief Compares two classes by their inheritance relationship
+   *
+   * @tparam A first class
+   * @tparam B second class
+   *
+   * @ref comparsion_meta "Comparsion metafunction". Provides the member
+   * constant `value`, which is `true` if the first class is derived from the
+   * second. Value will be `false` in the following cases:
+   *
+   * - if the first class is not derived from the second
+   * - if classes have not inheritance relationship
+   * - if types A and B are the same class
+   *
+   * Suppose the following inheritance diagram:
+   *
+   * @dotfile inheritance_hierarchy.gv "Example class hierarchy"
+   *
+   * For this diagram the following code is correct:
+   *
+   * ```cpp
+   * assert((tp::derived_is_less<Derived1, Base>::value == true));
+   * assert((tp::derived_is_less<Derived2, Base>::value == true));
+   * assert((tp::derived_is_less<Derived3, Base>::value == true));
+   *
+   * assert((tp::derived_is_less<Derived3, Derived1>::value == true));
+   * assert((tp::derived_is_less<Derived3, Derived2>::value == true));
+   *
+   * assert((tp::derived_is_less<Derived1, Derived1>::value == false));
+   * ```
+   *
+   * See base_is_less.
    */
 
   /**
