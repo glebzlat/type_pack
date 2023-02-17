@@ -4,69 +4,18 @@
 [![clang](https://github.com/edKotinsky/type_pack/actions/workflows/clang.yml/badge.svg)](https://github.com/edKotinsky/type_pack/actions/workflows/clang.yml)
 [![Docs](https://github.com/edKotinsky/type_pack/actions/workflows/docs.yml/badge.svg)](https://github.com/edKotinsky/type_pack/actions/workflows/docs.yml)
 
-My type list implementation using template parameter packs. Written in pure
-C++11.
+This is my hobby project, that I have started because I wished to deeply explore
+C++ metaprogramming. I have implemented a lot of great metaprogramming stuff,
+which actually may seem as a "black magic". 
 
-Almost completely tested. Documentation is in progress.
+Here you can see such algorithms as lexicographic comparsion, generation,
+conditional removing and even sorting. And it all is performed at compile-time 
+with _types_, not material values. And it all is implemented using pure C++ 11 
+standard.
 
-## Features
-
-Currently library provides the following operations. List may be incomplete,
-for all features and for the detailed description see the documentation.
-
-There are three main groups of operations:
-
-Element accessing operations, that return one specific type from a type_pack
-by index or by its position. These operations provide a member typedef `type`
-as a result.
-
-Indexing operations provide a constant member `value` as a result. They are
-divided into following categories:
-- Operations that check if a type exists in a type_pack. These are: `all_of`,
-`any_of`, `none_of`, `contains`. Result type is bool.
-- Operations that return an index of a type if this type exists in a type_pack.
-These are: `find`, `find_if`. Result type is `size_t`.
-- Operations that return count of specific types or types, on which a
-predicate returns true: `count`, `count_if`. Result type is `size_t`.
-
-Generation operations, which generate new type_pack from the other type_pack,
-or create new type_pack from the other data (e.g. `generate` creates a type_pack
-with N elements of a specific type). Some of these operations generate new
-pack from the other, conditionally, by index or by position. Generation
-operations provide member typedef `type`, which is a type_pack with some types
-(or empty_pack in some cases) as a result.
-
-_Element accessing operations_
-- head
-- at
-
-_Indexing operations_
-- contains
-- find
-- find_if
-- all_of
-- any_of
-- none_of
-- count
-- count_if
-
-_Generation operations_
-- copy
-- copy_if
-- tail
-- concatenate
-- push_front
-- push_back
-- pop_front
-- pop_back
-- transform
-- generate
-- remove
-- remove_if
-- remove_all
-- remove_all_if
-- unique
-- replace
+You can read the 
+[documentation of a project](https://edkotinsky.github.io/type_pack/), 
+almost all features are documented.
 
 ## Installation
 
@@ -84,9 +33,6 @@ cmake --build build
 ```
 
 ## Documentation
-
-You can [read the documentation online](https://edkotinsky.github.io/type_pack/) 
-or build from source:
 
 ```sh
 cmake -S . -B build -D TYPE_PACK_DOC=ON
