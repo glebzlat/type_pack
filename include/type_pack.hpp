@@ -1,7 +1,22 @@
-/* MIT License
+/**
+ * @file type_pack.hpp
+ * @brief Main and the only file of a library
  *
+ * TypePack Library provides metaprogramming type list and a great set of
+ * operations with it like indexing access, generating, copying, comparsion,
+ * and even sorting.
+ *
+ * In fact, it is a hobby project, caused by my wish to deeply explore C++
+ * metaprogramming and other topics, like doxygen usage and customisation,
+ * documentation writing, testing, etc.
+ *
+ * @copyright
  * Copyright (c) 2023 Gleb Zlatanov
  *
+ * @license
+ * MIT License
+ *
+ * @par
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -9,9 +24,11 @@
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  *
+ * @par
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
  *
+ * @par
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -19,12 +36,6 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
- */
-
-/**
- * @file type_pack.hpp
- *
- * Main and the only file of a library.
  */
 
 #ifndef TYPE_PACK_HPP
@@ -537,6 +548,7 @@ namespace tp {
   struct is_sorted
       : std::integral_constant<bool,
                                __details::is_sorted_impl<TP, Less>::value> {};
+
   //* [issortedimpl]
 
   /**
