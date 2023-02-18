@@ -643,7 +643,7 @@ namespace tp {
    *
    * Implementation
    *
-   * @snippet type_pack.hpp removeallieimpl
+   * @snippet type_pack.hpp removeallifimpl
    */
 
   /**
