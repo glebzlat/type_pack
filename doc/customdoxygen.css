@@ -63,6 +63,14 @@ div.qindex {
   margin-left: auto;
 }
 
+#MSearchSelect {
+  margin-bottom: 10px;
+}
+
+#MSearchField {
+  margin-bottom: 12px;
+}
+
 @media (min-width: 320px) {
   div.headertitle {
     font-size: 100%;
