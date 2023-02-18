@@ -5,7 +5,7 @@
 [![Docs](https://github.com/edKotinsky/type_pack/actions/workflows/docs.yml/badge.svg)](https://github.com/edKotinsky/type_pack/actions/workflows/docs.yml)
 
 This is my hobby project, that I have started because I wished to deeply explore
-C++ metaprogramming. I have implemented a lot of great metaprogramming stuff,
+C++ metaprogramming. I have implemented a lot of cool metaprogramming stuff,
 which actually may seem as a "black magic". 
 
 Here you can see such algorithms as lexicographic comparsion, generation,
