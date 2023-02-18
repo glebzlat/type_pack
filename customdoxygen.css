@@ -23,6 +23,12 @@ table {
   white-space: pre-line;
 }
 
+table.title {
+  white-space: normal;
+  overflow-x: hidden;
+  margin: 0px;
+}
+
 div.fragment {
   display: block;
   overflow-x: scroll;
@@ -49,6 +55,14 @@ div.qindex {
   height: 31px;
 }
 
+.titleimg {
+  display: block;
+  width: 30px;
+  height: 30px;
+  border: 0px;
+  margin-left: auto;
+}
+
 @media (min-width: 320px) {
   div.headertitle {
     font-size: 100%;
@@ -58,6 +72,9 @@ div.qindex {
   }
   h1 {
     font-size: 170%;
+  }
+  table.title {
+    font-size: 100%;
   }
 }
 
@@ -71,6 +88,9 @@ div.qindex {
   h1 {
     font-size: 170%;
   }
+  table.title {
+    font-size: 100%;
+  }
 }
 
 @media (min-width:641px)  {
@@ -82,6 +102,9 @@ div.qindex {
     font-size: 50%;
   }
   #projectname {
+    font-size: 200%;
+  }
+  table.title {
     font-size: 200%;
   }
 }
@@ -100,6 +123,9 @@ div.qindex {
     font-size: 200%;
   }
   table { white-space: nowrap; }
+  table.title {
+    font-size: 150%;
+  }
 }
 
 @media (min-width:1025px) {
@@ -116,6 +142,9 @@ div.qindex {
     font-size: 200%;
   }
   table { white-space: nowrap; }
+  table.title {
+    font-size: 200%;
+  }
 }
 
 @media (min-width:1281px) {
@@ -132,6 +161,9 @@ div.qindex {
     font-size: 300%;
   }
   table { white-space: nowrap; }
+  table.title {
+    font-size: 150%;
+  }
 }
 
 /* @group Heading Levels */
