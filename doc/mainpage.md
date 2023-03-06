@@ -6,11 +6,14 @@
 
 This is my hobby project, that I have started because I wished to deeply explore
 C++ metaprogramming. I have implemented a lot of great metaprogramming stuff,
-which actually may seem as a "black magic". 
+which actually may seem as a "black magic".
+
+Project is heavily inspired by [this project](https://github.com/ALSCode/FSM),
+which is based on [this lecture](https://www.youtube.com/watch?v=AnOPvP7e7cw).
 
 Here you can see such algorithms as lexicographic comparsion, generation,
-conditional removing and even sorting. And it all is performed at compile-time 
-with _types_, not material values. And it all is implemented using pure C++ 11 
+conditional removing and even sorting. And it all is performed at compile-time
+with _types_, not material values. And it all is implemented using pure C++ 11
 standard.
 
 [Project's GitHub](https://github.com/edKotinsky/type_pack)
