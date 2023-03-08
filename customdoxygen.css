@@ -38,6 +38,10 @@ div.line {
   white-space: pre;
 }
 
+div.line:nth-of-type(even) {
+  background-color: #e6e6ff;
+}
+
 div.qindex {
   line-break: anywhere;
 }
@@ -367,7 +371,7 @@ div.line.glow {
 span.lineno {
   padding-right: 4px;
   text-align: right;
-  border-right: 2px solid #0F0;
+  border-right: 2px solid #0464f9;
   background-color: #E8E8E8;
         white-space: pre;
 }
