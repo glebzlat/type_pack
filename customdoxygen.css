@@ -34,10 +34,6 @@ div.fragment {
   overflow-x: scroll;
 }
 
-div.line {
-  white-space: pre;
-}
-
 div.line:nth-of-type(even) {
   background-color: #e6e6ff;
 }
@@ -76,6 +72,9 @@ div.qindex {
 }
 
 @media (min-width: 320px) {
+  div.line {
+    width: 220%;
+  }
   div.headertitle {
     font-size: 100%;
   }
@@ -91,6 +90,9 @@ div.qindex {
 }
 
 @media (min-width:481px)  {
+  div.line {
+    width: 180%;
+  }
   div.headertitle {
     font-size: 100%;
   }
@@ -106,6 +108,9 @@ div.qindex {
 }
 
 @media (min-width:641px)  {
+  div.line {
+    width: 120%;
+  }
   div.headertitle {
     font-size: 100%;
     padding: 5px 5px 5px 10px;
@@ -122,6 +127,9 @@ div.qindex {
 }
 
 @media (min-width:961px)  {
+  div.line {
+    width: 100%;
+  }
   div.contents, div.header {
     width: 920px;
   }
@@ -332,6 +340,7 @@ div.fragment {
 }
 
 div.line {
+  white-space: pre-wrap;
   font-family: monospace, fixed;
         font-size: 13px;
   min-height: 13px;
@@ -342,7 +351,7 @@ div.line {
   white-space: -o-pre-wrap;   /* Opera 7 */
   word-wrap: break-word;      /* IE 5.5+ */
   text-indent: 0px;
-  padding-left: 53px;
+  padding-left: 0px;
   padding-bottom: 0px;
   margin: 0px;
   -webkit-transition-property: background-color, box-shadow;
@@ -355,7 +364,6 @@ div.line {
   -o-transition-duration: 0.5s;
   transition-property: background-color, box-shadow;
   transition-duration: 0.5s;
-  display: table-row;
 }
 
 div.line:after {
