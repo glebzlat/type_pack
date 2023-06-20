@@ -14,7 +14,7 @@ with _types_, not material values. And it all is implemented using pure C++ 11
 standard.
 
 You can read the 
-[documentation of a project](https://edkotinsky.github.io/type_pack/), 
+[documentation of a project](https://glebzlat.github.io/type_pack/), 
 almost all features are documented.
 
 ## Installation
